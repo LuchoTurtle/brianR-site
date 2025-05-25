@@ -1,54 +1,64 @@
 import { Mesh, MeshBasicMaterial, Group, CircleGeometry, DoubleSide } from "three";
 
 class Figure extends Group {
-  /**
-   * Creates a grid of circular holes in a plane to simulate a DJ lighting effect.
-   * @param {*} circleSize size of each circular hole
-   * @param {*} spacingX spacing between circles in the X direction
-   * @param {*} spacingY spacing between circles in the Y direction
-   * @param {*} viewportWidth viewport width to fill
-   * @param {*} viewportHeight viewport height to fill
-   */
   constructor(circleSize = 5, spacingX = 15, spacingY = 15, viewportWidth = 800, viewportHeight = 600) {
     super();
-
-    // Use viewport dimensions instead of fixed values
-    // Add some padding to ensure we fully cover the viewport
-    const width = viewportWidth * 1.1; // 10% extra to ensure coverage
+    this.circleSize = circleSize;
+    this.spacingX = spacingX;
+    this.spacingY = spacingY;
+    
+    // Create the geometry once
+    this.circleGeometry = new CircleGeometry(circleSize, 72);
+    
+    // Initial creation
+    this.createGrid(viewportWidth, viewportHeight);
+  }
+  
+  createGrid(viewportWidth, viewportHeight) {
+    // Clear any existing meshes
+    while(this.children.length > 0) {
+      const obj = this.children[0];
+      this.remove(obj);
+      if (obj.geometry) obj.geometry.dispose();
+      if (obj.material) obj.material.dispose();
+    }
+    
+    // Use viewport dimensions with padding
+    const width = viewportWidth * 1.1;
     const height = viewportHeight * 1.1;
-
-    // Calculate number of circles in each dimension to fill viewport
-    const circlesX = Math.ceil(width / spacingX);
-    const circlesY = Math.ceil(height / spacingY);
-
-    // Create circle geometry (will be reused)
-    const circleGeometry = new CircleGeometry(circleSize, 64); // Increased segments for smoother circles
-
-    // Create material for circles
-    const circleMaterial = new MeshBasicMaterial({
-      color: 0x080808,
-      side: DoubleSide,
-    });
-
-    // Starting position (centered in viewport)
-    const startX = -(circlesX * spacingX) / 2 + spacingX / 2;
-    const startY = -(circlesY * spacingY) / 2 + spacingY / 2;
-
-    // Create grid of circles
+    
+    // Calculate grid dimensions
+    const circlesX = Math.ceil(width / this.spacingX);
+    const circlesY = Math.ceil(height / this.spacingY);
+    
+    // Starting position (centered)
+    const startX = -(circlesX * this.spacingX) / 2 + this.spacingX / 2;
+    const startY = -(circlesY * this.spacingY) / 2 + this.spacingY / 2;
+    
+    // Create grid
     for (let x = 0; x < circlesX; x++) {
       for (let y = 0; y < circlesY; y++) {
-        // Position for this circle
-        const circleX = startX + x * spacingX;
-        const circleY = startY + y * spacingY;
-
-        // Create a circle mesh
-        const circleMesh = new Mesh(circleGeometry, circleMaterial);
-        circleMesh.position.set(circleX, circleY, 0);
-
-        // Add to group
+        const circleX = startX + x * this.spacingX;
+        const circleY = startY + y * this.spacingY;
+        const depth = Math.sin(x * 0.5) * Math.cos(y * 0.5) * 20;
+        
+        const circleMaterial = new MeshBasicMaterial({
+          color: 0x080808,
+          side: DoubleSide,
+          transparent: true,
+          opacity: 0.7 + Math.random() * 0.3,
+        });
+        
+        const circleMesh = new Mesh(this.circleGeometry, circleMaterial);
+        circleMesh.position.set(circleX, circleY, depth);
         this.add(circleMesh);
       }
     }
+  }
+  
+  // Method to resize the figure
+  resize(viewportWidth, viewportHeight) {
+    this.createGrid(viewportWidth, viewportHeight);
   }
 }
 
