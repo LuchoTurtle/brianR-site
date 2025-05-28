@@ -4,12 +4,22 @@ import noise from "./noise.glsl?raw";
 class LightSource extends Mesh {
   constructor() {
     super();
+    // Add more specific parameters for beat control
     this.userData.time = { value: 0 };
     this.userData.beatIntensity = { value: 0.5 };
-    this.userData.colorMix = { value: 0 };
+    this.userData.beatFrequency = { value: 1.0 }; // Control main beat frequency
+    this.userData.pulseFrequency = { value: 1.0 }; // Control slower pulse frequency
+    this.userData.strobeFrequency = { value: .4 }; // Control slow strobe frequency
+    this.userData.colorSpeed = { value: 0.2 }; // Control color cycling speed
     this.userData.mouseInfluence = { value: 0.5 }; // How much mouse affects light
     this.userData.mouseX = { value: 0 };
     this.userData.mouseY = { value: 0 };
+    
+    // Additional beat pattern controls
+    this.userData.beatWeight = { value: 0.2 }; // How much the main beat affects intensity
+    this.userData.pulseWeight = { value: 0.1 }; // How much the pulse affects intensity
+    this.userData.strobeWeight = { value: 0.1 }; // How much the strobe affects intensity
+    this.userData.baseIntensity = { value: 0.8 }; // Base light intensity (before beats)
     
     // Default animation settings
     this.autoMove = true;
@@ -24,18 +34,34 @@ class LightSource extends Mesh {
         // Add custom uniforms for DJ lighting effects
         shader.uniforms.time = this.userData.time;
         shader.uniforms.beatIntensity = this.userData.beatIntensity;
+        shader.uniforms.beatFrequency = this.userData.beatFrequency;
+        shader.uniforms.pulseFrequency = this.userData.pulseFrequency;
+        shader.uniforms.strobeFrequency = this.userData.strobeFrequency;
         shader.uniforms.colorMix = this.userData.colorMix;
+        shader.uniforms.colorSpeed = this.userData.colorSpeed;
         shader.uniforms.mouseInfluence = this.userData.mouseInfluence;
         shader.uniforms.mouseX = this.userData.mouseX;
         shader.uniforms.mouseY = this.userData.mouseY;
+        shader.uniforms.beatWeight = this.userData.beatWeight;
+        shader.uniforms.pulseWeight = this.userData.pulseWeight;
+        shader.uniforms.strobeWeight = this.userData.strobeWeight;
+        shader.uniforms.baseIntensity = this.userData.baseIntensity;
         
         shader.fragmentShader = `
           uniform float time;
           uniform float beatIntensity;
+          uniform float beatFrequency;
+          uniform float pulseFrequency;
+          uniform float strobeFrequency;
           uniform float colorMix;
+          uniform float colorSpeed;
           uniform float mouseInfluence;
           uniform float mouseX;
           uniform float mouseY;
+          uniform float beatWeight;
+          uniform float pulseWeight;
+          uniform float strobeWeight;
+          uniform float baseIntensity;
           ${shader.fragmentShader}
         `
           .replace(
@@ -80,13 +106,13 @@ class LightSource extends Mesh {
           // Noise pattern for texture
           float n = snoise(vec3(uv * 7.0, time * 0.5)) * 0.5 + 0.5;
           
-          // Beat-driven flashing (creates pulses) - now affected by beatIntensity
-          float beat1 = strobe(time, 8.0, 5.0 * beatIntensity);
-          float beat2 = pulse(time, 2.0 * beatIntensity);
-          float beat3 = strobe(time, 1.0, 2.0 * beatIntensity);
+          // Beat-driven flashing (creates pulses) - now using controllable frequencies
+          float beat1 = strobe(time, beatFrequency, 5.0 * beatIntensity);
+          float beat2 = pulse(time, pulseFrequency);
+          float beat3 = strobe(time, strobeFrequency, 2.0 * beatIntensity);
           
-          // Color cycling - now affected by mouseX for more interactive control
-          float colorCycle = mod(time * 0.2 + mouseX * 0.5, 4.0);
+          // Color cycling - now affected by colorSpeed parameter
+          float colorCycle = mod(time * colorSpeed + mouseX * 0.5, 4.0);
           vec3 currentColor;
           
           if (colorCycle < 1.0) {
@@ -99,13 +125,11 @@ class LightSource extends Mesh {
             currentColor = mix(color4, color1, colorCycle - 3.0);
           }
           
-          // Apply beat modulation to intensity - now affected by mouseY
-          float intensity = 0.8 + beat1 * 0.5 * (1.0 + mouseY * 0.5);
+          // Create a combined beat effect with controllable weights
+          float beatEffect = beat1 * beatWeight + beat2 * pulseWeight + beat3 * strobeWeight;
           
-          // Special strobe effect every few seconds
-          if (mod(time, 10.0) > 9.0) {
-            intensity *= strobe(time, 20.0, 1.0) * 2.0;
-          }
+          // Apply beat modulation to intensity - now with base intensity control
+          float intensity = baseIntensity + beatEffect * (1.0 + mouseY * 0.5);
           
           // Apply color and effects
           col = currentColor * f * intensity * (n * 0.5 + 0.5);
@@ -146,12 +170,50 @@ class LightSource extends Mesh {
     }
   }
   
-  // Method to update beat patterns and intensity
-  updateBeat(intensity) {
-    this.userData.beatIntensity.value = intensity;
+  // Beat intensity control
+  setBeatIntensity(intensity) {
+    this.userData.beatIntensity.value = Math.max(0, intensity);
   }
   
-  // Method to set how much mouse influences the light
+  // Main beat frequency control (fast beats)
+  setBeatFrequency(frequency) {
+    this.userData.beatFrequency.value = Math.max(0.1, frequency);
+  }
+  
+  // Pulse frequency control (slower beats)
+  setPulseFrequency(frequency) {
+    this.userData.pulseFrequency.value = Math.max(0.1, frequency);
+  }
+  
+  // Strobe frequency control (slow flashing)
+  setStrobeFrequency(frequency) {
+    this.userData.strobeFrequency.value = Math.max(0.1, frequency);
+  }
+  
+  // Color cycling speed control
+  setColorSpeed(speed) {
+    this.userData.colorSpeed.value = Math.max(0, speed);
+  }
+  
+  // Controls for beat impact weights
+  setBeatWeight(weight) {
+    this.userData.beatWeight.value = Math.max(0, weight);
+  }
+  
+  setPulseWeight(weight) {
+    this.userData.pulseWeight.value = Math.max(0, weight);
+  }
+  
+  setStrobeWeight(weight) {
+    this.userData.strobeWeight.value = Math.max(0, weight);
+  }
+  
+  // Base intensity control
+  setBaseIntensity(intensity) {
+    this.userData.baseIntensity.value = Math.max(0, intensity);
+  }
+  
+  // Mouse influence control
   setMouseInfluence(value) {
     this.userData.mouseInfluence.value = Math.max(0, Math.min(1, value));
   }
