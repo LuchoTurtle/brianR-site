@@ -6,11 +6,11 @@
 
 <script>
   import * as THREE from "three";
-  import { Figure } from "./Figure";
+  import { CircleMesh } from "./CircleMesh";
   import { LightSource } from "./LightSource";
   import { EffectComposer, EffectPass, GodRaysEffect, RenderPass, BloomEffect, BlendFunction } from "postprocessing";
 
-  // Add this at the top of your script section
+  // Debounce function to limit resize event calls -------------
   function debounce<T extends (...args: any[]) => any>(func: T, wait: number): (...args: Parameters<T>) => void {
     let timeout: ReturnType<typeof setTimeout> | undefined;
 
@@ -20,7 +20,7 @@
     };
   }
 
-  // Initialize scene when component mounts
+  // Scene initialization function -------------
   function initScene() {
     let mouseX = 0;
     let mouseY = 0;
@@ -28,12 +28,10 @@
     // Canvas container
     const container = document.getElementById("three-container") as HTMLElement;
     container.addEventListener("mousemove", (event) => {
-      // Convert mouse position to normalized coordinates (-1 to 1)
       mouseX = (event.clientX / container.clientWidth) * 2 - 1;
       mouseY = -((event.clientY / container.clientHeight) * 2 - 1); // Negative to match Three.js Y-up
     });
 
-    // Scene setup
     const scene = new THREE.Scene();
 
     // Add atmospheric fog for depth and haze
@@ -41,20 +39,17 @@
 
     // Camera
     let camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 1, 1000);
-    camera.position.set(5, 0, 300); // Increased distance for better depth perception
+    camera.position.set(5, 0, 300);
 
     // Renderer
     let renderer = new THREE.WebGLRenderer({
       powerPreference: "high-performance",
-      antialias: false, // Enable antialiasing for smoother edges
-      stencil: false,
-      depth: false,
     });
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
     window.addEventListener("resize", debounce(onResize, 250), false);
 
-    // Add subtle ambient light for atmosphere
+    // Add ambient light
     const ambientLight = new THREE.AmbientLight(0x111111);
     scene.add(ambientLight);
 
@@ -63,8 +58,8 @@
     light.position.set(2, 0, -10);
     scene.add(light);
 
-    // Create figure with viewport dimensions
-    let figure = new Figure(5, 15, 15, container.clientWidth, container.clientHeight);
+    // Create grid figure with viewport dimensions
+    let figure = new CircleMesh(5, 15, 15, container.clientWidth, container.clientHeight);
     scene.add(figure);
 
     // Create dust particles for atmospheric effect
@@ -75,21 +70,22 @@
     let composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
 
-    // Enhanced God Rays effect
+    // Add god rays
     let gre = new GodRaysEffect(camera, light, {
-      height: 720, // Higher resolution for better quality
-      kernelSize: 3, // Increased kernel size for more pronounced effect
-      density: 1.2, // Increased density for more visible rays
-      decay: 0.92, // Slightly higher decay for longer rays
-      weight: 0.6, // More influence
-      exposure: 0.6, // Increased exposure for brighter rays
-      samples: 60, // More samples for smoother rays
-      clampMax: 1.0, // Allow full brightness
+      height: 720,
+      kernelSize: 3,
+      density: 1.2,
+      decay: 0.92,
+      weight: 0.6,
+      exposure: 0.6,
+      samples: 60,
+      clampMax: 1.0,
     });
     composer.addPass(new EffectPass(camera, gre));
 
     let clock = new THREE.Clock();
 
+    // Animation loop
     renderer.setAnimationLoop(() => {
       let t = clock.getElapsedTime();
 
@@ -138,7 +134,6 @@
       camera.updateProjectionMatrix();
       renderer.setSize(container.clientWidth, container.clientHeight);
 
-      // Use the resize method instead of recreating
       figure.resize(container.clientWidth, container.clientHeight);
     }
   }
