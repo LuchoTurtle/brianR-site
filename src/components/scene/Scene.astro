@@ -2,7 +2,45 @@
 // ThreeScene.astro - No props needed for this basic example
 ---
 
-<div id="three-container"></div>
+<section class="relative h-screen w-full overflow-hidden bg-black dark:bg-black">
+  {/* Background */}
+  <div id="three-container" class="w-full h-full overflow-hidden bg-black relative"></div>
+
+  {/* Content */}
+  <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+    <div class="text-center text-white max-w-5xl px-6">
+      <h1 class="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-violet-300 bg-clip-text text-transparent">
+        DJ BRIAN RODRIGUEZ
+      </h1>
+
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8 rounded-full"></div>
+
+      <p class="text-xl md:text-2xl text-gray-200 mb-8 font-light">Creating Unforgettable Musical Experiences</p>
+      <p class="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        Professional DJ services for weddings, corporate events, and private parties. Bringing the perfect soundtrack to your most important moments.
+      </p>
+
+      <div class="mt-12">
+        <a
+          href="#about"
+          class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
+        >
+          Discover More
+          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {/* Scroll indicator */}
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+    <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+      <div class="w-1 h-3 bg-blue-400 rounded-full mt-2 animate-pulse"></div>
+    </div>
+  </div>
+</section>
 
 <script>
   import * as THREE from "three";
@@ -28,8 +66,9 @@
     // Canvas container
     const container = document.getElementById("three-container") as HTMLElement;
     container.addEventListener("mousemove", (event) => {
-      mouseX = (event.clientX / container.clientWidth) * 2 - 1;
-      mouseY = -((event.clientY / container.clientHeight) * 2 - 1); // Negative to match Three.js Y-up
+      const rect = container.getBoundingClientRect();
+      mouseX = ((event.clientX - rect.left) / container.clientWidth) * 2 - 1;
+      mouseY = -(((event.clientY - rect.top) / container.clientHeight) * 2 - 1);
     });
 
     const scene = new THREE.Scene();
@@ -141,12 +180,3 @@
   // Initialize the scene once the DOM is loaded
   document.addEventListener("DOMContentLoaded", initScene);
 </script>
-
-<style>
-  #three-container {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: #000; /* Dark background to enhance contrast */
-  }
-</style>
