@@ -1,0 +1,81 @@
+---
+import { Star } from '@lucide/astro';
+
+const reviews = [
+  {
+    name: "Sarah & Michael Johnson",
+    event: "Wedding Reception",
+    rating: 5,
+    text: "Brian made our wedding absolutely perfect! The music selection was incredible and he read the crowd perfectly. Everyone was dancing all night long. Highly recommend!",
+    date: "October 2023"
+  },
+  {
+    name: "Jennifer Martinez",
+    event: "Corporate Event",
+    rating: 5,
+    text: "Professional, punctual, and fantastic music. Brian helped make our company gala a huge success. The sound quality was exceptional and the atmosphere was perfect.",
+    date: "September 2023"
+  },
+  {
+    name: "David & Lisa Chen",
+    event: "Anniversary Party",
+    rating: 5,
+    text: "We hired Brian for our 25th anniversary party and he exceeded all expectations. Great communication, amazing setup, and the music was exactly what we wanted.",
+    date: "August 2023"
+  }
+];
+---
+
+<section id="reviews" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+        Client Reviews
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        Don't just take our word for it - hear from some of our happy clients
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {reviews.map((review, index) => (
+        <div class="bg-white dark:bg-gray-700 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="flex items-center mb-6">
+            {[...Array(review.rating)].map((_, i) => (
+              <Star class="w-5 h-5 text-yellow-400 fill-current" />
+            ))}
+          </div>
+          
+          <p class="text-gray-700 dark:text-gray-200 mb-6 leading-relaxed italic text-lg">
+            "{review.text}"
+          </p>
+          
+          <div class="border-t border-gray-200 dark:border-gray-600 pt-6">
+            <div class="font-semibold text-gray-900 dark:text-white text-lg">{review.name}</div>
+            <div class="text-blue-600 dark:text-blue-400 text-sm font-medium">{review.event}</div>
+            <div class="text-gray-500 dark:text-gray-400 text-sm">{review.date}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-16">
+      <div class="inline-block bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg">
+        <div class="flex items-center space-x-6">
+          <div class="text-center">
+            <div class="text-4xl font-bold text-blue-600 dark:text-blue-400">4.9</div>
+            <div class="flex items-center justify-center mt-2">
+              {[...Array(5)].map((_, i) => (
+                <Star class="w-5 h-5 text-yellow-400 fill-current" />
+              ))}
+            </div>
+          </div>
+          <div class="text-left">
+            <div class="text-gray-900 dark:text-white font-semibold text-lg">Average Rating</div>
+            <div class="text-gray-600 dark:text-gray-300">Based on 50+ reviews</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
