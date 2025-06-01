@@ -30,10 +30,10 @@ const officeHours = [
       </p>
     </div>
 
-    <!-- Updated Grid Layout for Better Space Utilization -->
-    <div class="grid lg:grid-cols-2 gap-8">
+    <!-- Updated Grid Layout for Equal Height Columns -->
+    <div class="grid lg:grid-cols-2 gap-8 lg:items-stretch">
       <!-- Left Column - Contact Information and Office Hours -->
-      <div class="space-y-8">
+      <div class="grid grid-rows-[auto_1fr] gap-8">
         <!-- Office Contact Information -->
         <div class="relative">
           <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-3xl blur-xl"></div>
@@ -83,8 +83,8 @@ const officeHours = [
           </div>
         </div>
 
-        <!-- Office Hours -->
-        <div class="relative">
+        <!-- Office Hours - Now takes up remaining space and aligns to bottom -->
+        <div class="relative self-end">
           <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-blue-500/10 rounded-3xl blur-xl"></div>
           <div class="relative backdrop-blur-xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-3xl border border-white/20">
             <div class="flex items-center space-x-3 mb-6">
