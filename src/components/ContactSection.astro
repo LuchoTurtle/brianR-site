@@ -1,31 +1,14 @@
 ---
-import { Mail, Phone, MapPin, Calendar } from '@lucide/astro';
+import { Mail, Phone, MapPin, Calendar, Clock } from "@lucide/astro";
 
-const contactItems = [
-  {
-    icon: Phone,
-    title: "Phone",
-    value: "(555) 123-4567",
-    gradient: "from-blue-500 to-cyan-500"
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    value: "brian@djbrianrodriguez.com",
-    gradient: "from-purple-500 to-violet-500"
-  },
-  {
-    icon: MapPin,
-    title: "Location",
-    value: "Los Angeles, CA",
-    gradient: "from-pink-500 to-rose-500"
-  },
-  {
-    icon: Calendar,
-    title: "Availability",
-    value: "7 days a week",
-    gradient: "from-green-500 to-emerald-500"
-  }
+const officeHours = [
+  { day: 'Sunday', hours: '10:00 am to 4:00 pm' },
+  { day: 'Monday', hours: '8:00 am to 8:00 pm' },
+  { day: 'Tuesday', hours: '8:00 am to 8:00 pm' },
+  { day: 'Wednesday', hours: '8:00 am to 8:00 pm' },
+  { day: 'Thursday', hours: '8:00 am to 8:00 pm' },
+  { day: 'Friday', hours: '8:00 am to 8:00 pm' },
+  { day: 'Saturday', hours: '10:00 am to 4:00 pm' }
 ];
 ---
 
@@ -47,109 +30,170 @@ const contactItems = [
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-12">
-      <!-- Contact Information -->
+    <!-- Updated Grid Layout for Better Space Utilization -->
+    <div class="grid lg:grid-cols-2 gap-8">
+      <!-- Left Column - Contact Information and Office Hours -->
       <div class="space-y-8">
+        <!-- Office Contact Information -->
         <div class="relative">
           <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-3xl blur-xl"></div>
           <div class="relative backdrop-blur-xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-3xl border border-white/20">
-            <h3 class="text-2xl font-bold text-white mb-8 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">Get In Touch</h3>
+            <h3 class="text-2xl font-bold text-white mb-8 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">Office</h3>
             
             <div class="space-y-6">
-              {contactItems.map((item, index) => (
-                <div class="flex items-center space-x-4 group">
-                  <div class={`relative w-14 h-14 bg-gradient-to-r ${item.gradient} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                    <item.icon class="w-6 h-6 text-white" />
-                    <div class={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-50 rounded-2xl blur-lg`}></div>
-                  </div>
-                  <div>
-                    <div class="text-white font-semibold text-lg">{item.title}</div>
-                    <div class="text-gray-300">{item.value}</div>
+              <!-- Address -->
+              <div class="flex items-start space-x-4 group">
+                <div class="relative w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <MapPin class="w-6 h-6 text-white" />
+                  <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-50 rounded-2xl blur-lg"></div>
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-lg">Address</div>
+                  <div class="text-gray-300">
+                    136 Windsor St<br />
+                    Kearny, NJ 07032
                   </div>
                 </div>
-              ))}
+              </div>
+
+              <!-- Phone -->
+              <div class="flex items-center space-x-4 group">
+                <div class="relative w-14 h-14 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Phone class="w-6 h-6 text-white" />
+                  <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-violet-500 opacity-50 rounded-2xl blur-lg"></div>
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-lg">Phone</div>
+                  <div class="text-gray-300">(201)-991-2717</div>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="flex items-center space-x-4 group">
+                <div class="relative w-14 h-14 bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Mail class="w-6 h-6 text-white" />
+                  <div class="absolute inset-0 bg-gradient-to-r from-pink-500 to-rose-500 opacity-50 rounded-2xl blur-lg"></div>
+                </div>
+                <div>
+                  <div class="text-white font-semibold text-lg">Email</div>
+                  <div class="text-gray-300">DJBrianRodrigues@yahoo.com</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
+        <!-- Office Hours -->
         <div class="relative">
           <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-blue-500/10 rounded-3xl blur-xl"></div>
           <div class="relative backdrop-blur-xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-3xl border border-white/20">
-            <h4 class="text-xl font-bold text-white mb-4 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Quick Response Guarantee</h4>
-            <p class="text-gray-300 leading-relaxed">
-              I'll respond to all inquiries within 24 hours. For urgent requests, 
-              please call directly for immediate assistance.
-            </p>
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="relative w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                <Clock class="w-5 h-5 text-white" />
+              </div>
+              <h4 class="text-xl font-bold text-white bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Office Hours</h4>
+            </div>
+            
+            <div class="space-y-3">
+              {officeHours.map((schedule, index) => (
+                <div class="flex justify-between items-center py-2 border-b border-white/10 last:border-b-0">
+                  <span class="text-gray-300 font-medium">{schedule.day}</span>
+                  <span class="text-white text-sm">{schedule.hours}</span>
+                </div>
+              ))}
+            </div>
+            
+            <div class="mt-6 p-4 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-2xl border border-yellow-500/20">
+              <p class="text-yellow-200 font-semibold text-center">By Appointment Only!</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Contact Form -->
-      <div class="relative">
-        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl blur-xl"></div>
-        <div class="relative backdrop-blur-xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-3xl border border-white/20">
-          <h3 class="text-2xl font-bold text-white mb-8 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">Send a Message</h3>
-          
-          <form id="contact-form" class="space-y-6">
-            <div class="grid md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+      <!-- Right Column - Contact Form and Google Maps -->
+      <div class="space-y-8">
+        <!-- Contact Form -->
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl blur-xl"></div>
+          <div class="relative backdrop-blur-xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-3xl border border-white/20">
+            <h3 class="text-2xl font-bold text-white mb-8 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">Send a Message</h3>
+            
+            <form id="contact-form" class="space-y-6">
+              <div class="grid md:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+                  required
+                />
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+                />
+                <input
+                  type="date"
+                  name="eventDate"
+                  class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+                />
+              </div>
+
+              <select
+                name="eventType"
+                class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-2xl text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm"
                 required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+              >
+                <option value="" class="bg-slate-800">Select Event Type</option>
+                <option value="wedding" class="bg-slate-800">Wedding</option>
+                <option value="corporate" class="bg-slate-800">Corporate Event</option>
+                <option value="private" class="bg-slate-800">Private Party</option>
+                <option value="other" class="bg-slate-800">Other</option>
+              </select>
+
+              <textarea
+                name="message"
+                placeholder="Tell me about your event..."
+                rows="4"
+                class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 resize-none backdrop-blur-sm"
                 required
-              />
+              ></textarea>
+
+              <button
+                type="submit"
+                class="group relative w-full py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 text-white font-semibold rounded-2xl hover:from-blue-700 hover:via-purple-700 hover:to-violet-700 transition-all duration-300 transform hover:scale-105 overflow-hidden"
+              >
+                <span class="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-xl group-hover:blur-2xl transition-all duration-300"></span>
+                <span class="relative">Send Message</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Google Maps Location - Now fills the remaining space -->
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl blur-xl"></div>
+          <div class="relative backdrop-blur-xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-3xl border border-white/20">
+            <h4 class="text-xl font-bold text-white mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Our Location</h4>
+            <div class="w-full h-64 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl flex items-center justify-center border border-white/10">
+              <div class="text-center">
+                <MapPin class="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <p class="text-gray-400 text-sm">Google Maps will be integrated here</p>
+                <p class="text-gray-500 text-xs mt-2">Kearny, NJ Service Area</p>
+              </div>
             </div>
-
-            <div class="grid md:grid-cols-2 gap-4">
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone Number"
-                class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm"
-              />
-              <input
-                type="date"
-                name="eventDate"
-                class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm"
-              />
-            </div>
-
-            <select
-              name="eventType"
-              class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-2xl text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm"
-              required
-            >
-              <option value="" class="bg-slate-800">Select Event Type</option>
-              <option value="wedding" class="bg-slate-800">Wedding</option>
-              <option value="corporate" class="bg-slate-800">Corporate Event</option>
-              <option value="private" class="bg-slate-800">Private Party</option>
-              <option value="other" class="bg-slate-800">Other</option>
-            </select>
-
-            <textarea
-              name="message"
-              placeholder="Tell me about your event..."
-              rows="4"
-              class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 resize-none backdrop-blur-sm"
-              required
-            ></textarea>
-
-            <button
-              type="submit"
-              class="group relative w-full py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 text-white font-semibold rounded-2xl hover:from-blue-700 hover:via-purple-700 hover:to-violet-700 transition-all duration-300 transform hover:scale-105 overflow-hidden"
-            >
-              <span class="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-xl group-hover:blur-2xl transition-all duration-300"></span>
-              <span class="relative">Send Message</span>
-            </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
