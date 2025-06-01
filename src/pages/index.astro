@@ -7,32 +7,72 @@ import Gallery from '../components/GallerySection.astro';
 import Reviews from '../components/ReviewsSection.astro';
 import Contact from '../components/ContactSection.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
-
 ---
 
 <Layout>
-	      {/* Navigation */}
-      <nav class="fixed top-0 left-0 right-0 z-50 bg-black/20 dark:bg-black/20 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-          <div class="flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-white">DJ Brian Rodriguez</h1>
-            <div class="flex items-center space-x-8">
-              <div class="hidden md:flex space-x-8">
-                <a href="#about" class="text-white/80 hover:text-white transition-colors">About</a>
-                <a href="#packages" class="text-white/80 hover:text-white transition-colors">Packages</a>
-                <a href="#gallery" class="text-white/80 hover:text-white transition-colors">Gallery</a>
-                <a href="#reviews" class="text-white/80 hover:text-white transition-colors">Reviews</a>
-                <a href="#contact" class="text-white/80 hover:text-white transition-colors">Contact</a>
-              </div>
-              <ThemeToggle />
-            </div>
+  <!-- Navigation - Start with transparent background -->
+  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <h1 id="nav-title" class="text-2xl font-bold text-white opacity-0 transform -translate-y-2 transition-all duration-300">DJ Brian Rodriguez</h1>
+        <div class="flex items-center space-x-8">
+          <div class="hidden md:flex space-x-8">
+            <a href="#about" class="text-white/80 hover:text-white transition-colors">About</a>
+            <a href="#packages" class="text-white/80 hover:text-white transition-colors">Packages</a>
+            <a href="#gallery" class="text-white/80 hover:text-white transition-colors">Gallery</a>
+            <a href="#reviews" class="text-white/80 hover:text-white transition-colors">Reviews</a>
+            <a href="#contact" class="text-white/80 hover:text-white transition-colors">Contact</a>
           </div>
+          <ThemeToggle />
         </div>
-      </nav>
-	<Scene/>
-	<About />
-	<Packages />
-	<Gallery />
-	<Reviews />
-	<Contact />
+      </div>
+    </div>
+  </nav>
+
+  <!-- Wrap Scene in a container with an ID for detection -->
+  <section id="hero-scene">
+    <Scene />
+  </section>
+  
+  <About />
+  <Packages />
+  <Gallery />
+  <Reviews />
+  <Contact />
 </Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.getElementById('main-nav');
+    const navTitle = document.getElementById('nav-title');
+    const heroScene = document.getElementById('hero-scene');
+    
+    if (nav && navTitle && heroScene) {
+      // Create intersection observer to detect when scene goes out of view
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Scene is visible - remove background and hide title
+              nav.classList.remove('bg-black/20', 'dark:bg-black/20', 'backdrop-blur-md', 'border-b', 'border-white/10');
+              navTitle.classList.add('opacity-0', '-translate-y-2');
+              navTitle.classList.remove('opacity-100', 'translate-y-0');
+            } else {
+              // Scene is not visible - add background and show title
+              nav.classList.add('bg-black/20', 'dark:bg-black/20', 'backdrop-blur-md', 'border-b', 'border-white/10');
+              navTitle.classList.add('opacity-100', 'translate-y-0');
+              navTitle.classList.remove('opacity-0', '-translate-y-2');
+            }
+          });
+        },
+        {
+          // Trigger when the scene is completely out of view
+          threshold: 0,
+          rootMargin: '-1px 0px 0px 0px' // Small negative margin to ensure it triggers when just past
+        }
+      );
+      
+      observer.observe(heroScene);
+    }
+  });
+</script>
