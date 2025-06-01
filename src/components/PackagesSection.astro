@@ -1,0 +1,169 @@
+---
+import { Check, Sparkles } from '@lucide/astro';
+
+const packages = [
+  {
+    name: "Basic",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop",
+    features: [
+      "Professional DJ setup",
+      "Basic lighting package",
+      "Music for ceremony & reception",
+      "Wireless microphone",
+      "Basic sound system"
+    ],
+    popular: false
+  },
+  {
+    name: "Premium",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=300&fit=crop",
+    features: [
+      "Everything in Basic",
+      "Enhanced lighting effects",
+      "Fog machine",
+      "DJ booth setup",
+      "Music consultation",
+      "Backup equipment"
+    ],
+    popular: true
+  },
+  {
+    name: "Super",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&h=300&fit=crop",
+    features: [
+      "Everything in Premium",
+      "LED dancefloor lighting",
+      "Photo booth integration",
+      "Custom music mixing",
+      "Multiple room setup",
+      "Extended playlist"
+    ],
+    popular: false
+  },
+  {
+    name: "Deluxe",
+    image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=400&h=300&fit=crop",
+    features: [
+      "Everything in Super",
+      "Premium uplighting",
+      "Monogram projection",
+      "Advanced sound system",
+      "Dedicated event coordinator",
+      "Full event coverage"
+    ],
+    popular: false
+  }
+];
+
+const additionalFeatures = [
+  "Uplighting",
+  "Monogram projection",
+  "Glow sticks",
+  "Foam sticks",
+  "Party hats & glasses",
+  "Photo booths"
+];
+---
+
+<section id="packages" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+        Wedding Packages
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        Choose the perfect package for your special day. Each package is customizable 
+        to meet your unique needs and vision.
+      </p>
+    </div>
+
+    <!-- Main Packages -->
+    <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-16">
+      {packages.map((pkg, index) => (
+        <div class={`relative p-6 rounded-3xl transition-all duration-300 hover:scale-105 ${
+          pkg.popular 
+            ? 'bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-purple-200 dark:border-purple-500' 
+            : 'bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600'
+        }`}>
+          
+          {pkg.popular && (
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <span class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                Most Popular
+              </span>
+            </div>
+          )}
+          
+          <!-- Package Image -->
+          <div class="w-full h-32 mb-6 rounded-xl overflow-hidden">
+            <img 
+              src={pkg.image} 
+              alt={pkg.name}
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          <div class="text-center mb-6">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{pkg.name}</h3>
+          </div>
+
+          <ul class="space-y-3 mb-6">
+            {pkg.features.map((feature, featureIndex) => (
+              <li class="flex items-center text-sm text-gray-700 dark:text-gray-300">
+                <Check class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <button class={`w-full py-3 rounded-2xl font-semibold transition-all duration-300 ${
+            pkg.popular
+              ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700'
+              : 'bg-gray-900 dark:bg-gray-600 text-white hover:bg-gray-800 dark:hover:bg-gray-500'
+          }`}>
+            Get Started
+          </button>
+        </div>
+      ))}
+    </div>
+
+    <!-- Additional Features Creative Section -->
+    <div class="relative">
+      <!-- Decorative Background -->
+      <div class="absolute inset-0 bg-gradient-to-r from-purple-100/30 via-blue-100/30 to-purple-100/30 dark:from-purple-900/10 dark:via-blue-900/10 dark:to-purple-900/10 rounded-3xl blur-3xl"></div>
+      
+      <div class="relative text-center py-12 px-8">
+        <!-- Header with Icon -->
+        <div class="flex items-center justify-center mb-6">
+          <Sparkles class="w-8 h-8 text-purple-600 dark:text-purple-400 mr-3" />
+          <h3 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            Additional Features
+          </h3>
+          <Sparkles class="w-8 h-8 text-purple-600 dark:text-purple-400 ml-3" />
+        </div>
+        
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+          Enhance any package with these premium extras to make your special day even more magical
+        </p>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          {additionalFeatures.map((feature, index) => (
+            <div 
+              class="flex items-center justify-center p-3 bg-white/50 dark:bg-gray-700/50 rounded-2xl backdrop-blur-sm border border-purple-200/30 dark:border-purple-500/30 hover:scale-105 transition-all duration-300"
+            >
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{feature}</span>
+            </div>
+          ))}
+          
+          <!-- "And much more" as plain text in the grid -->
+          <div class="flex items-center justify-center p-3">
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400 italic">
+              And much more...
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
