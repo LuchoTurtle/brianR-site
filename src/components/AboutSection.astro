@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import brianImage from "../assets/brian_1.jpeg";
+
 const eventTypes = [
   { name: "Weddings", color: "from-pink-500 to-rose-500", icon: "💒" },
   { name: "Quinceañeras", color: "from-purple-500 to-indigo-500", icon: "👑" },
@@ -62,11 +65,11 @@ const culturalSpecialties = [
 
       <div class="relative">
         <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-3xl">
-          <img src="/placeholder.svg" alt="DJ Brian Rodrigues" class="w-full h-80 object-cover rounded-2xl mb-6" />
+          <Image src={brianImage} alt="DJ Brian Rodrigues" class="w-full h-80 object-cover object-top rounded-2xl mb-6" width={400} height={320} />
 
           <blockquote class="text-gray-700 dark:text-gray-200 italic leading-relaxed">
-            "My multicultural background allows me to create unique musical journeys that connect with everyone on the dance floor. From Portuguese
-            classics to the latest hits, I bring the best of all worlds to your celebration."
+            "Music is the universal language that brings people together. From the moment I step behind the decks, my goal is simple: to create those
+            magical moments where everyone feels the beat and dances like nobody's watching."
           </blockquote>
           <cite class="text-blue-600 dark:text-blue-400 font-semibold mt-4 block">- Brian Rodrigues</cite>
         </div>
