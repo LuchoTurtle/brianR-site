@@ -1,10 +1,15 @@
 ---
 import { Check, Sparkles } from '@lucide/astro';
+import { Image } from 'astro:assets';
+import basicImage from '../assets/basic.jpeg';
+import premiumImage from '../assets/premium.jpeg';
+import superImage from '../assets/super.jpeg';
+import deluxeImage from '../assets/deluxe.jpeg';
 
 const packages = [
   {
     name: "Basic",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop",
+    image: basicImage,
     features: [
       "Professional DJ setup",
       "Basic lighting package",
@@ -16,7 +21,7 @@ const packages = [
   },
   {
     name: "Premium",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=300&fit=crop",
+    image: premiumImage,
     features: [
       "Everything in Basic",
       "Enhanced lighting effects",
@@ -29,7 +34,7 @@ const packages = [
   },
   {
     name: "Super",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&h=300&fit=crop",
+    image: superImage,
     features: [
       "Everything in Premium",
       "LED dancefloor lighting",
@@ -42,7 +47,7 @@ const packages = [
   },
   {
     name: "Deluxe",
-    image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=400&h=300&fit=crop",
+    image: deluxeImage,
     features: [
       "Everything in Super",
       "Premium uplighting",
@@ -80,7 +85,7 @@ const additionalFeatures = [
     <!-- Main Packages -->
     <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-16">
       {packages.map((pkg, index) => (
-        <div class={`relative p-6 rounded-3xl transition-all duration-300 hover:scale-105 ${
+        <div class={`relative p-6 rounded-3xl transition-all duration-300 hover:scale-105 h-full flex flex-col ${
           pkg.popular 
             ? 'bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-purple-200 dark:border-purple-500' 
             : 'bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600'
@@ -96,10 +101,12 @@ const additionalFeatures = [
           
           <!-- Package Image -->
           <div class="w-full h-32 mb-6 rounded-xl overflow-hidden">
-            <img 
+            <Image 
               src={pkg.image} 
               alt={pkg.name}
               class="w-full h-full object-cover"
+              width={400}
+              height={128}
             />
           </div>
 
@@ -107,7 +114,7 @@ const additionalFeatures = [
             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{pkg.name}</h3>
           </div>
 
-          <ul class="space-y-3 mb-6">
+          <ul class="space-y-3 flex-grow">
             {pkg.features.map((feature, featureIndex) => (
               <li class="flex items-center text-sm text-gray-700 dark:text-gray-300">
                 <Check class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
@@ -115,14 +122,6 @@ const additionalFeatures = [
               </li>
             ))}
           </ul>
-
-          <button class={`w-full py-3 rounded-2xl font-semibold transition-all duration-300 ${
-            pkg.popular
-              ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700'
-              : 'bg-gray-900 dark:bg-gray-600 text-white hover:bg-gray-800 dark:hover:bg-gray-500'
-          }`}>
-            Get Started
-          </button>
         </div>
       ))}
     </div>
@@ -150,7 +149,7 @@ const additionalFeatures = [
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {additionalFeatures.map((feature, index) => (
             <div 
-              class="flex items-center justify-center p-3 bg-white/50 dark:bg-gray-700/50 rounded-2xl backdrop-blur-sm border border-purple-200/30 dark:border-purple-500/30 hover:scale-105 transition-all duration-300"
+              class="flex items-center justify-center p-3 bg-white/50 dark:bg-gray-700/50 rounded-2xl backdrop-blur-sm border border-purple-200/30 dark:border-purple-500/30"
             >
               <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{feature}</span>
             </div>
