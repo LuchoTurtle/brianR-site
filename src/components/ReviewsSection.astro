@@ -1,5 +1,5 @@
 ---
-import { Star } from '@lucide/astro';
+import { Star } from "@lucide/astro";
 
 const reviews = [
   {
@@ -8,7 +8,7 @@ const reviews = [
     rating: 5,
     text: "I rarely write reviews, but my experience with DJ Brian compelled me to share how truly fantastic his entertainment services are. Brian is not just a DJ, he is an artist. His knack for reading the crowd and creating a dynamic atmosphere is exceptional. His professionalism is second to none. If you're in the market for top-tier entertainment, look no further. Highly recommended!",
     date: "May 2023",
-    link: "https://www.facebook.com/frankiegravato/posts/pfbid0Wd7JKVifTKMfsDfrgB5kJYJhoPtPgC2Lv6dtigVkaDamaTr5iU1dvnwXmJVFe34l"
+    link: "https://www.facebook.com/frankiegravato/posts/pfbid0Wd7JKVifTKMfsDfrgB5kJYJhoPtPgC2Lv6dtigVkaDamaTr5iU1dvnwXmJVFe34l",
   },
   {
     name: "Nicole Lopes",
@@ -16,7 +16,7 @@ const reviews = [
     rating: 5,
     text: "DJ Brian Rodrigues is so easy to work with. He is attentive to your wants and needs. Gets the crowd going every time! I would highly recommend him for any of your special occasions. He dj’d at my daughter’s communion and this past weekend at her Sweet 16. This won’t be the last time I’ll be using him either! Thank You, Brian!",
     date: "April 2023",
-    link: "https://www.facebook.com/frankiegravato/posts/pfbid0Wd7JKVifTKMfsDfrgB5kJYJhoPtPgC2Lv6dtigVkaDamaTr5iU1dvnwXmJVFe34l"
+    link: "https://www.facebook.com/frankiegravato/posts/pfbid0Wd7JKVifTKMfsDfrgB5kJYJhoPtPgC2Lv6dtigVkaDamaTr5iU1dvnwXmJVFe34l",
   },
   {
     name: "Francisco Branco",
@@ -24,90 +24,85 @@ const reviews = [
     rating: 5,
     text: "Brian played for us a few times already at the Portuguese club of long branch and always does a great job, Brian plays really good music, makes everyone entertained and happy the all time.",
     date: "February 2024",
-    link: "https://www.facebook.com/francisco.branco.709627/posts/pfbid0dy3HnAvGppEda6hzpKKiFqBYW14XpmfDYkujCX1pJJcFhGExCYi7HSevUdGMg9w2l"
-  }
+    link: "https://www.facebook.com/francisco.branco.709627/posts/pfbid0dy3HnAvGppEda6hzpKKiFqBYW14XpmfDYkujCX1pJJcFhGExCYi7HSevUdGMg9w2l",
+  },
 ];
 ---
 
 <section id="reviews" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-        Client Reviews
-      </h2>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Client Reviews</h2>
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
         Don't just take our word for it - hear from some of our happy clients
       </p>
     </div>
 
-<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-  {reviews.map((review) => (
-    <a 
-      href={review.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="group block transform transition-all duration-300 hover:scale-105"
-    >
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-        <!-- Rating Stars -->
-        <div class="flex items-center mb-4">
-          {Array.from({ length: review.rating }, (_, i) => (
-            <Star class="w-5 h-5 text-yellow-400 fill-current" />
-          ))}
-        </div>
-
-        <!-- Review Text -->
-        <blockquote class="text-gray-700 dark:text-gray-300 mb-6 flex-grow leading-relaxed">
-          "{review.text}"
-        </blockquote>
-
-        <!-- Reviewer Info -->
-        <div class="border-t border-gray-200 dark:border-gray-600 pt-4">
-          <div class="flex items-center justify-between">
-            <div>
-              <h4 class="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-                {review.name}
-              </h4>
-              <p class="text-sm text-gray-600 dark:text-gray-400">{review.event}</p>
-            </div>
-            <span class="text-sm text-gray-500 dark:text-gray-400">{review.date}</span>
-          </div>
-        </div>
-
-        <!-- Link Indicator -->
-        <div class="mt-3 text-xs text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          Click to view original review →
-        </div>
-      </div>
-    </a>
-  ))}
-</div>
-
-    <div class="text-center mt-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {reviews.map((review) => (
         <a 
-    href="https://www.google.com/search?sca_esv=b42e03ff43b61ad3&sxsrf=AE3TifPKy2pv2uslBvjWy2YObyFcu_JKQA:1748982149838&q=DJ+Brian+Rodrigues&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-EzXqW6s9wWsgXnLBBB31vagRmXaI-A9oaqH5XrW-zjV1FRdkNE2sgMa8x_UqVumxz49yDNs%3D&uds=AOm0WdGidOdjVhBHIqi6IfHFtxCDVwdAYGWIKo2kkM9KC9ZI6O5ARPyuevL_n2XL8HVBpZNw-1rdpd7ZHlhrCYwuEHxoqyBdqMP5c-VRlbTEPMtM0FQBaag&sa=X&ved=2ahUKEwi90ImeitaNAxXt1AIHHc0gH3QQ3PALegQIHhAE&biw=1728&bih=958&dpr=2"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="group inline-block transform transition-all duration-300 hover:scale-105"
-  >
-      <div class="inline-block bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg">
-        <div class="flex items-center space-x-6">
-          <div class="text-center">
-            <div class="text-4xl font-bold text-blue-600 dark:text-blue-400">4.9</div>
-            <div class="flex items-center justify-center mt-2">
-              {[...Array(5)].map((_, i) => (
+          href={review.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group block transform transition-all duration-300 hover:scale-105"
+        >
+          <div class="bg-white dark:bg-gray-700 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+            <!-- Rating Stars -->
+            <div class="flex items-center mb-4">
+              {Array.from({ length: review.rating }, (_, i) => (
                 <Star class="w-5 h-5 text-yellow-400 fill-current" />
               ))}
             </div>
+
+            <!-- Review Text -->
+            <blockquote class="text-gray-700 dark:text-gray-300 mb-6 flex-grow leading-relaxed">
+              "{review.text}"
+            </blockquote>
+
+            <!-- Reviewer Info -->
+            <div class="border-t border-gray-200 dark:border-gray-600 pt-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                    {review.name}
+                  </h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">{review.event}</p>
+                </div>
+                <span class="text-sm text-gray-500 dark:text-gray-400">{review.date}</span>
+              </div>
+            </div>
+
+            <!-- Link Indicator -->
+            <div class="mt-3 text-xs text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              Click to view original review →
+            </div>
           </div>
-          <div class="text-left">
-            <div class="text-gray-900 dark:text-white font-semibold text-lg">Average Rating</div>
-            <div class="text-gray-600 dark:text-gray-300">Based on 100+ reviews</div>
-          </div>
-        </div>
-      </div>
-      </a>
+        </a>
+      ))}
     </div>
 
+    <div class="text-center mt-16">
+      <a
+        href="https://www.google.com/search?sca_esv=b42e03ff43b61ad3&sxsrf=AE3TifPKy2pv2uslBvjWy2YObyFcu_JKQA:1748982149838&q=DJ+Brian+Rodrigues&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-EzXqW6s9wWsgXnLBBB31vagRmXaI-A9oaqH5XrW-zjV1FRdkNE2sgMa8x_UqVumxz49yDNs%3D&uds=AOm0WdGidOdjVhBHIqi6IfHFtxCDVwdAYGWIKo2kkM9KC9ZI6O5ARPyuevL_n2XL8HVBpZNw-1rdpd7ZHlhrCYwuEHxoqyBdqMP5c-VRlbTEPMtM0FQBaag&sa=X&ved=2ahUKEwi90ImeitaNAxXt1AIHHc0gH3QQ3PALegQIHhAE&biw=1728&bih=958&dpr=2"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group inline-block transform transition-all duration-300 hover:scale-105"
+      >
+        <div class="inline-block bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg">
+          <div class="flex items-center space-x-6">
+            <div class="text-center">
+              <div class="text-4xl font-bold text-blue-600 dark:text-blue-400">4.9</div>
+              <div class="flex items-center justify-center mt-2">
+                {[...Array(5)].map((_, i) => <Star class="w-5 h-5 text-yellow-400 fill-current" />)}
+              </div>
+            </div>
+            <div class="text-left">
+              <div class="text-gray-900 dark:text-white font-semibold text-lg">Average Rating</div>
+              <div class="text-gray-600 dark:text-gray-300">Based on 100+ reviews</div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
   </div>
 </section>
