@@ -40,34 +40,53 @@
       };
     }
 
+    // Device detection using Tailwind's breakpoints
+    function isDesktop(): boolean {
+      // Tailwind's lg breakpoint is 1024px
+      const isLargeScreen = window.innerWidth >= 1024;
+      
+      // Check if device has fine pointer (mouse) capability
+      const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+      
+      // Check if device can hover (excludes most touch devices)
+      const canHover = window.matchMedia('(hover: hover)').matches;
+      
+      // Combine checks - must be large screen AND have mouse capabilities
+      return isLargeScreen && hasFinePointer && canHover;
+    }
+
     // Scene initialization function -------------
     function initScene() {
       let mouseX = 0;
       let mouseY = 0;
+      const isDesktopDevice = isDesktop();
 
       // Canvas container
       const container = document.getElementById("three-container") as HTMLElement;
       const heroText = document.getElementById("hero-text") as HTMLElement;
 
-      container.addEventListener("mousemove", (event) => {
-        const rect = container.getBoundingClientRect();
-        mouseX = ((event.clientX - rect.left) / container.clientWidth) * 2 - 1;
-        mouseY = -(((event.clientY - rect.top) / container.clientHeight) * 2 - 1);
+      // Only add mouse movement effects on desktop devices (lg and above)
+      if (isDesktopDevice) {
+        container.addEventListener("mousemove", (event) => {
+          const rect = container.getBoundingClientRect();
+          mouseX = ((event.clientX - rect.left) / container.clientWidth) * 2 - 1;
+          mouseY = -(((event.clientY - rect.top) / container.clientHeight) * 2 - 1);
 
-        // Move hero text slightly with mouse (reduced movement)
-        if (heroText) {
-          const moveX = mouseX * 10; // Adjust multiplier for more/less movement
-          const moveY = mouseY * 5;  // Smaller Y movement
-          heroText.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        }
-      });
+          // Move hero text slightly with mouse (reduced movement)
+          if (heroText) {
+            const moveX = mouseX * 10; // Adjust multiplier for more/less movement
+            const moveY = mouseY * 5;  // Smaller Y movement
+            heroText.style.transform = `translate(${moveX}px, ${moveY}px)`;
+          }
+        });
 
-      // Reset text position when mouse leaves
-      container.addEventListener("mouseleave", () => {
-        if (heroText) {
-          heroText.style.transform = `translate(0px, 0px)`;
-        }
-      });
+        // Reset text position when mouse leaves
+        container.addEventListener("mouseleave", () => {
+          if (heroText) {
+            heroText.style.transform = `translate(0px, 0px)`;
+          }
+        });
+      }
 
       const scene = new THREE.Scene();
 
@@ -126,9 +145,9 @@
       renderer.setAnimationLoop(() => {
         let t = clock.getElapsedTime();
 
-        // Animate light
+        // Animate light - pass mouse coordinates only on desktop
         light.userData.time.value = t;
-        light.update(t, mouseX, mouseY);
+        light.update(t, isDesktopDevice ? mouseX : 0, isDesktopDevice ? mouseY : 0);
 
         // Animate dust particles within bounds
         dustParticles.rotation.y = Math.sin(t * 0.1) * 0.5;
