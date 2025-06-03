@@ -43,10 +43,15 @@ const officeHours = [
             <div class="space-y-4 sm:space-y-6">
               <!-- Address -->
               <div class="flex items-start space-x-3 sm:space-x-4 group">
-                <div class="relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                <button 
+                  class="copy-btn relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0 cursor-pointer"
+                  data-copy="136 Windsor St, Kearny, NJ 07032"
+                  data-type="address"
+                  title="Click to copy address"
+                >
                   <MapPin class="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-50 rounded-xl sm:rounded-2xl blur-lg"></div>
-                </div>
+                </button>
                 <div class="min-w-0">
                   <div class="text-white font-semibold text-base sm:text-lg">Address</div>
                   <div class="text-gray-300 text-sm sm:text-base">
@@ -58,10 +63,15 @@ const officeHours = [
 
               <!-- Phone -->
               <div class="flex items-center space-x-3 sm:space-x-4 group">
-                <div class="relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-purple-500 to-violet-500 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                <button 
+                  class="copy-btn relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-purple-500 to-violet-500 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0 cursor-pointer"
+                  data-copy="(201)-991-2717"
+                  data-type="phone"
+                  title="Click to copy phone number"
+                >
                   <Phone class="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-violet-500 opacity-50 rounded-xl sm:rounded-2xl blur-lg"></div>
-                </div>
+                </button>
                 <div class="min-w-0">
                   <div class="text-white font-semibold text-base sm:text-lg">Phone</div>
                   <div class="text-gray-300 text-sm sm:text-base">(201)-991-2717</div>
@@ -70,10 +80,15 @@ const officeHours = [
 
               <!-- Email -->
               <div class="flex items-center space-x-3 sm:space-x-4 group">
-                <div class="relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                <button 
+                  class="copy-btn relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0 cursor-pointer"
+                  data-copy="DJBrianRodrigues@yahoo.com"
+                  data-type="email"
+                  title="Click to copy email address"
+                >
                   <Mail class="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   <div class="absolute inset-0 bg-gradient-to-r from-pink-500 to-rose-500 opacity-50 rounded-xl sm:rounded-2xl blur-lg"></div>
-                </div>
+                </button>
                 <div class="min-w-0">
                   <div class="text-white font-semibold text-base sm:text-lg">Email</div>
                   <div class="text-gray-300 text-sm sm:text-base break-all">DJBrianRodrigues@yahoo.com</div>
@@ -202,7 +217,7 @@ const officeHours = [
     <div class="mt-16 sm:mt-20 pt-6 sm:pt-8 border-t border-white/10 text-center relative">
       <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 sm:w-32 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
       <p class="text-gray-400 leading-relaxed text-sm sm:text-base px-2">
-        © 2024 DJ Brian Rodriguez. All rights reserved. | Creating unforgettable experiences one beat at a time.
+        © 2024 DJ Brian Rodrigues. All rights reserved. | Creating unforgettable experiences one beat at a time.
       </p>
     </div>
   </div>
@@ -212,6 +227,7 @@ const officeHours = [
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contact-form') as HTMLFormElement;
     
+    // Handle form submission
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -229,6 +245,114 @@ const officeHours = [
         // Reset the form
         form.reset();
       });
+    }
+
+    // Handle copy-to-clipboard functionality
+    const copyButtons = document.querySelectorAll('.copy-btn');
+    
+    copyButtons.forEach(button => {
+      button.addEventListener('click', async () => {
+        const textToCopy = button.getAttribute('data-copy');
+        const type = button.getAttribute('data-type');
+        
+        if (textToCopy) {
+          try {
+            await navigator.clipboard.writeText(textToCopy);
+            
+            // Show success feedback
+            showCopyFeedback(button, type);
+            
+          } catch (err) {
+            console.error('Failed to copy text: ', err);
+            // Fallback for older browsers
+            fallbackCopyTextToClipboard(textToCopy, button, type);
+          }
+        }
+      });
+    });
+
+    // Show visual feedback when text is copied
+    function showCopyFeedback(button: Element, type: string | null) {
+      const originalTitle = button.getAttribute('title');
+      const copyMessages = {
+        'address': 'Address copied!',
+        'phone': 'Phone copied!',
+        'email': 'Email copied!'
+      };
+      
+      const message = copyMessages[type as keyof typeof copyMessages] || 'Copied!';
+      
+      // Update button title
+      button.setAttribute('title', message);
+      
+      // Add visual feedback with a temporary class
+      button.classList.add('copied');
+      
+      // Create and show toast notification
+      showToast(message);
+      
+      // Reset after 2 seconds
+      setTimeout(() => {
+        button.setAttribute('title', originalTitle || '');
+        button.classList.remove('copied');
+      }, 2000);
+    }
+
+    // Fallback for browsers that don't support navigator.clipboard
+    function fallbackCopyTextToClipboard(text: string, button: Element, type: string | null) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      
+      // Avoid scrolling to bottom
+      textArea.style.top = '0';
+      textArea.style.left = '0';
+      textArea.style.position = 'fixed';
+      
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          showCopyFeedback(button, type);
+        }
+      } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+      }
+      
+      document.body.removeChild(textArea);
+    }
+
+    // Show toast notification
+    function showToast(message: string) {
+      // Remove existing toast if any
+      const existingToast = document.querySelector('.copy-toast');
+      if (existingToast) {
+        existingToast.remove();
+      }
+
+      // Create toast element
+      const toast = document.createElement('div');
+      toast.className = 'copy-toast fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transform transition-all duration-300 translate-x-full opacity-0';
+      toast.textContent = message;
+      
+      document.body.appendChild(toast);
+      
+      // Animate in
+      setTimeout(() => {
+        toast.classList.remove('translate-x-full', 'opacity-0');
+      }, 10);
+      
+      // Animate out and remove
+      setTimeout(() => {
+        toast.classList.add('translate-x-full', 'opacity-0');
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+          }
+        }, 300);
+      }, 2000);
     }
   });
 </script>
