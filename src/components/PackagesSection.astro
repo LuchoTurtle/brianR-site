@@ -1,10 +1,10 @@
 ---
-import { Check, Sparkles } from '@lucide/astro';
-import { Image } from 'astro:assets';
-import basicImage from '../assets/basic.jpeg';
-import premiumImage from '../assets/premium.jpeg';
-import superImage from '../assets/super.jpeg';
-import deluxeImage from '../assets/deluxe.jpeg';
+import { Check, Sparkles } from "@lucide/astro";
+import { Image } from "astro:assets";
+import basicImage from "../assets/basic.jpeg";
+import premiumImage from "../assets/premium.jpeg";
+import superImage from "../assets/super.jpeg";
+import deluxeImage from "../assets/deluxe.jpeg";
 
 const packages = [
   {
@@ -15,9 +15,9 @@ const packages = [
       "Basic lighting package",
       "Music for ceremony & reception",
       "Wireless microphone",
-      "Basic sound system"
+      "Basic sound system",
     ],
-    popular: false
+    popular: false,
   },
   {
     name: "Premium",
@@ -28,9 +28,9 @@ const packages = [
       "Fog machine",
       "DJ booth setup",
       "Music consultation",
-      "Backup equipment"
+      "Backup equipment",
     ],
-    popular: true
+    popular: true,
   },
   {
     name: "Super",
@@ -41,9 +41,9 @@ const packages = [
       "Photo booth integration",
       "Custom music mixing",
       "Multiple room setup",
-      "Extended playlist"
+      "Extended playlist",
     ],
-    popular: false
+    popular: false,
   },
   {
     name: "Deluxe",
@@ -54,10 +54,10 @@ const packages = [
       "Monogram projection",
       "Advanced sound system",
       "Dedicated event coordinator",
-      "Full event coverage"
+      "Full event coverage",
     ],
-    popular: false
-  }
+    popular: false,
+  },
 ];
 
 const additionalFeatures = [
@@ -66,7 +66,7 @@ const additionalFeatures = [
   "Glow sticks",
   "Foam sticks",
   "Party hats & glasses",
-  "Photo booths"
+  "Photo booths",
 ];
 ---
 
@@ -77,84 +77,91 @@ const additionalFeatures = [
         Wedding Packages
       </h2>
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-        Choose the perfect package for your special day. Each package is customizable 
-        to meet your unique needs and vision.
+        Choose the perfect package for your special day. Each package is customizable to meet your
+        unique needs and vision.
       </p>
     </div>
 
     <!-- Main Packages -->
     <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-16">
-      {packages.map((pkg, index) => (
-        <div class={`relative p-6 rounded-3xl transition-all duration-300 hover:scale-105 h-full flex flex-col ${
-          pkg.popular 
-            ? 'bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-purple-200 dark:border-purple-500' 
-            : 'bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600'
-        }`}>
-          
-          {pkg.popular && (
-            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-              <span class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                Most Popular
-              </span>
+      {
+        packages.map((pkg, index) => (
+          <div
+            class={`relative p-6 rounded-3xl transition-all duration-300 hover:scale-105 h-full flex flex-col ${
+              pkg.popular
+                ? "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-purple-200 dark:border-purple-500"
+                : "bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600"
+            }`}
+          >
+            {pkg.popular && (
+              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                  Most Popular
+                </span>
+              </div>
+            )}
+
+            <div class="w-full h-32 mb-6 rounded-xl overflow-hidden">
+              <Image
+                src={pkg.image}
+                alt={pkg.name}
+                class="w-full h-full object-cover"
+                width={400}
+                height={128}
+              />
             </div>
-          )}
-          
-          <!-- Package Image -->
-          <div class="w-full h-32 mb-6 rounded-xl overflow-hidden">
-            <Image 
-              src={pkg.image} 
-              alt={pkg.name}
-              class="w-full h-full object-cover"
-              width={400}
-              height={128}
-            />
-          </div>
 
-          <div class="text-center mb-6">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{pkg.name}</h3>
-          </div>
+            <div class="text-center mb-6">
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{pkg.name}</h3>
+            </div>
 
-          <ul class="space-y-3 flex-grow">
-            {pkg.features.map((feature, featureIndex) => (
-              <li class="flex items-center text-sm text-gray-700 dark:text-gray-300">
-                <Check class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
-                {feature}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+            <ul class="space-y-3 flex-grow">
+              {pkg.features.map((feature, featureIndex) => (
+                <li class="flex items-center text-sm text-gray-700 dark:text-gray-300">
+                  <Check class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </div>
 
     <!-- Additional Features Creative Section -->
     <div class="relative">
       <!-- Decorative Background -->
-      <div class="absolute inset-0 bg-gradient-to-r from-purple-100/30 via-blue-100/30 to-purple-100/30 dark:from-purple-900/10 dark:via-blue-900/10 dark:to-purple-900/10 rounded-3xl blur-3xl"></div>
-      
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-purple-100/30 via-blue-100/30 to-purple-100/30 dark:from-purple-900/10 dark:via-blue-900/10 dark:to-purple-900/10 rounded-3xl blur-3xl"
+      >
+      </div>
+
       <div class="relative text-center py-12 px-8">
         <!-- Header with Icon -->
         <div class="flex items-center justify-center mb-6">
           <Sparkles class="w-8 h-8 text-purple-600 dark:text-purple-400 mr-3" />
-          <h3 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          <h3
+            class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
+          >
             Additional Features
           </h3>
           <Sparkles class="w-8 h-8 text-purple-600 dark:text-purple-400 ml-3" />
         </div>
-        
+
         <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
           Enhance any package with these premium extras to make your special day even more magical
         </p>
 
         <!-- Features Grid -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-          {additionalFeatures.map((feature, index) => (
-            <div 
-              class="flex items-center justify-center p-3 bg-white/50 dark:bg-gray-700/50 rounded-2xl backdrop-blur-sm border border-purple-200/30 dark:border-purple-500/30"
-            >
-              <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{feature}</span>
-            </div>
-          ))}
-          
+          {
+            additionalFeatures.map((feature, index) => (
+              <div class="flex items-center justify-center p-3 bg-white/50 dark:bg-gray-700/50 rounded-2xl backdrop-blur-sm border border-purple-200/30 dark:border-purple-500/30">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{feature}</span>
+              </div>
+            ))
+          }
+
           <!-- "And much more" as plain text in the grid -->
           <div class="flex items-center justify-center p-3">
             <span class="text-sm font-medium text-gray-500 dark:text-gray-400 italic">

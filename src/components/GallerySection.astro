@@ -1,19 +1,19 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
 // Import all gallery images
-import gallery1 from '../assets/gallery/gallery_1.jpeg';
-import gallery2 from '../assets/gallery/gallery_2.jpeg';
-import gallery3 from '../assets/gallery/gallery_3.jpeg';
-import gallery4 from '../assets/gallery/gallery_4.jpeg';
-import gallery5 from '../assets/gallery/gallery_5.jpeg';
-import gallery6 from '../assets/gallery/gallery_6.jpeg';
-import gallery7 from '../assets/gallery/gallery_7.jpeg';
-import gallery8 from '../assets/gallery/gallery_8.jpeg';
-import gallery9 from '../assets/gallery/gallery_9.jpeg';
-import gallery10 from '../assets/gallery/gallery_10.jpeg';
-import gallery11 from '../assets/gallery/gallery_11.jpeg';
-import gallery12 from '../assets/gallery/gallery_12.jpeg';
+import gallery1 from "../assets/gallery/gallery_1.jpeg";
+import gallery2 from "../assets/gallery/gallery_2.jpeg";
+import gallery3 from "../assets/gallery/gallery_3.jpeg";
+import gallery4 from "../assets/gallery/gallery_4.jpeg";
+import gallery5 from "../assets/gallery/gallery_5.jpeg";
+import gallery6 from "../assets/gallery/gallery_6.jpeg";
+import gallery7 from "../assets/gallery/gallery_7.jpeg";
+import gallery8 from "../assets/gallery/gallery_8.jpeg";
+import gallery9 from "../assets/gallery/gallery_9.jpeg";
+import gallery10 from "../assets/gallery/gallery_10.jpeg";
+import gallery11 from "../assets/gallery/gallery_11.jpeg";
+import gallery12 from "../assets/gallery/gallery_12.jpeg";
 
 const events = [
   gallery1,
@@ -27,14 +27,16 @@ const events = [
   gallery9,
   gallery10,
   gallery11,
-  gallery12
+  gallery12,
 ];
 ---
 
 <section id="gallery" class="py-20 px-6 bg-white dark:bg-gray-900">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Event Gallery</h2>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+        Event Gallery
+      </h2>
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
         Capturing the energy and atmosphere of unforgettable celebrations
       </p>
@@ -68,17 +70,19 @@ const events = [
     >
       <div class="relative max-w-4xl max-h-full">
         <!-- Pre-render all modal images, hide all but show one at a time -->
-        {events.map((image, index) => (
-          <Image 
-            id={`modal-image-${index}`}
-            src={image} 
-            alt={`Gallery image ${index + 1}`}
-            class={`max-w-full max-h-full object-contain rounded-2xl modal-image ${index === 0 ? '' : 'hidden'}`}
-            width={1200}
-            height={800}
-          />
-        ))}
-        
+        {
+          events.map((image, index) => (
+            <Image
+              id={`modal-image-${index}`}
+              src={image}
+              alt={`Gallery image ${index + 1}`}
+              class={`max-w-full max-h-full object-contain rounded-2xl modal-image ${index === 0 ? "" : "hidden"}`}
+              width={1200}
+              height={800}
+            />
+          ))
+        }
+
         <button
           id="close-modal"
           class="absolute -top-4 -right-4 w-12 h-12 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors duration-300 flex items-center justify-center text-xl font-bold"
@@ -103,14 +107,14 @@ const events = [
       galleryItems.forEach((item, index) => {
         item.addEventListener("click", () => {
           // Hide all modal images
-          modalImages.forEach(img => img.classList.add("hidden"));
-          
+          modalImages.forEach((img) => img.classList.add("hidden"));
+
           // Show the clicked image
           const targetImage = document.getElementById(`modal-image-${index}`);
           if (targetImage) {
             targetImage.classList.remove("hidden");
           }
-          
+
           // Show modal
           modal.classList.remove("opacity-0", "pointer-events-none");
           modal.classList.add("opacity-100");

@@ -1,7 +1,13 @@
 import { Mesh, MeshBasicMaterial, Group, CircleGeometry, DoubleSide } from "three";
 
 class CircleMesh extends Group {
-  constructor(circleSize = 5, spacingX = 15, spacingY = 15, viewportWidth = 800, viewportHeight = 600) {
+  constructor(
+    circleSize = 5,
+    spacingX = 15,
+    spacingY = 15,
+    viewportWidth = 800,
+    viewportHeight = 600
+  ) {
     super();
     this.circleSize = circleSize;
     this.spacingX = spacingX;
