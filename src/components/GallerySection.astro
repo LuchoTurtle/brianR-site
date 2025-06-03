@@ -1,11 +1,33 @@
 ---
+import { Image } from 'astro:assets';
+
+// Import all gallery images
+import gallery1 from '../assets/gallery/gallery_1.jpeg';
+import gallery2 from '../assets/gallery/gallery_2.jpeg';
+import gallery3 from '../assets/gallery/gallery_3.jpeg';
+import gallery4 from '../assets/gallery/gallery_4.jpeg';
+import gallery5 from '../assets/gallery/gallery_5.jpeg';
+import gallery6 from '../assets/gallery/gallery_6.jpeg';
+import gallery7 from '../assets/gallery/gallery_7.jpeg';
+import gallery8 from '../assets/gallery/gallery_8.jpeg';
+import gallery9 from '../assets/gallery/gallery_9.jpeg';
+import gallery10 from '../assets/gallery/gallery_10.jpeg';
+import gallery11 from '../assets/gallery/gallery_11.jpeg';
+import gallery12 from '../assets/gallery/gallery_12.jpeg';
+
 const events = [
-  { id: 1, title: "Wedding at Grand Ballroom", category: "Wedding" },
-  { id: 2, title: "Corporate Gala", category: "Corporate" },
-  { id: 3, title: "Beach Wedding Ceremony", category: "Wedding" },
-  { id: 4, title: "Birthday Celebration", category: "Private" },
-  { id: 5, title: "Anniversary Party", category: "Private" },
-  { id: 6, title: "Product Launch Event", category: "Corporate" },
+  gallery1,
+  gallery2,
+  gallery3,
+  gallery4,
+  gallery5,
+  gallery6,
+  gallery7,
+  gallery8,
+  gallery9,
+  gallery10,
+  gallery11,
+  gallery12
 ];
 ---
 
@@ -20,37 +42,43 @@ const events = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
-        events.map((event, index) => (
+        events.map((image, index) => (
           <div
-            class="group relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-300 hover:scale-105 gallery-item"
+            class="group relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-300 gallery-item"
             data-index={index}
           >
             <div class="relative bg-gray-100 dark:bg-gray-800 rounded-3xl overflow-hidden">
-              <img
-                src="/placeholder.svg"
-                alt={event.title}
+              <Image
+                src={image}
+                alt={`Gallery image ${index + 1}`}
                 class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                width={400}
+                height={256}
               />
-
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div class="absolute bottom-6 left-6 right-6">
-                  <h3 class="text-white font-semibold text-lg mb-2">{event.title}</h3>
-                  <span class="inline-block px-4 py-2 bg-blue-600 text-white text-sm rounded-full">{event.category}</span>
-                </div>
-              </div>
             </div>
           </div>
         ))
       }
     </div>
 
-    <!-- Modal/Lightbox for selected image -->
+    <!-- Modal/Lightbox with pre-rendered images -->
     <div
       id="image-modal"
       class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300"
     >
       <div class="relative max-w-4xl max-h-full">
-        <img id="modal-image" src="/placeholder.svg" alt="" class="max-w-full max-h-full object-contain rounded-2xl" />
+        <!-- Pre-render all modal images, hide all but show one at a time -->
+        {events.map((image, index) => (
+          <Image 
+            id={`modal-image-${index}`}
+            src={image} 
+            alt={`Gallery image ${index + 1}`}
+            class={`max-w-full max-h-full object-contain rounded-2xl modal-image ${index === 0 ? '' : 'hidden'}`}
+            width={1200}
+            height={800}
+          />
+        ))}
+        
         <button
           id="close-modal"
           class="absolute -top-4 -right-4 w-12 h-12 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors duration-300 flex items-center justify-center text-xl font-bold"
@@ -63,30 +91,27 @@ const events = [
 </section>
 
 <script>
-  // Convert events data to be available in client-side script
-  const events = [
-    { id: 1, title: "Wedding at Grand Ballroom", category: "Wedding" },
-    { id: 2, title: "Corporate Gala", category: "Corporate" },
-    { id: 3, title: "Beach Wedding Ceremony", category: "Wedding" },
-    { id: 4, title: "Birthday Celebration", category: "Private" },
-    { id: 5, title: "Anniversary Party", category: "Private" },
-    { id: 6, title: "Product Launch Event", category: "Corporate" },
-  ];
-
   // Gallery functionality
   document.addEventListener("DOMContentLoaded", () => {
     const galleryItems = document.querySelectorAll(".gallery-item");
     const modal = document.getElementById("image-modal");
-    const modalImage = document.getElementById("modal-image") as HTMLImageElement;
+    const modalImages = document.querySelectorAll(".modal-image");
     const closeButton = document.getElementById("close-modal");
 
-    if (modal && modalImage && closeButton) {
+    if (modal && modalImages.length > 0 && closeButton) {
       // Open modal when gallery item is clicked
       galleryItems.forEach((item, index) => {
         item.addEventListener("click", () => {
-          const event = events[index];
-          modalImage.src = "/placeholder.svg";
-          modalImage.alt = event.title;
+          // Hide all modal images
+          modalImages.forEach(img => img.classList.add("hidden"));
+          
+          // Show the clicked image
+          const targetImage = document.getElementById(`modal-image-${index}`);
+          if (targetImage) {
+            targetImage.classList.remove("hidden");
+          }
+          
+          // Show modal
           modal.classList.remove("opacity-0", "pointer-events-none");
           modal.classList.add("opacity-100");
           document.body.style.overflow = "hidden"; // Prevent scrolling
