@@ -5,24 +5,81 @@
   {/* Background */}
   <div id="three-container" class="w-full h-full overflow-hidden bg-black relative"></div>
 
+  {/* Blurry Gradient Spots Overlay - 3 Large Overlapping Spots */}
+<div class="absolute inset-0 pointer-events-none z-5">
+  {/* Large blue-purple spot - Top left */}
+  <div class="absolute top-0 left-0 w-96 h-96 sm:w-[32rem] sm:h-[32rem] lg:w-[40rem] lg:h-[40rem] xl:w-[48rem] xl:h-[48rem] bg-gradient-to-br from-blue-500/25 to-purple-600/20 rounded-full blur-3xl" style="animation: float 12s ease-in-out infinite;"></div>
+  
+  {/* Large pink-orange spot - Top right */}
+  <div class="absolute -top-20 -right-20 w-80 h-80 sm:w-[28rem] sm:h-[28rem] lg:w-[36rem] lg:h-[36rem] xl:w-[44rem] xl:h-[44rem] bg-gradient-to-bl from-pink-500/20 to-orange-400/15 rounded-full blur-3xl" style="animation: float 10s ease-in-out infinite reverse;"></div>
+  
+  {/* Large teal-cyan spot - Bottom center */}
+  <div class="absolute -bottom-32 left-1/2 transform -translate-x-1/2 w-[28rem] h-[28rem] sm:w-[36rem] sm:h-[36rem] lg:w-[44rem] lg:h-[44rem] xl:w-[52rem] xl:h-[52rem] bg-gradient-to-t from-teal-500/20 to-cyan-400/25 rounded-full blur-3xl" style="animation: float 15s ease-in-out infinite;"></div>
+</div>
+
   {/* Content */}
   <div class="absolute inset-0 flex items-center z-10 pointer-events-none">
     <div class="w-full px-6 pt-24 pb-0 sm:pt-32 sm:pb-0 lg:px-8 lg:pt-40 lg:pb-0">
-      <div id="hero-text" class="text-center lg:text-left max-w-2xl mx-auto lg:mx-0 lg:ml-16 xl:ml-24 2xl:ml-32 transition-transform duration-200 ease-out">
+      <div id="hero-text" class="text-center lg:text-left max-w-2xl mx-auto lg:mx-0 lg:ml-16 xl:ml-24 2xl:ml-32 transition-transform duration-200 ease-out pointer-events-auto">
         <h1 class="mt-10 tracking-tight text-white text-pretty text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6">DJ Brian Rodrigues</h1>
         <p class="mt-8 text-pretty text-lg text-gray-300 leading-relaxed sm:text-xl/8">
-          New Jersey's Premier Wedding & Event DJ • Creating Unforgettable Moments Through Music
+          New Jersey's Premier Wedding & Event DJ
         </p>
       </div>
     </div>
 
     {/* Scroll indicator */}
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-20">
       <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
         <div class="w-1 h-3 bg-blue-400 rounded-full mt-2 animate-pulse"></div>
       </div>
     </div>
   </div>
+
+  <style>
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px) scale(1);
+      }
+      50% {
+        transform: translateY(-30px) scale(1.05);
+      }
+    }
+
+    @keyframes orbit {
+      0% {
+        transform: rotate(0deg) translateX(100px) rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg) translateX(100px) rotate(-360deg);
+      }
+    }
+
+    /* Outlined text with transparent fill */
+    .outlined-text {
+      color: transparent;
+      -webkit-text-stroke: 2px white;
+      text-stroke: 2px white;
+      text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Responsive stroke width */
+    @media (min-width: 640px) {
+      .outlined-text {
+        -webkit-text-stroke: 3px white;
+        text-stroke: 3px white;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .outlined-text {
+        -webkit-text-stroke: 4px white;
+        text-stroke: 4px white;
+      }
+    }
+  </style>
 
   <script>
     import * as THREE from "three";
