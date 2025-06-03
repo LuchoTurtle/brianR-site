@@ -1,28 +1,62 @@
+---
+const eventTypes = [
+  { name: "Weddings", color: "from-pink-500 to-rose-500", icon: "💒" },
+  { name: "Quinceañeras", color: "from-purple-500 to-indigo-500", icon: "👑" },
+  { name: "Sweet 16s", color: "from-blue-500 to-cyan-500", icon: "🎂" },
+  { name: "Birthday Parties", color: "from-red-500 to-orange-500", icon: "🎉" },
+  { name: "Proms", color: "from-yellow-500 to-amber-500", icon: "🎭" },
+  { name: "Baby Showers", color: "from-green-500 to-emerald-500", icon: "👶" },
+  { name: "Christmas Parties", color: "from-violet-500 to-purple-500", icon: "🎄" },
+  { name: "Communions", color: "from-orange-500 to-red-500", icon: "✨" },
+];
+
+const culturalSpecialties = [
+  { name: "Portuguese", flag: "🇵🇹", description: "Traditional & Modern" },
+  { name: "Brazilian", flag: "🇧🇷", description: "Samba & Popular" },
+  { name: "Latin", flag: "🌎", description: "Bachata, Merengue, Salsa" },
+  { name: "English", flag: "🇺🇸", description: "All American Genres" },
+];
+---
+
 <section id="about" class="py-20 px-6 bg-white dark:bg-gray-900">
   <div class="max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
       <div class="space-y-6">
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">About the Music</h2>
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">About Brian</h2>
 
         <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-          With over a decade of experience in the music industry, I specialize in creating the perfect atmosphere for your special events. My passion
-          lies in reading the crowd and delivering seamless musical journeys that keep your guests dancing all night long.
+          Born with a deep love for music, Brian's journey began at age 4 in Portugal, learning piano, guitar, and drums. When he moved to the U.S. at
+          11, he discovered the vibrant world of American music and found his calling as a DJ.
         </p>
+
         <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-          From intimate gatherings to grand celebrations, I bring professional-grade equipment, an extensive music library spanning all genres, and
-          the expertise to make your event truly memorable.
+          His multicultural upbringing gives him a unique edge. Seamlessly blending everything from Portuguese classics and Latin rhythms to Hip-Hop,
+          House, and timeless oldies. Whether it's a song from 50 years ago or released just hours before your event, Brian knows how to pack the
+          dance floor.
+        </p>
+
+        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+          As a bilingual professional who studies electronics and acoustics, Brian combines technical expertise with an innate ability to read the
+          crowd and create unforgettable moments through music.
         </p>
 
         <div class="grid grid-cols-2 gap-6 mt-8">
           <div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl">
-            <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">10+</div>
+            <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">20+</div>
             <div class="text-gray-600 dark:text-gray-300">Years Experience</div>
           </div>
 
-          <div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl">
-            <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">500+</div>
-            <div class="text-gray-600 dark:text-gray-300">Events</div>
-          </div>
+          <a
+            href="https://www.youtube.com/@DJBrianRodrigues"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 cursor-pointer group"
+          >
+            <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2 group-hover:scale-110 transition-transform duration-300">
+              350K+
+            </div>
+            <div class="text-gray-600 dark:text-gray-300">YouTube Views</div>
+          </a>
         </div>
       </div>
 
@@ -31,11 +65,56 @@
           <img src="/placeholder.svg" alt="DJ Brian Rodrigues" class="w-full h-80 object-cover rounded-2xl mb-6" />
 
           <blockquote class="text-gray-700 dark:text-gray-200 italic leading-relaxed">
-            "Music has the power to transform any space into something magical. My goal is to create those unforgettable moments that you'll cherish
-            forever."
+            "My multicultural background allows me to create unique musical journeys that connect with everyone on the dance floor. From Portuguese
+            classics to the latest hits, I bring the best of all worlds to your celebration."
           </blockquote>
           <cite class="text-blue-600 dark:text-blue-400 font-semibold mt-4 block">- Brian Rodrigues</cite>
         </div>
+      </div>
+    </div>
+
+    {/* Event Types Section */}
+    <div class="mt-20">
+      <div class="text-center mb-12">
+        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Event Specialties</h3>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Creating magical moments for every celebration, from intimate gatherings to grand festivities
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+        {
+          eventTypes.map((event, index) => (
+            <div class="group relative overflow-hidden rounded-2xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:-translate-y-2">
+              <div class={`absolute inset-0 bg-gradient-to-br ${event.color} opacity-90 group-hover:opacity-100 transition-opacity duration-300`} />
+              <div class="relative z-10">
+                <div class="text-3xl mb-3">{event.icon}</div>
+                <h4 class="text-white font-semibold text-sm md:text-base leading-tight">{event.name}</h4>
+              </div>
+              <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+          ))
+        }
+      </div>
+
+      {/* Cultural Specialties */}
+      <div class="text-center mb-8">
+        <h4 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Cultural Music Expertise</h4>
+        <p class="text-base text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
+          Bridging cultures through music with authentic sounds from around the world
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {
+          culturalSpecialties.map((culture, index) => (
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300">
+              <div class="text-4xl mb-3">{culture.flag}</div>
+              <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{culture.name}</h5>
+              <p class="text-sm text-gray-600 dark:text-gray-400">{culture.description}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
