@@ -17,6 +17,10 @@ class LightSource extends Mesh {
     this.autoMove = true;
     this.moveSpeed = 1.0;
     this.moveRange = 4.0;
+    
+    // Position offset for right-top positioning
+    this.offsetX = 45;  // Move right
+    this.offsetY = 15;  // Move up
 
     // Create light geometry and material
     const geometry = new CircleGeometry(50, 32);
@@ -127,18 +131,18 @@ class LightSource extends Mesh {
     this.userData.mouseX.value = mouseX;
     this.userData.mouseY.value = mouseY;
 
-    // Update position
+    // Update position with configurable offsets
     if (this.autoMove) {
       // Blend auto-movement with mouse position
       const mx = Math.cos(time * this.moveSpeed) * this.moveRange;
       const my = Math.sin(time * 0.6 * this.moveSpeed) * this.moveRange;
 
       const influence = this.userData.mouseInfluence.value;
-      this.position.x = mx * (1 - influence) + mouseX * this.moveRange * influence;
-      this.position.y = my * (1 - influence) + mouseY * this.moveRange * influence;
+      this.position.x = (mx * (1 - influence) + mouseX * this.moveRange * influence) + this.offsetX;
+      this.position.y = (my * (1 - influence) + mouseY * this.moveRange * influence) + this.offsetY;
     } else {
-      this.position.x = mouseX * this.moveRange;
-      this.position.y = mouseY * this.moveRange;
+      this.position.x = mouseX * this.moveRange + this.offsetX;
+      this.position.y = mouseY * this.moveRange + this.offsetY;
     }
   }
 }
