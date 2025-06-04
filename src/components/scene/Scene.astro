@@ -36,28 +36,11 @@
       <div
         class="text-center lg:text-left max-w-2xl mx-auto lg:mx-0 lg:ml-16 xl:ml-24 2xl:ml-32 transition-transform duration-200 ease-out"
       >
-        {/* Main Title with Stroke Effect */}
+        {/* Main Title with Outline Only */}
         <h1
-          class="mt-10 tracking-tight text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 relative pointer-events-auto select-text"
+          class="mt-10 tracking-tight text-5xl sm:text-7xl md:text-8xl lg:text-8xl font-bold mb-6 relative pointer-events-auto select-text outlined-text"
         >
-          <span
-            class="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-            style={{
-              WebkitTextStroke: "2px transparent",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            DJ BRIAN RODRIGUES
-          </span>
-          <span
-            class="relative text-transparent"
-            style={{
-              WebkitTextStroke: "2px rgba(255, 255, 255, 0.8)",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            DJ BRIAN RODRIGUES
-          </span>
+          DJ BRIAN RODRIGUES
         </h1>
 
         {/* Decorative Line */}
@@ -74,11 +57,8 @@
             New Jersey's Premier Wedding & Event DJ
           </p>
           <p class="text-lg text-gray-300 leading-relaxed font-light">
-            Crafting unforgettable soundscapes for your most cherished moments
-          </p>
-          <p class="text-base text-gray-400 leading-relaxed">
-            From intimate ceremonies to grand celebrations • Seamless mixing • Professional sound •
-            Personalized playlists
+            Crafting unforgettable soundscapes for your most cherished moments. <br/>
+            From intimate ceremonies to grand celebrations, I bring a unique blend of professionalism and passion to every event in a customizable way.
           </p>
         </div>
 
@@ -114,38 +94,12 @@
     }
   }
 
-  @keyframes orbit {
-    0% {
-      transform: rotate(0deg) translateX(100px) rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg) translateX(100px) rotate(-360deg);
-    }
-  }
-
-  /* Outlined text with transparent fill */
+  /* Outlined text with transparent fill - NO FILLING, NO GLOW */
   .outlined-text {
     color: transparent;
-    -webkit-text-stroke: 2px white;
-    text-stroke: 2px white;
-    text-shadow:
-      0 0 10px rgba(255, 255, 255, 0.3),
-      0 0 20px rgba(255, 255, 255, 0.2);
-  }
-
-  /* Responsive stroke width */
-  @media (min-width: 640px) {
-    .outlined-text {
-      -webkit-text-stroke: 3px white;
-      text-stroke: 3px white;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .outlined-text {
-      -webkit-text-stroke: 4px white;
-      text-stroke: 4px white;
-    }
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.9);
+    text-stroke: 1px rgba(255, 255, 255, 0.9);
   }
 </style>
 
