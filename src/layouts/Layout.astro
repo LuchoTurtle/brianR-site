@@ -11,6 +11,7 @@ export interface Props {
   noindex?: boolean;
 }
 
+// Default SEO values - can be overridden per page
 const {
   title = "Brian Rodrigues- Portuguese Wedding DJ in NJ",
   description = "New Jersey's premier wedding DJ Brian Rodrigues brings 20+ years of multicultural music expertise. Portuguese-American DJ specializing in weddings, Sweet 16s, corporate events with bilingual MC services, professional lighting, and custom playlists.",
@@ -28,13 +29,13 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- SEO Meta Tags -->
+    {/* SEO Meta Tags */}
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site || Astro.url.origin)} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <!-- Open Graph / Facebook -->
+    {/* Open Graph / Facebook */}
     <meta property="og:type" content={type} />
     <meta property="og:url" content={url} />
     <meta property="og:title" content={title} />
@@ -44,19 +45,19 @@ const {
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Brian Rodrigues DJ" />
 
-    <!-- Twitter -->
+    {/* Twitter */}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={url} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.url).href} />
 
-    <!-- Theme Color -->
+    {/* Theme Color */}
     <meta name="theme-color" content="#263b91" />
     <meta name="msapplication-TileColor" content="#263b91" />
   </head>
   <body>
-    <!-- Skip to main content for accessibility -->
+    {/* Skip to main content for accessibility */}
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <slot />
@@ -77,7 +78,7 @@ const {
     height: 100%;
   }
 
-  /* Skip link for accessibility */
+  /* Skip link for accessibility - Hidden until focused */
   .skip-link {
     position: absolute;
     top: -40px;

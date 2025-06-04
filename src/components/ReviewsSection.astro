@@ -1,6 +1,7 @@
 ---
 import { Star } from "@lucide/astro";
 
+// Client reviews data
 const reviews = [
   {
     name: "Frankie Gravato",
@@ -14,7 +15,7 @@ const reviews = [
     name: "Nicole Lopes",
     event: "Sweet 16",
     rating: 5,
-    text: "DJ Brian Rodrigues is so easy to work with. He is attentive to your wants and needs. Gets the crowd going every time! I would highly recommend him for any of your special occasions. He dj’d at my daughter’s communion and this past weekend at her Sweet 16. This won’t be the last time I’ll be using him either! Thank You, Brian!",
+    text: "DJ Brian Rodrigues is so easy to work with. He is attentive to your wants and needs. Gets the crowd going every time! I would highly recommend him for any of your special occasions. He dj'd at my daughter's communion and this past weekend at her Sweet 16. This won't be the last time I'll be using him either! Thank You, Brian!",
     date: "April 2023",
     link: "https://www.facebook.com/frankiegravato/posts/pfbid0Wd7JKVifTKMfsDfrgB5kJYJhoPtPgC2Lv6dtigVkaDamaTr5iU1dvnwXmJVFe34l",
   },
@@ -31,24 +32,29 @@ const reviews = [
 
 <section id="reviews" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
   <div class="max-w-6xl mx-auto">
+    {/* Header Section */}
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Client Reviews</h2>
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">Don't just take our word for it - hear from some of our happy clients</p>
     </div>
 
+    {/* Reviews Grid - Each review is clickable to view original */}
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         reviews.map((review) => (
           <a href={review.link} target="_blank" rel="noopener noreferrer" class="group block transform transition-all duration-300 hover:scale-105">
             <div class="bg-white dark:bg-gray-700 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+              {/* Star Rating - Dynamic based on rating value */}
               <div class="flex items-center mb-4">
                 {Array.from({ length: review.rating }, (_, i) => (
                   <Star class="w-5 h-5 text-yellow-400 fill-current" />
                 ))}
               </div>
 
+              {/* Review Text */}
               <blockquote class="text-gray-700 dark:text-gray-300 mb-6 flex-grow leading-relaxed">"{review.text}"</blockquote>
 
+              {/* Review Footer */}
               <div class="border-t border-gray-200 dark:border-gray-600 pt-4">
                 <div class="flex items-center justify-between">
                   <div>
@@ -59,6 +65,7 @@ const reviews = [
                 </div>
               </div>
 
+              {/* Hidden hover indicator */}
               <div class="mt-3 text-xs text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to view original review →</div>
             </div>
           </a>
@@ -66,6 +73,7 @@ const reviews = [
       }
     </div>
 
+    {/* Overall Rating Display */}
     <div class="text-center mt-16">
       <a
         href="https://www.google.com/search?sca_esv=b42e03ff43b61ad3&sxsrf=AE3TifPKy2pv2uslBvjWy2YObyFcu_JKQA:1748982149838&q=DJ+Brian+Rodrigues&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-EzXqW6s9wWsgXnLBBB31vagRmXaI-A9oaqH5XrW-zjV1FRdkNE2sgMa8x_UqVumxz49yDNs%3D&uds=AOm0WdGidOdjVhBHIqi6IfHFtxCDVwdAYGWIKo2kkM9KC9ZI6O5ARPyuevL_n2XL8HVBpZNw-1rdpd7ZHlhrCYwuEHxoqyBdqMP5c-VRlbTEPMtM0FQBaag&sa=X&ved=2ahUKEwi90ImeitaNAxXt1AIHHc0gH3QQ3PALegQIHhAE&biw=1728&bih=958&dpr=2"
@@ -76,6 +84,7 @@ const reviews = [
           <div class="flex items-center space-x-6">
             <div class="text-center">
               <div class="text-4xl font-bold text-blue-600 dark:text-blue-400">4.9</div>
+              {/* Static 5-star display for overall rating */}
               <div class="flex items-center justify-center mt-2">
                 {[...Array(5)].map((_, i) => <Star class="w-5 h-5 text-yellow-400 fill-current" />)}
               </div>
