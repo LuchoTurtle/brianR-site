@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { ChevronLeft, ChevronRight, X } from "@lucide/astro";
 
 // Import all gallery images
 import gallery1 from "../assets/gallery/gallery_1.jpeg";
@@ -15,81 +16,202 @@ import gallery10 from "../assets/gallery/gallery_10.jpeg";
 import gallery11 from "../assets/gallery/gallery_11.jpeg";
 import gallery12 from "../assets/gallery/gallery_12.jpeg";
 
-// Array of images for dynamic rendering
-const events = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery10, gallery11, gallery12];
+// Array of images with descriptive alt text
+// Array of images with descriptive alt text
+const events = [
+  { src: gallery1, alt: "DJ Brian performing at an energetic wedding reception while guests dance with colorful glow sticks" },
+  { src: gallery2, alt: "DJ Brian directing music at a vibrant Sweet 16 birthday celebration with teenage guests" },
+  { src: gallery3, alt: "Packed wedding dance floor with enthusiastic guests waving glow sticks under professional lighting" },
+  { src: gallery4, alt: "DJ Brian sharing a dance moment with a wedding guest on the crowded dance floor" },
+  { src: gallery5, alt: "Professional shot of DJ Brian operating his mixing equipment while overlooking the lively party below" },
+  { src: gallery6, alt: "Elegant quinceañera celebration featuring traditional decorations with families dancing together" },
+  { src: gallery7, alt: "Atmospheric wedding reception showing the dance floor filled with guests and dramatic haze lighting effects" },
+  { src: gallery8, alt: "High school prom event with students dressed formally enjoying the music and dancing" },
+  { src: gallery9, alt: "DJ Brian actively engaging with the dancing crowd, creating an interactive party atmosphere" },
+  { src: gallery10, alt: "Joyful wedding guests of all ages dancing together on the reception floor" },
+  { src: gallery11, alt: "DJ Brian performing from an elevated stage position while entertaining the crowd below" },
+  { src: gallery12, alt: "Heartwarming moment of DJ Brian connecting with a young child at a family celebration" },
+];
 ---
 
-<section id="gallery" class="py-20 px-6 bg-white dark:bg-gray-900">
+<section id="gallery" class="py-20 px-6 bg-white dark:bg-gray-900" aria-labelledby="gallery-heading">
   <div class="max-w-6xl mx-auto">
     {/* Header Section */}
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Event Gallery</h2>
+      <h2 id="gallery-heading" class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Event Gallery</h2>
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">Capturing the energy and atmosphere of unforgettable celebrations</p>
     </div>
 
     {/* Gallery Grid */}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="grid" aria-label="Event photo gallery">
       {
-        events.map((image, index) => (
-          <div class="group relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-300 gallery-item" data-index={index}>
-            <div class="relative bg-gray-100 dark:bg-gray-800 rounded-3xl overflow-hidden">
-              <Image src={image} alt={`Gallery image ${index + 1}`} class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110" width={400} height={256} />
-            </div>
+        events.map((event, index) => (
+          <div class="group relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-300 gallery-item focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2" data-index={index} role="gridcell">
+            <button class="w-full h-full focus:outline-none cursor-pointer" aria-label={`View larger image: ${event.alt}`} data-image-index={index}>
+              <div class="relative bg-gray-100 dark:bg-gray-800 rounded-3xl overflow-hidden">
+                <Image src={event.src} alt={event.alt} class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110 group-focus:scale-110" width={400} height={256} />
+                {/* Overlay for better focus indication */}
+                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 group-focus:bg-black/10 transition-colors duration-300" aria-hidden="true" />
+              </div>
+            </button>
           </div>
         ))
       }
     </div>
 
-    {/* Modal/Lightbox with pre-rendered images */}
-    <div id="image-modal" class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-      <div class="relative max-w-4xl max-h-full">
-        {/* Pre-render all modal images, hide all but show one at a time */}
-        {events.map((image, index) => <Image id={`modal-image-${index}`} src={image} alt={`Gallery image ${index + 1}`} class={`max-w-full max-h-full object-contain rounded-2xl modal-image ${index === 0 ? "" : "hidden"}`} width={1200} height={800} />)}
+    {/* Modal/Lightbox with navigation */}
+    <div id="image-modal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="relative max-w-5xl max-h-full flex flex-col">
+        {/* Modal Header */}
+        <div class="flex items-center justify-end mb-4">
+          <div class="flex items-center space-x-2">
+            {/* Image counter */}
+            <span id="image-counter" class="text-white/80 text-sm" aria-live="polite">1 of {events.length}</span>
+            {/* Close Button */}
+            <button
+              id="close-modal"
+              class="w-10 h-10 bg-red-600 text-white rounded-full hover:bg-red-700 focus:bg-red-700 transition-colors duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black cursor-pointer"
+              aria-label="Close gallery modal">
+              <X class="w-5 h-5" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
 
-        {/* Close Button */}
-        <button id="close-modal" class="absolute -top-4 -right-4 w-12 h-12 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors duration-300 flex items-center justify-center text-xl font-bold"> × </button>
+        {/* Image Container */}
+        <div class="relative flex-1 flex items-center justify-center">
+          {/* Navigation Buttons */}
+          <button
+            id="prev-button"
+            class="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 text-white rounded-full hover:bg-black/70 focus:bg-black/70 transition-colors duration-300 flex items-center justify-center z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black cursor-pointer"
+            aria-label="Previous image">
+            <ChevronLeft class="w-6 h-6" aria-hidden="true" />
+          </button>
+
+          <button
+            id="next-button"
+            class="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 text-white rounded-full hover:bg-black/70 focus:bg-black/70 transition-colors duration-300 flex items-center justify-center z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black cursor-pointer"
+            aria-label="Next image">
+            <ChevronRight class="w-6 h-6" aria-hidden="true" />
+          </button>
+
+          {/* Pre-render all modal images */}
+          {events.map((event, index) => <Image id={`modal-image-${index}`} src={event.src} alt={event.alt} class={`max-w-full max-h-full object-contain rounded-2xl modal-image cursor-pointer ${index === 0 ? "" : "hidden"}`} width={1200} height={800} />)}
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <script>
-  // Gallery functionality
+  // Gallery functionality with accessibility enhancements
   document.addEventListener("DOMContentLoaded", () => {
-    const galleryItems = document.querySelectorAll(".gallery-item");
-    const modal = document.getElementById("image-modal");
-    const modalImages = document.querySelectorAll(".modal-image");
-    const closeButton = document.getElementById("close-modal");
+    const galleryItems = document.querySelectorAll(".gallery-item button");
+    const modal = document.getElementById("image-modal") as HTMLElement;
+    const modalImages = document.querySelectorAll(".modal-image") as NodeListOf<HTMLElement>;
+    const closeButton = document.getElementById("close-modal") as HTMLButtonElement;
+    const prevButton = document.getElementById("prev-button") as HTMLButtonElement;
+    const nextButton = document.getElementById("next-button") as HTMLButtonElement;
+    const imageCounter = document.getElementById("image-counter") as HTMLElement;
 
-    if (modal && modalImages.length > 0 && closeButton) {
+    let currentImageIndex = 0;
+    let focusedElementBeforeModal: Element | null = null;
+
+    if (modal && modalImages.length > 0 && closeButton && prevButton && nextButton) {
       // Open modal when gallery item is clicked
       galleryItems.forEach((item, index) => {
         item.addEventListener("click", () => {
-          // Hide all modal images
-          modalImages.forEach((img) => img.classList.add("hidden"));
+          focusedElementBeforeModal = document.activeElement;
+          openModal(index);
+        });
 
-          // Show the clicked image
-          const targetImage = document.getElementById(`modal-image-${index}`);
-          if (targetImage) {
-            targetImage.classList.remove("hidden");
+        // Handle keyboard navigation for gallery grid
+        item.addEventListener("keydown", (e: Event) => {
+          const keyboardEvent = e as KeyboardEvent;
+          if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
+            keyboardEvent.preventDefault();
+            focusedElementBeforeModal = document.activeElement;
+            openModal(index);
           }
-
-          // Show modal
-          modal.classList.remove("opacity-0", "pointer-events-none");
-          modal.classList.add("opacity-100");
-          document.body.style.overflow = "hidden"; // Prevent scrolling
         });
       });
 
-      // Close modal functions
+      // Open modal function
+      const openModal = (index: number) => {
+        currentImageIndex = index;
+        showImage(index);
+        modal.classList.remove("opacity-0", "pointer-events-none");
+        modal.classList.add("opacity-100");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        // Focus the close button for keyboard users
+        setTimeout(() => closeButton.focus(), 100);
+      };
+
+      // Show specific image
+      const showImage = (index: number) => {
+        // Hide all modal images
+        modalImages.forEach((img) => img.classList.add("hidden"));
+
+        // Show the target image
+        const targetImage = document.getElementById(`modal-image-${index}`);
+        if (targetImage) {
+          targetImage.classList.remove("hidden");
+        }
+
+        // Update counter
+        if (imageCounter) {
+          imageCounter.textContent = `${index + 1} of ${modalImages.length}`;
+        }
+
+        // Update navigation button states
+        updateNavigationButtons();
+      };
+
+      // Update navigation button accessibility
+      const updateNavigationButtons = () => {
+        if (prevButton) {
+          prevButton.disabled = currentImageIndex === 0;
+          prevButton.setAttribute("aria-disabled", currentImageIndex === 0 ? "true" : "false");
+        }
+        if (nextButton) {
+          nextButton.disabled = currentImageIndex === modalImages.length - 1;
+          nextButton.setAttribute("aria-disabled", currentImageIndex === modalImages.length - 1 ? "true" : "false");
+        }
+      };
+
+      // Navigation functions
+      const showPrevImage = () => {
+        if (currentImageIndex > 0) {
+          currentImageIndex--;
+          showImage(currentImageIndex);
+        }
+      };
+
+      const showNextImage = () => {
+        if (currentImageIndex < modalImages.length - 1) {
+          currentImageIndex++;
+          showImage(currentImageIndex);
+        }
+      };
+
+      // Close modal function
       const closeModal = () => {
         modal.classList.add("opacity-0", "pointer-events-none");
         modal.classList.remove("opacity-100");
-        document.body.style.overflow = "auto"; // Restore scrolling
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "auto";
+
+        // Return focus to the element that opened the modal
+        if (focusedElementBeforeModal && focusedElementBeforeModal instanceof HTMLElement) {
+          focusedElementBeforeModal.focus();
+        }
       };
 
-      // Close on button click
+      // Event listeners
       closeButton.addEventListener("click", closeModal);
+      prevButton.addEventListener("click", showPrevImage);
+      nextButton.addEventListener("click", showNextImage);
 
       // Close on backdrop click
       modal.addEventListener("click", (e) => {
@@ -98,10 +220,56 @@ const events = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gall
         }
       });
 
-      // Close on escape key
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !modal.classList.contains("opacity-0")) {
-          closeModal();
+      // Enhanced keyboard navigation
+      document.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (!modal.classList.contains("opacity-0")) {
+          switch (e.key) {
+            case "Escape":
+              e.preventDefault();
+              closeModal();
+              break;
+            case "ArrowLeft":
+              e.preventDefault();
+              showPrevImage();
+              break;
+            case "ArrowRight":
+              e.preventDefault();
+              showNextImage();
+              break;
+            case "Home":
+              e.preventDefault();
+              currentImageIndex = 0;
+              showImage(currentImageIndex);
+              break;
+            case "End":
+              e.preventDefault();
+              currentImageIndex = modalImages.length - 1;
+              showImage(currentImageIndex);
+              break;
+          }
+        }
+      });
+
+      // Trap focus within modal when open
+      const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+      modal.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Tab") {
+          const focusable = modal.querySelectorAll(focusableElements) as NodeListOf<HTMLElement>;
+          const firstFocusable = focusable[0];
+          const lastFocusable = focusable[focusable.length - 1];
+
+          if (e.shiftKey) {
+            if (document.activeElement === firstFocusable) {
+              e.preventDefault();
+              lastFocusable.focus();
+            }
+          } else {
+            if (document.activeElement === lastFocusable) {
+              e.preventDefault();
+              firstFocusable.focus();
+            }
+          }
         }
       });
     }

@@ -96,3 +96,20 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+
+/* Skip link for accessibility - Hidden until focused */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+  border-radius: 0 0 4px 4px;
+}
+
+.skip-link:focus {
+  top: 0;
+}

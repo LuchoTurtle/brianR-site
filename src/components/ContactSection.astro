@@ -13,17 +13,17 @@ const officeHours = [
 ];
 ---
 
-<section id="contact" class="py-12 sm:py-20 px-3 sm:px-6 bg-gradient-to-b from-slate-950 via-slate-900 to-black relative overflow-hidden">
-  {/* Background Atmospheric Effects */}
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.015)_1px,transparent_0)] bg-[length:50px_50px]"></div>
-  <div class="absolute top-1/4 right-1/3 w-32 h-32 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-1/4 left-1/6 sm:left-1/4 lg:left-1/3 w-40 h-40 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl"></div>
+<section id="contact" class="py-12 sm:py-20 px-3 sm:px-6 bg-gradient-to-b from-slate-950 via-slate-900 to-black relative overflow-hidden" aria-labelledby="contact-heading">
+  {/* Background Atmospheric Effects - Decorative only */}
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.015)_1px,transparent_0)] bg-[length:50px_50px]" aria-hidden="true"></div>
+  <div class="absolute top-1/4 right-1/3 w-32 h-32 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-3xl" aria-hidden="true"></div>
+  <div class="absolute bottom-1/4 left-1/6 sm:left-1/4 lg:left-1/3 w-40 h-40 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl" aria-hidden="true"></div>
 
   <div class="max-w-sm sm:max-w-4xl lg:max-w-6xl mx-auto relative">
     {/* Header Section */}
     <div class="text-center mb-12 sm:mb-16">
-      <h2 class="text-3xl leading-tight sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">Let's Create Magic Together</h2>
-      <div class="w-16 sm:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 sm:mb-8 rounded-full"></div>
+      <h2 id="contact-heading" class="text-3xl leading-tight sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">Let's Create Magic Together</h2>
+      <div class="w-16 sm:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 sm:mb-8 rounded-full" aria-hidden="true"></div>
       <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2">Ready to make your event unforgettable? Get in touch and let's discuss how we can bring your vision to life.</p>
     </div>
 
@@ -33,20 +33,20 @@ const officeHours = [
       <div class="grid grid-rows-[auto_1fr] gap-6 sm:gap-8">
         {/* Office Contact Information */}
         <div class="relative">
-          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl sm:rounded-3xl blur-xl"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl sm:rounded-3xl blur-xl" aria-hidden="true"></div>
           <div class="relative backdrop-blur-xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/20">
-            <h3 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">Office</h3>
+            <h3 id="office-info-heading" class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">Office</h3>
 
-            <div class="space-y-4 sm:space-y-6">
+            <div class="space-y-4 sm:space-y-6" role="group" aria-labelledby="office-info-heading">
               {/* Address - Clickable to copy */}
               <div class="flex items-start space-x-3 sm:space-x-4 group">
                 <button
-                  class="copy-btn relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0 cursor-pointer"
+                  class="copy-btn relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900"
                   data-copy="136 Windsor St, Kearny, NJ 07032"
                   data-type="address"
-                  title="Click to copy address">
-                  <MapPin class="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                  <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-50 rounded-xl sm:rounded-2xl blur-lg"></div>
+                  aria-label="Copy address: 136 Windsor St, Kearny, NJ 07032">
+                  <MapPin class="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
+                  <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-50 rounded-xl sm:rounded-2xl blur-lg" aria-hidden="true"></div>
                 </button>
                 <div class="min-w-0">
                   <div class="text-white font-semibold text-base sm:text-lg">Address</div>
@@ -60,12 +60,12 @@ const officeHours = [
               {/* Phone - Clickable to copy */}
               <div class="flex items-center space-x-3 sm:space-x-4 group">
                 <button
-                  class="copy-btn relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-purple-500 to-violet-500 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0 cursor-pointer"
+                  class="copy-btn relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-purple-500 to-violet-500 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2 focus:ring-offset-slate-900"
                   data-copy="(201)-991-2717"
                   data-type="phone"
-                  title="Click to copy phone number">
-                  <Phone class="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                  <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-violet-500 opacity-50 rounded-xl sm:rounded-2xl blur-lg"></div>
+                  aria-label="Copy phone number: (201) 991-2717">
+                  <Phone class="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
+                  <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-violet-500 opacity-50 rounded-xl sm:rounded-2xl blur-lg" aria-hidden="true"></div>
                 </button>
                 <div class="min-w-0">
                   <div class="text-white font-semibold text-base sm:text-lg">Phone</div>
@@ -76,12 +76,12 @@ const officeHours = [
               {/* Email - Clickable to copy */}
               <div class="flex items-center space-x-3 sm:space-x-4 group">
                 <button
-                  class="copy-btn relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0 cursor-pointer"
+                  class="copy-btn relative w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-400 focus:ring-offset-2 focus:ring-offset-slate-900"
                   data-copy="DJBrianRodrigues@yahoo.com"
                   data-type="email"
-                  title="Click to copy email address">
-                  <Mail class="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                  <div class="absolute inset-0 bg-gradient-to-r from-pink-500 to-rose-500 opacity-50 rounded-xl sm:rounded-2xl blur-lg"></div>
+                  aria-label="Copy email address: DJBrianRodrigues@yahoo.com">
+                  <Mail class="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
+                  <div class="absolute inset-0 bg-gradient-to-r from-pink-500 to-rose-500 opacity-50 rounded-xl sm:rounded-2xl blur-lg" aria-hidden="true"></div>
                 </button>
                 <div class="min-w-0">
                   <div class="text-white font-semibold text-base sm:text-lg">Email</div>
@@ -94,29 +94,34 @@ const officeHours = [
 
         {/* Office Hours Section */}
         <div class="relative self-end">
-          <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-blue-500/10 rounded-2xl sm:rounded-3xl blur-xl"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-blue-500/10 rounded-2xl sm:rounded-3xl blur-xl" aria-hidden="true"></div>
           <div class="relative backdrop-blur-xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/20">
             <div class="flex items-center space-x-2 sm:space-x-3 mb-4 sm:mb-6">
               <div class="relative w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg sm:rounded-xl flex items-center justify-center">
-                <Clock class="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                <Clock class="w-4 h-4 sm:w-5 sm:h-5 text-white" aria-hidden="true" />
               </div>
-              <h4 class="text-lg sm:text-xl font-bold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Office Hours</h4>
+              <h4 id="office-hours-heading" class="text-lg sm:text-xl font-bold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Office Hours</h4>
             </div>
 
             {/* Dynamic schedule rendering */}
-            <div class="space-y-2 sm:space-y-3">
+            <div class="space-y-2 sm:space-y-3" role="table" aria-labelledby="office-hours-heading">
+              <div class="sr-only">Office hours schedule</div>
               {
                 officeHours.map((schedule) => (
-                  <div class="flex justify-between items-center py-1.5 sm:py-2 border-b border-white/10 last:border-b-0">
-                    <span class="text-gray-300 font-medium text-sm sm:text-base">{schedule.day}</span>
-                    <span class="text-white text-xs sm:text-sm">{schedule.hours}</span>
+                  <div class="flex justify-between items-center py-1.5 sm:py-2 border-b border-white/10 last:border-b-0" role="row">
+                    <span class="text-gray-300 font-medium text-sm sm:text-base" role="cell">
+                      {schedule.day}
+                    </span>
+                    <span class="text-white text-xs sm:text-sm" role="cell">
+                      {schedule.hours}
+                    </span>
                   </div>
                 ))
               }
             </div>
 
             {/* Important notice */}
-            <div class="mt-4 sm:mt-6 p-3 sm:p-4 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-xl sm:rounded-2xl border border-yellow-500/20">
+            <div class="mt-4 sm:mt-6 p-3 sm:p-4 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-xl sm:rounded-2xl border border-yellow-500/20" role="alert">
               <p class="text-yellow-200 font-semibold text-center text-sm sm:text-base">By Appointment Only!</p>
             </div>
           </div>
@@ -127,83 +132,118 @@ const officeHours = [
       <div class="space-y-6 sm:space-y-8">
         {/* Contact Form */}
         <div class="relative">
-          <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl sm:rounded-3xl blur-xl"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl sm:rounded-3xl blur-xl" aria-hidden="true"></div>
           <div class="relative backdrop-blur-xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/20">
-            <h3 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">How can I help you?</h3>
+            <h3 id="contact-form-heading" class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">How can I help you?</h3>
 
-            <form id="contact-form" class="space-y-4 sm:space-y-6">
+            <form id="contact-form" class="space-y-4 sm:space-y-6" aria-labelledby="contact-form-heading" novalidate>
               {/* Personal Information Row */}
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  class="w-full px-3 py-3 sm:px-4 sm:py-4 bg-white/5 border border-white/20 rounded-xl sm:rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  class="w-full px-3 py-3 sm:px-4 sm:py-4 bg-white/5 border border-white/20 rounded-xl sm:rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
-                  required
-                />
+                <div>
+                  <label for="name" class="sr-only">Your Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your Name"
+                    class="w-full px-3 py-3 sm:px-4 sm:py-4 bg-white/5 border border-white/20 rounded-xl sm:rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
+                    required
+                    aria-required="true"
+                  />
+                </div>
+                <div>
+                  <label for="email" class="sr-only">Your Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Your Email"
+                    class="w-full px-3 py-3 sm:px-4 sm:py-4 bg-white/5 border border-white/20 rounded-xl sm:rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
+                    required
+                    aria-required="true"
+                    aria-describedby="email-error"
+                  />
+                  <div id="email-error" class="sr-only" aria-live="polite"></div>
+                </div>
               </div>
 
               {/* Contact & Event Details Row */}
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number"
-                  class="w-full px-3 py-3 sm:px-4 sm:py-4 bg-white/5 border border-white/20 rounded-xl sm:rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
-                />
-                <input
-                  type="date"
-                  name="eventDate"
-                  class="w-full px-3 py-3 sm:px-4 sm:py-4 bg-white/5 border border-white/20 rounded-xl sm:rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
-                />
+                <div>
+                  <label for="phone" class="sr-only">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Phone Number"
+                    class="w-full px-3 py-3 sm:px-4 sm:py-4 bg-white/5 border border-white/20 rounded-xl sm:rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
+                  />
+                </div>
+                <div>
+                  <label for="eventDate" class="sr-only">Event Date</label>
+                  <input
+                    type="date"
+                    id="eventDate"
+                    name="eventDate"
+                    class="w-full px-3 py-3 sm:px-4 sm:py-4 bg-white/5 border border-white/20 rounded-xl sm:rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
+                  />
+                </div>
               </div>
 
               {/* Event Type Dropdown */}
-              <select name="eventType" class="w-full px-3 py-3 sm:px-4 sm:py-4 bg-white/5 border border-white/20 rounded-xl sm:rounded-2xl text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base" required>
-                <option value="" class="bg-slate-800">Select Event Type</option>
-                <option value="wedding" class="bg-slate-800">Wedding</option>
-                <option value="corporate" class="bg-slate-800">Corporate Event</option>
-                <option value="private" class="bg-slate-800">Private Party</option>
-                <option value="other" class="bg-slate-800">Other</option>
-              </select>
+              <div>
+                <label for="eventType" class="sr-only">Event Type</label>
+                <select
+                  id="eventType"
+                  name="eventType"
+                  class="w-full px-3 py-3 sm:px-4 sm:py-4 bg-white/5 border border-white/20 rounded-xl sm:rounded-2xl text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/10 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
+                  required
+                  aria-required="true">
+                  <option value="" class="bg-slate-800">Select Event Type</option>
+                  <option value="wedding" class="bg-slate-800">Wedding</option>
+                  <option value="corporate" class="bg-slate-800">Corporate Event</option>
+                  <option value="private" class="bg-slate-800">Private Party</option>
+                  <option value="other" class="bg-slate-800">Other</option>
+                </select>
+              </div>
 
               {/* Message Textarea */}
-              <textarea
-                name="message"
-                placeholder="Share details about your event or ask any questions..."
-                rows="4"
-                class="w-full px-3 py-3 sm:px-4 sm:py-4 bg-white/5 border border-white/20 rounded-xl sm:rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all duration-300 resize-none backdrop-blur-sm text-sm sm:text-base"
-                required></textarea>
+              <div>
+                <label for="message" class="sr-only">Event Details and Questions</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Share details about your event or ask any questions..."
+                  rows="4"
+                  class="w-full px-3 py-3 sm:px-4 sm:py-4 bg-white/5 border border-white/20 rounded-xl sm:rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-300 resize-none backdrop-blur-sm text-sm sm:text-base"
+                  required
+                  aria-required="true"></textarea>
+              </div>
 
               {/* Submit Button with Hover Effects */}
               <button
                 type="submit"
-                class="group relative cursor-pointer w-full py-3 sm:py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 text-white font-semibold rounded-xl sm:rounded-2xl hover:from-blue-700 hover:via-purple-700 hover:to-violet-700 transition-all duration-300 overflow-hidden text-sm sm:text-base hover:shadow-2xl hover:shadow-purple-500/25">
-                <span class="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-xl group-hover:blur-2xl transition-all duration-300"></span>
+                class="group relative cursor-pointer w-full py-3 sm:py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 text-white font-semibold rounded-xl sm:rounded-2xl hover:from-blue-700 hover:via-purple-700 hover:to-violet-700 focus:from-blue-700 focus:via-purple-700 focus:to-violet-700 transition-all duration-300 overflow-hidden text-sm sm:text-base hover:shadow-2xl hover:shadow-purple-500/25 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+                aria-describedby="submit-description">
+                <span class="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-xl group-hover:blur-2xl transition-all duration-300" aria-hidden="true"></span>
                 <span class="relative group-hover:translate-y-[-1px] transition-transform duration-300">Send Message</span>
               </button>
+              <div id="submit-description" class="sr-only">Submit your event inquiry to DJ Brian Rodrigues</div>
             </form>
           </div>
         </div>
 
         {/* Google Maps Placeholder */}
         <div class="relative">
-          <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl sm:rounded-3xl blur-xl"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl sm:rounded-3xl blur-xl" aria-hidden="true"></div>
           <div class="relative backdrop-blur-xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-white/20">
-            <h4 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Our Location</h4>
+            <h4 id="location-heading" class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Our Location</h4>
             {/* Placeholder for Google Maps integration */}
-            <div class="w-full h-48 sm:h-64 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl sm:rounded-2xl flex items-center justify-center border border-white/10">
+            <div class="w-full h-48 sm:h-64 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl sm:rounded-2xl flex items-center justify-center border border-white/10" role="img" aria-labelledby="location-heading" aria-describedby="map-description">
               <div class="text-center">
-                <MapPin class="w-10 h-10 sm:w-12 sm:h-12 text-gray-400 mx-auto mb-3 sm:mb-4" />
+                <MapPin class="w-10 h-10 sm:w-12 sm:h-12 text-gray-400 mx-auto mb-3 sm:mb-4" aria-hidden="true" />
                 <p class="text-gray-400 text-xs sm:text-sm">Google Maps will be integrated here</p>
-                <p class="text-gray-500 text-xs mt-1 sm:mt-2">Kearny, NJ Service Area</p>
+                <p id="map-description" class="text-gray-500 text-xs mt-1 sm:mt-2">Kearny, NJ Service Area</p>
               </div>
             </div>
           </div>
@@ -212,61 +252,88 @@ const officeHours = [
     </div>
 
     {/* Footer Section */}
-    <div class="mt-16 sm:mt-20 pt-6 sm:pt-8 border-t border-white/10 text-center relative">
-      <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 sm:w-32 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+    <footer class="mt-16 sm:mt-20 pt-6 sm:pt-8 border-t border-white/10 text-center relative">
+      <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 sm:w-32 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" aria-hidden="true"></div>
 
       {/* Social Media Links Grid */}
-      <div class="flex justify-center items-center space-x-6 mb-6">
-        <a href="https://www.youtube.com/@DJBrianRodrigues" target="_blank" rel="noopener noreferrer" class="social-link group relative p-3 rounded-xl transition-all duration-300 hover:bg-red-500/10 hover:scale-110" title="Follow on YouTube">
-          <svg class="w-5 h-5 text-gray-400 group-hover:text-red-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M23.498 6.186a2.996 2.996 0 0 0-2.108-2.108C19.498 3.5 12 3.5 12 3.5s-7.498 0-9.39.578A2.996 2.996 0 0 0 .502 6.186C0 8.078 0 12 0 12s0 3.922.502 5.814a2.996 2.996 0 0 0 2.108 2.108C4.502 20.5 12 20.5 12 20.5s7.498 0 9.39-.578a2.996 2.996 0 0 0 2.108-2.108C24 15.922 24 12 24 12s0-3.922-.502-5.814zM9.75 15.568V8.432L15.5 12l-5.75 3.568z"
-            ></path>
-          </svg>
-          <div class="absolute inset-0 bg-red-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"></div>
-        </a>
+      <nav aria-label="Social media links">
+        <div class="flex justify-center items-center space-x-6 mb-6">
+          <a
+            href="https://www.youtube.com/@DJBrianRodrigues"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link group relative p-3 rounded-xl transition-all duration-300 hover:bg-red-500/10 hover:scale-110 focus:bg-red-500/10 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+            aria-label="Follow DJ Brian Rodrigues on YouTube">
+            <svg class="w-5 h-5 text-gray-400 group-hover:text-red-400 group-focus:text-red-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M23.498 6.186a2.996 2.996 0 0 0-2.108-2.108C19.498 3.5 12 3.5 12 3.5s-7.498 0-9.39.578A2.996 2.996 0 0 0 .502 6.186C0 8.078 0 12 0 12s0 3.922.502 5.814a2.996 2.996 0 0 0 2.108 2.108C4.502 20.5 12 20.5 12 20.5s7.498 0 9.39-.578a2.996 2.996 0 0 0 2.108-2.108C24 15.922 24 12 24 12s0-3.922-.502-5.814zM9.75 15.568V8.432L15.5 12l-5.75 3.568z"
+              ></path>
+            </svg>
+            <div class="absolute inset-0 bg-red-500/20 rounded-xl opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 blur-lg" aria-hidden="true"></div>
+          </a>
 
-        <a href="https://www.instagram.com/djbrianrodrigues" target="_blank" rel="noopener noreferrer" class="social-link group relative p-3 rounded-xl transition-all duration-300 hover:bg-pink-500/10 hover:scale-110" title="Follow on Instagram">
-          <svg class="w-5 h-5 text-gray-400 group-hover:text-pink-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-            ></path>
-          </svg>
-          <div class="absolute inset-0 bg-pink-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"></div>
-        </a>
+          <a
+            href="https://www.instagram.com/djbrianrodrigues"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link group relative p-3 rounded-xl transition-all duration-300 hover:bg-pink-500/10 hover:scale-110 focus:bg-pink-500/10 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+            aria-label="Follow DJ Brian Rodrigues on Instagram">
+            <svg class="w-5 h-5 text-gray-400 group-hover:text-pink-400 group-focus:text-pink-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+              ></path>
+            </svg>
+            <div class="absolute inset-0 bg-pink-500/20 rounded-xl opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 blur-lg" aria-hidden="true"></div>
+          </a>
 
-        <a href="https://www.facebook.com/djbrianrodrigues" target="_blank" rel="noopener noreferrer" class="social-link group relative p-3 rounded-xl transition-all duration-300 hover:bg-blue-500/10 hover:scale-110" title="Follow on Facebook">
-          <svg class="w-5 h-5 text-gray-400 group-hover:text-blue-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-            ></path>
-          </svg>
-          <div class="absolute inset-0 bg-blue-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"></div>
-        </a>
+          <a
+            href="https://www.facebook.com/djbrianrodrigues"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link group relative p-3 rounded-xl transition-all duration-300 hover:bg-blue-500/10 hover:scale-110 focus:bg-blue-500/10 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+            aria-label="Follow DJ Brian Rodrigues on Facebook">
+            <svg class="w-5 h-5 text-gray-400 group-hover:text-blue-400 group-focus:text-blue-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+              ></path>
+            </svg>
+            <div class="absolute inset-0 bg-blue-500/20 rounded-xl opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 blur-lg" aria-hidden="true"></div>
+          </a>
 
-        <a href="https://soundcloud.com/djbrianrodrigues" target="_blank" rel="noopener noreferrer" class="social-link group relative p-3 rounded-xl transition-all duration-300 hover:bg-orange-500/10 hover:scale-110" title="Listen on SoundCloud">
-          <svg class="w-5 h-5 text-gray-400 group-hover:text-orange-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 50 50">
-            <path
-              d="M 30 11 C 26.398438 11 23 12.789063 21 15.6875 L 21 36 L 42.5 36 C 46.601563 36 50 32.601563 50 28.5 C 50 24.398438 46.601563 21 42.5 21 C 42 21 41.5 21.085938 41 21.1875 C 40.5 15.488281 35.800781 11 30 11 Z M 17 16 C 16.300781 16 15.601563 16.085938 15 16.1875 L 15 36 L 17 36 Z M 18 16 L 18 36 L 20 36 L 20 16.5 C 19.398438 16.300781 18.699219 16.101563 18 16 Z M 14 16.5 C 13.300781 16.800781 12.601563 17.101563 12 17.5 L 12 36 L 14 36 Z M 11 18.3125 C 10.199219 19.011719 9.5 19.90625 9 20.90625 L 9 36 L 11 36 Z M 6.5 22 C 6.324219 22.011719 6.148438 22.042969 6 22.09375 L 6 35.90625 C 6.300781 36.007813 6.699219 36 7 36 L 8 36 L 8 22.09375 C 7.699219 21.992188 7.300781 22 7 22 C 6.851563 22 6.675781 21.988281 6.5 22 Z M 5 22.3125 C 4.300781 22.511719 3.601563 22.8125 3 23.3125 L 3 34.6875 C 3.601563 35.085938 4.300781 35.488281 5 35.6875 Z M 2 24.09375 C 0.800781 25.394531 0 27.101563 0 29 C 0 30.898438 0.800781 32.605469 2 33.90625 Z"
-            ></path>
-          </svg>
+          <a
+            href="https://soundcloud.com/djbrianrodrigues"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link group relative p-3 rounded-xl transition-all duration-300 hover:bg-orange-500/10 hover:scale-110 focus:bg-orange-500/10 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+            aria-label="Listen to DJ Brian Rodrigues on SoundCloud">
+            <svg class="w-5 h-5 text-gray-400 group-hover:text-orange-400 group-focus:text-orange-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 50 50" aria-hidden="true">
+              <path
+                d="M 30 11 C 26.398438 11 23 12.789063 21 15.6875 L 21 36 L 42.5 36 C 46.601563 36 50 32.601563 50 28.5 C 50 24.398438 46.601563 21 42.5 21 C 42 21 41.5 21.085938 41 21.1875 C 40.5 15.488281 35.800781 11 30 11 Z M 17 16 C 16.300781 16 15.601563 16.085938 15 16.1875 L 15 36 L 17 36 Z M 18 16 L 18 36 L 20 36 L 20 16.5 C 19.398438 16.300781 18.699219 16.101563 18 16 Z M 14 16.5 C 13.300781 16.800781 12.601563 17.101563 12 17.5 L 12 36 L 14 36 Z M 11 18.3125 C 10.199219 19.011719 9.5 19.90625 9 20.90625 L 9 36 L 11 36 Z M 6.5 22 C 6.324219 22.011719 6.148438 22.042969 6 22.09375 L 6 35.90625 C 6.300781 36.007813 6.699219 36 7 36 L 8 36 L 8 22.09375 C 7.699219 21.992188 7.300781 22 7 22 C 6.851563 22 6.675781 21.988281 6.5 22 Z M 5 22.3125 C 4.300781 22.511719 3.601563 22.8125 3 23.3125 L 3 34.6875 C 3.601563 35.085938 4.300781 35.488281 5 35.6875 Z M 2 24.09375 C 0.800781 25.394531 0 27.101563 0 29 C 0 30.898438 0.800781 32.605469 2 33.90625 Z"
+              ></path>
+            </svg>
 
-          <div class="absolute inset-0 bg-orange-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"></div>
-        </a>
+            <div class="absolute inset-0 bg-orange-500/20 rounded-xl opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 blur-lg" aria-hidden="true"></div>
+          </a>
 
-        <a href="https://www.yelp.com/biz/dj-brian-rodrigues-kearny" target="_blank" rel="noopener noreferrer" class="social-link group relative p-3 rounded-xl transition-all duration-300 hover:bg-red-600/10 hover:scale-110" title="Review on Yelp">
-          <svg class="w-5 h-5 text-gray-400 group-hover:text-red-500 transition-colors duration-300" fill="currentColor" viewBox="0 0 50 50">
-            <path
-              d="M 21.339844 2.007813 C 18.542969 2.113281 12.75 3.855469 11.488281 5.15625 C 11.007813 5.613281 10.886719 6.300781 11.007813 6.757813 C 11.246094 7.214844 20.976563 21.980469 20.976563 21.980469 C 22.417969 24.269531 23.167969 24.015625 23.53125 23.902344 C 23.890625 23.785156 25.089844 23.355469 24.851563 20.609375 C 24.730469 17.515625 23.769531 3.898438 23.652344 3.210938 C 23.410156 2.640625 23.050781 2.179688 22.328125 2.0625 C 22.074219 2.007813 21.738281 1.992188 21.339844 2.007813 Z M 36.640625 16 C 36.359375 16.011719 36.085938 16.097656 35.847656 16.269531 C 35.097656 17.007813 35.363281 16.484375 31.046875 22.203125 L 29.003906 24.832031 C 28.523438 25.402344 28.636719 26.359375 29.117188 27.046875 C 29.597656 27.734375 30.25 28.097656 31.164063 27.921875 C 31.523438 27.804688 32.246094 27.691406 33.5625 27.347656 C 41.84375 25.519531 41.917969 25.53125 42.28125 25.304688 C 42.757813 24.960938 43 24.503906 43 23.816406 L 43 23.703125 C 42.757813 21.875 39.207031 16.957031 37.527344 16.15625 C 37.226563 16.042969 36.925781 15.984375 36.640625 16 Z M 9.390625 23.96875 C 8.910156 23.96875 8.308594 24.199219 7.945313 24.769531 C 7.105469 25.917969 6.847656 29.570313 7.085938 32.089844 C 7.207031 32.890625 7.328125 33.542969 7.566406 34 C 7.925781 34.574219 8.40625 34.917969 9.007813 34.917969 C 9.367188 34.917969 9.09375 34.8125 16.300781 32.753906 L 19.546875 31.722656 C 20.386719 31.492188 20.972656 30.917969 20.972656 30.003906 C 20.972656 29.089844 20.527344 28.332031 19.6875 27.988281 L 17.40625 27.074219 C 9.597656 23.980469 9.75 23.96875 9.390625 23.96875 Z M 31.09375 32.023438 C 30.46875 31.976563 29.882813 32.132813 29.4375 32.609375 C 29.050781 33.03125 28.757813 34.230469 29.238281 34.917969 L 30.558594 36.859375 C 34.882813 43.5 34.90625 43.839844 35.265625 44.070313 C 35.746094 44.527344 36.347656 44.53125 36.949219 44.300781 C 38.871094 43.613281 42.628906 39.0625 42.867188 37.230469 C 42.988281 36.660156 42.75 36.085938 42.265625 35.515625 C 42.027344 35.285156 41.527344 35.203125 34.796875 33.113281 L 31.71875 32.136719 C 31.511719 32.078125 31.300781 32.039063 31.09375 32.023438 Z M 23.0625 34.03125 C 22.417969 33.960938 21.796875 34.089844 21.4375 34.605469 L 19.875 36.433594 C 14.46875 42.5 14.230469 42.84375 14.109375 43.1875 C 13.988281 43.417969 13.988281 43.644531 13.988281 43.875 C 14.109375 44.214844 14.230469 44.445313 14.46875 44.789063 C 15.789063 46.164063 21.625 48.308594 23.546875 47.964844 C 24.148438 47.851563 24.628906 47.503906 24.867188 46.933594 C 24.988281 46.589844 24.984375 46.363281 24.984375 39.152344 L 24.984375 35.832031 C 24.988281 34.828125 24.546875 34.496094 23.703125 34.152344 C 23.496094 34.09375 23.277344 34.050781 23.0625 34.03125 Z"
-            ></path>
-          </svg>
+          <a
+            href="https://www.yelp.com/biz/dj-brian-rodrigues-kearny"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link group relative p-3 rounded-xl transition-all duration-300 hover:bg-red-600/10 hover:scale-110 focus:bg-red-600/10 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-slate-900"
+            aria-label="Review DJ Brian Rodrigues on Yelp">
+            <svg class="w-5 h-5 text-gray-400 group-hover:text-red-500 group-focus:text-red-500 transition-colors duration-300" fill="currentColor" viewBox="0 0 50 50" aria-hidden="true">
+              <path
+                d="M 21.339844 2.007813 C 18.542969 2.113281 12.75 3.855469 11.488281 5.15625 C 11.007813 5.613281 10.886719 6.300781 11.007813 6.757813 C 11.246094 7.214844 20.976563 21.980469 20.976563 21.980469 C 22.417969 24.269531 23.167969 24.015625 23.53125 23.902344 C 23.890625 23.785156 25.089844 23.355469 24.851563 20.609375 C 24.730469 17.515625 23.769531 3.898438 23.652344 3.210938 C 23.410156 2.640625 23.050781 2.179688 22.328125 2.0625 C 22.074219 2.007813 21.738281 1.992188 21.339844 2.007813 Z M 36.640625 16 C 36.359375 16.011719 36.085938 16.097656 35.847656 16.269531 C 35.097656 17.007813 35.363281 16.484375 31.046875 22.203125 L 29.003906 24.832031 C 28.523438 25.402344 28.636719 26.359375 29.117188 27.046875 C 29.597656 27.734375 30.25 28.097656 31.164063 27.921875 C 31.523438 27.804688 32.246094 27.691406 33.5625 27.347656 C 41.84375 25.519531 41.917969 25.53125 42.28125 25.304688 C 42.757813 24.960938 43 24.503906 43 23.816406 L 43 23.703125 C 42.757813 21.875 39.207031 16.957031 37.527344 16.15625 C 37.226563 16.042969 36.925781 15.984375 36.640625 16 Z M 9.390625 23.96875 C 8.910156 23.96875 8.308594 24.199219 7.945313 24.769531 C 7.105469 25.917969 6.847656 29.570313 7.085938 32.089844 C 7.207031 32.890625 7.328125 33.542969 7.566406 34 C 7.925781 34.574219 8.40625 34.917969 9.007813 34.917969 C 9.367188 34.917969 9.09375 34.8125 16.300781 32.753906 L 19.546875 31.722656 C 20.386719 31.492188 20.972656 30.917969 20.972656 30.003906 C 20.972656 29.089844 20.527344 28.332031 19.6875 27.988281 L 17.40625 27.074219 C 9.597656 23.980469 9.75 23.96875 9.390625 23.96875 Z M 31.09375 32.023438 C 30.46875 31.976563 29.882813 32.132813 29.4375 32.609375 C 29.050781 33.03125 28.757813 34.230469 29.238281 34.917969 L 30.558594 36.859375 C 34.882813 43.5 34.90625 43.839844 35.265625 44.070313 C 35.746094 44.527344 36.347656 44.53125 36.949219 44.300781 C 38.871094 43.613281 42.628906 39.0625 42.867188 37.230469 C 42.988281 36.660156 42.75 36.085938 42.265625 35.515625 C 42.027344 35.285156 41.527344 35.203125 34.796875 33.113281 L 31.71875 32.136719 C 31.511719 32.078125 31.300781 32.039063 31.09375 32.023438 Z M 23.0625 34.03125 C 22.417969 33.960938 21.796875 34.089844 21.4375 34.605469 L 19.875 36.433594 C 14.46875 42.5 14.230469 42.84375 14.109375 43.1875 C 13.988281 43.417969 13.988281 43.644531 13.988281 43.875 C 14.109375 44.214844 14.230469 44.445313 14.46875 44.789063 C 15.789063 46.164063 21.625 48.308594 23.546875 47.964844 C 24.148438 47.851563 24.628906 47.503906 24.867188 46.933594 C 24.988281 46.589844 24.984375 46.363281 24.984375 39.152344 L 24.984375 35.832031 C 24.988281 34.828125 24.546875 34.496094 23.703125 34.152344 C 23.496094 34.09375 23.277344 34.050781 23.0625 34.03125 Z"
+              ></path>
+            </svg>
 
-          <div class="absolute inset-0 bg-red-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"></div>
-        </a>
-      </div>
+            <div class="absolute inset-0 bg-red-600/20 rounded-xl opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 blur-lg" aria-hidden="true"></div>
+          </a>
+        </div>
+      </nav>
 
       <p class="text-gray-400 leading-relaxed text-sm sm:text-base px-2">© 2025 DJ Brian Rodrigues. All rights reserved.</p>
-    </div>
+    </footer>
   </div>
 
   <script>
@@ -275,7 +342,7 @@ const officeHours = [
 
       // Handle form submission
       if (form) {
-        form.addEventListener("submit", (e) => {
+        form.addEventListener("submit", (e: Event) => {
           e.preventDefault();
 
           // Get form data
@@ -317,7 +384,7 @@ const officeHours = [
 
       // Show visual feedback when text is copied
       function showCopyFeedback(button: Element, type: string | null) {
-        const originalTitle = button.getAttribute("title");
+        const originalTitle = button.getAttribute("aria-label");
         const copyMessages = {
           address: "Address copied!",
           phone: "Phone copied!",
@@ -326,8 +393,8 @@ const officeHours = [
 
         const message = copyMessages[type as keyof typeof copyMessages] || "Copied!";
 
-        // Update button title
-        button.setAttribute("title", message);
+        // Update button aria-label temporarily
+        button.setAttribute("aria-label", message);
 
         // Add visual feedback with a temporary class
         button.classList.add("copied");
@@ -337,7 +404,7 @@ const officeHours = [
 
         // Reset after 2 seconds
         setTimeout(() => {
-          button.setAttribute("title", originalTitle || "");
+          button.setAttribute("aria-label", originalTitle || "");
           button.classList.remove("copied");
         }, 2000);
       }
@@ -380,6 +447,8 @@ const officeHours = [
         const toast = document.createElement("div");
         toast.className = "copy-toast fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transform transition-all duration-300 translate-x-full opacity-0";
         toast.textContent = message;
+        toast.setAttribute("role", "status");
+        toast.setAttribute("aria-live", "polite");
 
         document.body.appendChild(toast);
 

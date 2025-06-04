@@ -30,45 +30,61 @@ const reviews = [
 ];
 ---
 
-<section id="reviews" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
+<section id="reviews" class="py-20 px-6 bg-gray-50 dark:bg-gray-800" aria-labelledby="reviews-heading">
   <div class="max-w-6xl mx-auto">
     {/* Header Section */}
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Client Reviews</h2>
+      <h2 id="reviews-heading" class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Client Reviews</h2>
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">Don't just take our word for it - hear from some of our happy clients</p>
     </div>
 
     {/* Reviews Grid - Each review is clickable to view original */}
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label="Client testimonials and reviews">
       {
-        reviews.map((review) => (
-          <a href={review.link} target="_blank" rel="noopener noreferrer" class="group block transform transition-all duration-300 hover:scale-105">
-            <div class="bg-white dark:bg-gray-700 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-              {/* Star Rating - Dynamic based on rating value */}
-              <div class="flex items-center mb-4">
-                {Array.from({ length: review.rating }, (_, i) => (
-                  <Star class="w-5 h-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
+        reviews.map((review, index) => (
+          <article class="group block transform transition-all duration-300 hover:scale-105 focus-within:scale-105" role="listitem">
+            <a
+              href={review.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-800 rounded-3xl"
+              aria-labelledby={`review-${index}-author`}
+              aria-describedby={`review-${index}-content review-${index}-details`}>
+              <div class="bg-white dark:bg-gray-700 p-6 rounded-3xl shadow-lg hover:shadow-xl focus:shadow-xl transition-all duration-300 h-full flex flex-col">
+                {/* Star Rating - Dynamic based on rating value */}
+                <div class="flex items-center mb-4" role="img" aria-label={`${review.rating} out of 5 stars`}>
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <Star class={`w-5 h-5 ${i < review.rating ? "text-yellow-400 fill-current" : "text-gray-300 dark:text-gray-600"}`} aria-hidden="true" />
+                  ))}
+                  <span class="sr-only">{review.rating} out of 5 stars</span>
+                </div>
 
-              {/* Review Text */}
-              <blockquote class="text-gray-700 dark:text-gray-300 mb-6 flex-grow leading-relaxed">"{review.text}"</blockquote>
+                {/* Review Text */}
+                <blockquote id={`review-${index}-content`} class="text-gray-700 dark:text-gray-300 mb-6 flex-grow leading-relaxed">
+                  "{review.text}"
+                </blockquote>
 
-              {/* Review Footer */}
-              <div class="border-t border-gray-200 dark:border-gray-600 pt-4">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <h4 class="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">{review.name}</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">{review.event}</p>
+                {/* Review Footer */}
+                <div class="border-t border-gray-200 dark:border-gray-600 pt-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h3 id={`review-${index}-author`} class="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                        {review.name}
+                      </h3>
+                      <p id={`review-${index}-details`} class="text-sm text-gray-600 dark:text-gray-400">
+                        {review.event} • {review.date}
+                      </p>
+                    </div>
                   </div>
-                  <span class="text-sm text-gray-500 dark:text-gray-400">{review.date}</span>
+                </div>
+
+                {/* Hover indicator */}
+                <div class="mt-3 text-xs text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300" aria-hidden="true">
+                  Click to view original review →
                 </div>
               </div>
-
-              {/* Hidden hover indicator */}
-              <div class="mt-3 text-xs text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to view original review →</div>
-            </div>
-          </a>
+            </a>
+          </article>
         ))
       }
     </div>
@@ -79,14 +95,15 @@ const reviews = [
         href="https://www.google.com/search?sca_esv=b42e03ff43b61ad3&sxsrf=AE3TifPKy2pv2uslBvjWy2YObyFcu_JKQA:1748982149838&q=DJ+Brian+Rodrigues&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-EzXqW6s9wWsgXnLBBB31vagRmXaI-A9oaqH5XrW-zjV1FRdkNE2sgMa8x_UqVumxz49yDNs%3D&uds=AOm0WdGidOdjVhBHIqi6IfHFtxCDVwdAYGWIKo2kkM9KC9ZI6O5ARPyuevL_n2XL8HVBpZNw-1rdpd7ZHlhrCYwuEHxoqyBdqMP5c-VRlbTEPMtM0FQBaag&sa=X&ved=2ahUKEwi90ImeitaNAxXt1AIHHc0gH3QQ3PALegQIHhAE&biw=1728&bih=958&dpr=2"
         target="_blank"
         rel="noopener noreferrer"
-        class="group inline-block transform transition-all duration-300 hover:scale-105">
-        <div class="inline-block bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg">
+        class="group inline-block transform transition-all duration-300 hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-800 rounded-2xl"
+        aria-label="View all reviews on Google - 4.9 out of 5 stars based on 100+ reviews">
+        <div class="inline-block bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg group-hover:shadow-xl group-focus:shadow-xl transition-all duration-300">
           <div class="flex items-center space-x-6">
             <div class="text-center">
-              <div class="text-4xl font-bold text-blue-600 dark:text-blue-400">4.9</div>
+              <div class="text-4xl font-bold text-blue-600 dark:text-blue-400" aria-hidden="true">4.9</div>
               {/* Static 5-star display for overall rating */}
-              <div class="flex items-center justify-center mt-2">
-                {[...Array(5)].map((_, i) => <Star class="w-5 h-5 text-yellow-400 fill-current" />)}
+              <div class="flex items-center justify-center mt-2" role="img" aria-label="5 out of 5 stars average rating">
+                {[...Array(5)].map((_, i) => <Star class="w-5 h-5 text-yellow-400 fill-current" aria-hidden="true" />)}
               </div>
             </div>
             <div class="text-left">

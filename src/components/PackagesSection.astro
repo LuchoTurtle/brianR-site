@@ -38,82 +38,95 @@ const packages = [
 const additionalFeatures = ["Uplighting", "Monogram projection", "Glow sticks", "Foam sticks", "Party hats & glasses", "Photo booths"];
 ---
 
-<section id="packages" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
+<section id="packages" class="py-20 px-6 bg-gray-50 dark:bg-gray-800" aria-labelledby="packages-heading">
   <div class="max-w-7xl mx-auto">
     {/* Header Section */}
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Wedding Packages</h2>
+      <h2 id="packages-heading" class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Wedding Packages</h2>
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">Choose the perfect package for your special day. Each package is customizable to meet your unique needs and vision.</p>
     </div>
 
     {/* Main Packages Grid */}
-    <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-16">
+    <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-16" role="list" aria-label="Available wedding packages">
       {
         packages.map((pkg, index) => (
-          <div
-            class={`relative p-6 rounded-3xl transition-all duration-300 hover:scale-105 h-full flex flex-col ${pkg.popular ? "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-purple-200 dark:border-purple-500" : "bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600"}`}>
+          <article
+            class={`relative p-6 rounded-3xl transition-all duration-300 hover:scale-105 focus-within:scale-105 h-full flex flex-col ${pkg.popular ? "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-purple-200 dark:border-purple-500" : "bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600"}`}
+            role="listitem"
+            tabindex="0"
+            aria-labelledby={`package-${index}-title`}
+            aria-describedby={`package-${index}-features`}>
             {/* Popular Badge - Conditional rendering */}
             {pkg.popular && (
               <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-3 py-1 md:px-4 rounded-full text-xs md:text-sm font-semibold whitespace-nowrap">Most Popular</span>
+                <span class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-3 py-1 md:px-4 rounded-full text-xs md:text-sm font-semibold whitespace-nowrap" aria-label="Most popular package">
+                  Most Popular
+                </span>
               </div>
             )}
 
             {/* Package Image */}
             <div class="w-full h-32 mb-6 rounded-xl overflow-hidden">
-              <Image src={pkg.image} alt={pkg.name} class="w-full h-full object-cover" width={400} height={128} />
+              <Image src={pkg.image} alt={`${pkg.name} package DJ setup example`} class="w-full h-full object-cover" width={400} height={128} />
             </div>
 
             {/* Package Name */}
             <div class="text-center mb-6">
-              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{pkg.name}</h3>
+              <h3 id={`package-${index}-title`} class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                {pkg.name} Package
+              </h3>
             </div>
 
             {/* Features List */}
-            <ul class="space-y-3 flex-grow">
-              {pkg.features.map((feature, featureIndex) => (
-                <li class="flex items-center text-sm text-gray-700 dark:text-gray-300">
-                  <Check class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
+            <div id={`package-${index}-features`}>
+              <h4 class="sr-only">Features included in {pkg.name} package</h4>
+              <ul class="space-y-3 flex-grow" role="list">
+                {pkg.features.map((feature, featureIndex) => (
+                  <li class="flex items-center text-sm text-gray-700 dark:text-gray-300" role="listitem">
+                    <Check class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" aria-hidden="true" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
         ))
       }
     </div>
 
     {/* Additional Features Section */}
-    <div class="relative">
-      {/* Decorative Background */}
-      <div class="absolute inset-0 bg-gradient-to-r from-purple-100/30 via-blue-100/30 to-purple-100/30 dark:from-purple-900/10 dark:via-blue-900/10 dark:to-purple-900/10 rounded-3xl blur-3xl"></div>
+    <section aria-labelledby="additional-features-heading">
+      <div class="relative">
+        {/* Decorative Background */}
+        <div class="absolute inset-0 bg-gradient-to-r from-purple-100/30 via-blue-100/30 to-purple-100/30 dark:from-purple-900/10 dark:via-blue-900/10 dark:to-purple-900/10 rounded-3xl blur-3xl" aria-hidden="true"></div>
 
-      <div class="relative text-center py-12 px-8">
-        {/* Header with Icon */}
-        <div class="flex items-center justify-center mb-6">
-          <Sparkles class="w-8 h-8 text-purple-600 dark:text-purple-400 mr-3" />
-          <h3 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Additional Features</h3>
-          <Sparkles class="w-8 h-8 text-purple-600 dark:text-purple-400 ml-3" />
-        </div>
+        <div class="relative text-center py-12 px-8">
+          {/* Header with Icon */}
+          <div class="flex items-center justify-center mb-6">
+            <Sparkles class="w-8 h-8 text-purple-600 dark:text-purple-400 mr-3" aria-hidden="true" />
+            <h3 id="additional-features-heading" class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Additional Features</h3>
+            <Sparkles class="w-8 h-8 text-purple-600 dark:text-purple-400 ml-3" aria-hidden="true" />
+          </div>
 
-        <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">Enhance any package with these premium extras to make your special day even more magical</p>
+          <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">Enhance any package with these premium extras to make your special day even more magical</p>
 
-        {/* Features Grid */}
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-          {
-            additionalFeatures.map((feature, index) => (
-              <div class="flex items-center justify-center p-3 bg-white/50 dark:bg-gray-700/50 rounded-2xl backdrop-blur-sm border border-purple-200/30 dark:border-purple-500/30">
-                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{feature}</span>
-              </div>
-            ))
-          }
+          {/* Features Grid */}
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto" role="list" aria-label="Available additional features">
+            {
+              additionalFeatures.map((feature, index) => (
+                <div class="flex items-center justify-center p-3 bg-white/50 dark:bg-gray-700/50 rounded-2xl backdrop-blur-sm border border-purple-200/30 dark:border-purple-500/30" role="listitem">
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{feature}</span>
+                </div>
+              ))
+            }
 
-          {/* "And much more" as plain text in the grid */}
-          <div class="flex items-center justify-center p-3">
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400 italic"> And much more... </span>
+            {/* "And much more" as plain text in the grid */}
+            <div class="flex items-center justify-center p-3" role="listitem">
+              <span class="text-sm font-medium text-gray-500 dark:text-gray-400 italic">And much more...</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </section>

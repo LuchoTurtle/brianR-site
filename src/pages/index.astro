@@ -10,31 +10,48 @@ import ThemeToggle from "../components/ThemeToggle.astro";
 ---
 
 <Layout>
+  {/* Skip to main content for screen readers */}
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   {/* Navigation - Starts transparent, becomes opaque when scrolling */}
-  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" role="navigation" aria-label="Main navigation">
     <div class="max-w-7xl mx-auto px-6 py-4">
       <div class="flex justify-between items-center">
         {/* Title - Hidden when hero is visible, shown when scrolled */}
-        <h1 id="nav-title" class="text-2xl font-bold text-white opacity-0 transform -translate-y-2 transition-all duration-300">DJ Brian Rodrigues</h1>
+        <h1 id="nav-title" class="text-2xl font-bold text-white opacity-0 transform -translate-y-2 transition-all duration-300" aria-live="polite">DJ Brian Rodrigues</h1>
 
         <div class="flex items-center space-x-8">
           {/* Desktop Navigation Links */}
-          <div class="hidden md:flex space-x-8">
-            <a href="#about" class="text-white/80 hover:text-white transition-colors">About</a>
-            <a href="#packages" class="text-white/80 hover:text-white transition-colors">Packages</a>
-            <a href="#gallery" class="text-white/80 hover:text-white transition-colors">Gallery</a>
-            <a href="#reviews" class="text-white/80 hover:text-white transition-colors">Reviews</a>
-            <a href="#contact" class="text-white/80 hover:text-white transition-colors">Contact</a>
+          <ul class="hidden md:flex space-x-8 list-none" role="menubar">
+            <li role="none">
+              <a href="#about" class="text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent rounded-sm px-2 py-1" role="menuitem"> About </a>
+            </li>
+            <li role="none">
+              <a href="#packages" class="text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent rounded-sm px-2 py-1" role="menuitem"> Packages </a>
+            </li>
+            <li role="none">
+              <a href="#gallery" class="text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent rounded-sm px-2 py-1" role="menuitem"> Gallery </a>
+            </li>
+            <li role="none">
+              <a href="#reviews" class="text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent rounded-sm px-2 py-1" role="menuitem"> Reviews </a>
+            </li>
+            <li role="none">
+              <a href="#contact" class="text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent rounded-sm px-2 py-1" role="menuitem"> Contact </a>
+            </li>
+          </ul>
+
+          {/* Theme Toggle with accessible label */}
+          <div aria-label="Theme toggle">
+            <ThemeToggle />
           </div>
-          <ThemeToggle />
         </div>
       </div>
     </div>
   </nav>
 
-  <main id="main-content">
+  <main id="main-content" tabindex="-1">
     {/* Hero Section */}
-    <section id="hero-scene">
+    <section id="hero-scene" aria-label="Hero introduction">
       <Scene />
     </section>
 
@@ -48,8 +65,6 @@ import ThemeToggle from "../components/ThemeToggle.astro";
 </Layout>
 
 <script>
-  // Adding intersection observer to handle nav background and title visibility.
-  // This will change the nav once the hero scene goes out of view.
   document.addEventListener("DOMContentLoaded", () => {
     const nav = document.getElementById("main-nav");
     const navTitle = document.getElementById("nav-title");
@@ -65,11 +80,17 @@ import ThemeToggle from "../components/ThemeToggle.astro";
               nav.classList.remove("bg-black/20", "dark:bg-black/20", "backdrop-blur-md", "border-b", "border-white/10");
               navTitle.classList.add("opacity-0", "-translate-y-2");
               navTitle.classList.remove("opacity-100", "translate-y-0");
+
+              // Update aria-label when nav state changes
+              nav.setAttribute("aria-label", "Main navigation - transparent mode");
             } else {
               // Scene is not visible - add background and show title
               nav.classList.add("bg-black/20", "dark:bg-black/20", "backdrop-blur-md", "border-b", "border-white/10");
               navTitle.classList.add("opacity-100", "translate-y-0");
               navTitle.classList.remove("opacity-0", "-translate-y-2");
+
+              // Update aria-label when nav state changes
+              nav.setAttribute("aria-label", "Main navigation - solid background");
             }
           });
         },

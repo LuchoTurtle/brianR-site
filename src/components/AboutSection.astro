@@ -23,13 +23,13 @@ const culturalSpecialties = [
 ];
 ---
 
-<section id="about" class="py-20 px-6 bg-white dark:bg-gray-900">
+<section id="about" class="py-20 px-6 bg-white dark:bg-gray-900" aria-labelledby="about-heading">
   <div class="max-w-6xl mx-auto">
     {/* Main About Content - Two Column Layout */}
     <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
       {/* Left Column - Bio Text and Stats */}
       <div class="space-y-6">
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">About Brian</h2>
+        <h2 id="about-heading" class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">About Brian</h2>
 
         <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
           Born with a deep love for music, Brian's journey began at age 4 in Portugal, learning piano, guitar, and drums. When he moved to the U.S. at 11, he discovered the vibrant world of American music and found his calling as a DJ.
@@ -42,15 +42,22 @@ const culturalSpecialties = [
         <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">As a bilingual professional who studies electronics and acoustics, Brian combines technical expertise with an innate ability to read the crowd and create unforgettable moments through music.</p>
 
         {/* Stats Grid */}
-        <div class="grid grid-cols-2 gap-6 mt-8">
-          <div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl">
-            <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">20+</div>
+        <div class="grid grid-cols-2 gap-6 mt-8" role="group" aria-labelledby="stats-heading">
+          <h3 id="stats-heading" class="sr-only">DJ Brian's Professional Statistics</h3>
+
+          <div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl" role="group" aria-label="Years of experience">
+            <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2" aria-label="20 plus">20+</div>
             <div class="text-gray-600 dark:text-gray-300">Years Experience</div>
           </div>
 
           {/* YouTube Stats - Clickable Link */}
-          <a href="https://www.youtube.com/@DJBrianRodrigues" target="_blank" rel="noopener noreferrer" class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 cursor-pointer group">
-            <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2 group-hover:scale-110 transition-transform duration-300">350K+</div>
+          <a
+            href="https://www.youtube.com/@DJBrianRodrigues"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
+            aria-label="Visit DJ Brian's YouTube channel with over 350,000 views">
+            <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2 group-hover:scale-110 transition-transform duration-300" aria-label="350 thousand plus">350K+</div>
             <div class="text-gray-600 dark:text-gray-300">YouTube Views</div>
           </a>
         </div>
@@ -59,7 +66,7 @@ const culturalSpecialties = [
       {/* Right Column - Photo and Quote */}
       <div class="relative">
         <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-3xl">
-          <Image src={brianImage} alt="DJ Brian Rodrigues" class="w-full h-80 object-cover rounded-2xl mb-6" width={400} height={320} />
+          <Image src={brianImage} alt="DJ Brian Rodrigues performing at a wedding event, wearing professional DJ attire while operating mixing equipment" class="w-full h-80 object-cover rounded-2xl mb-6" width={400} height={320} />
 
           {/* Personal Quote */}
           <blockquote class="text-gray-700 dark:text-gray-200 italic leading-relaxed">
@@ -73,23 +80,25 @@ const culturalSpecialties = [
     {/* Event Types Section */}
     <div class="mt-20">
       <div class="text-center mb-12">
-        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Event Specialties</h3>
+        <h3 id="event-specialties-heading" class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Event Specialties</h3>
         <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Creating magical moments for every celebration, from intimate gatherings to grand festivities</p>
       </div>
 
       {/* Event Type Cards Grid */}
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16" role="group" aria-labelledby="event-specialties-heading">
         {
           eventTypes.map((event, index) => (
-            <div class="group relative overflow-hidden rounded-2xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:-translate-y-2">
+            <div class="group relative overflow-hidden rounded-2xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:-translate-y-2" role="article" aria-label={`${event.name} event specialty`}>
               {/* Dynamic gradient background */}
-              <div class={`absolute inset-0 bg-gradient-to-br ${event.color} opacity-90 group-hover:opacity-100 transition-opacity duration-300`} />
+              <div class={`absolute inset-0 bg-gradient-to-br ${event.color} opacity-90 group-hover:opacity-100 transition-opacity duration-300`} aria-hidden="true" />
               <div class="relative z-10">
-                <div class="text-3xl mb-3">{event.icon}</div>
+                <div class="text-3xl mb-3" aria-hidden="true">
+                  {event.icon}
+                </div>
                 <h4 class="text-white font-semibold text-sm md:text-base leading-tight">{event.name}</h4>
               </div>
               {/* Hover overlay effect */}
-              <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
             </div>
           ))
         }
@@ -97,16 +106,18 @@ const culturalSpecialties = [
 
       {/* Cultural Specialties Section */}
       <div class="text-center mb-8">
-        <h4 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Cultural Music Expertise</h4>
+        <h4 id="cultural-expertise-heading" class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Cultural Music Expertise</h4>
         <p class="text-base text-gray-600 dark:text-gray-300 max-w-xl mx-auto">Bridging cultures through music with authentic sounds from around the world</p>
       </div>
 
       {/* Cultural Specialties Cards */}
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6" role="group" aria-labelledby="cultural-expertise-heading">
         {
           culturalSpecialties.map((culture, index) => (
-            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300">
-              <div class="text-4xl mb-3">{culture.flag}</div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300" role="article" aria-label={`${culture.name} music specialty: ${culture.description}`}>
+              <div class="text-4xl mb-3" aria-label={`${culture.name} flag`}>
+                {culture.flag}
+              </div>
               <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{culture.name}</h5>
               <p class="text-sm text-gray-600 dark:text-gray-400">{culture.description}</p>
             </div>
