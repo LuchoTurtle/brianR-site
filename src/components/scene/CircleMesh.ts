@@ -6,7 +6,7 @@ import { Mesh, MeshBasicMaterial, Group, CircleGeometry, DoubleSide } from "thre
  * It optimizes memory usage by sharing geometry across all circles.
  * The grid adapts to the viewport size and can be resized dynamically.
  * It also includes a dispose method to clean up resources when no longer needed.
- * 
+ *
  * Inspired from https://discourse.threejs.org/t/recreating-a-volumetric-light-effect/31387/2.
  * @class CircleMesh
  * @extends Group
@@ -42,7 +42,7 @@ class CircleMesh extends Group {
 
   /**
    * Creates a grid of circles.
-   * 
+   *
    * @param {number} viewportWidth - The width of the viewport.
    * @param {number} viewportHeight - The height of the viewport.
    */
@@ -54,7 +54,7 @@ class CircleMesh extends Group {
       if (obj.geometry) obj.geometry.dispose();
       if (obj.material) {
         if (Array.isArray(obj.material)) {
-          obj.material.forEach(mat => mat.dispose());
+          obj.material.forEach((mat) => mat.dispose());
         } else {
           obj.material.dispose();
         }
@@ -98,7 +98,7 @@ class CircleMesh extends Group {
 
   /**
    * Resizes the grid based on the new viewport dimensions.
-   * 
+   *
    * @param {number} viewportWidth - The new width of the viewport.
    * @param {number} viewportHeight - The new height of the viewport.
    */
@@ -111,11 +111,11 @@ class CircleMesh extends Group {
    */
   public dispose(): void {
     this.circleGeometry.dispose();
-    this.children.forEach(child => {
+    this.children.forEach((child) => {
       const mesh = child as Mesh;
       if (mesh.material) {
         if (Array.isArray(mesh.material)) {
-          mesh.material.forEach(mat => mat.dispose());
+          mesh.material.forEach((mat) => mat.dispose());
         } else {
           mesh.material.dispose();
         }

@@ -2,7 +2,7 @@
 
 /* Adding Inter font */
 @theme {
-  --font-sans: 'Inter', 'sans-serif';
+  --font-sans: "Inter", "sans-serif";
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

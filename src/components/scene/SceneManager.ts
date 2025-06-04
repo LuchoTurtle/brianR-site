@@ -254,7 +254,6 @@ export class SceneManager {
     this.figure.resize(this.container.clientWidth, this.container.clientHeight);
   }
 
-
   /**
    * Disposes of all resources used by the scene manager.
    * This includes disposing of the renderer, light, figure, particle system, and composer.
