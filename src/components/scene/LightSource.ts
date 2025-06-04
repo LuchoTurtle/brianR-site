@@ -1,33 +1,69 @@
 import { CircleGeometry, Mesh, MeshBasicMaterial } from "three";
 
 /**
- * Interactive light with shader effects.
- * Creates a dynamic light source with animated colors, pulsing effects,
- * and mouse interaction.
+ * ShaderUniforms interface defines the structure for shader uniforms.
+ * These uniforms are used to pass dynamic values
+ * to the shader for rendering effects like time, intensity, and mouse influence.
+ * @interface ShaderUniforms
+ * @property {Object} time - Uniform for time-based animations.
+ * @property {Object} intensity - Uniform for light intensity.
+ * @property {Object} pulseSpeed - Uniform for controlling the speed of pulsing effects.
+ * @property {Object} colorSpeed - Uniform for controlling the speed of color cycling.
+ * @property {Object} mouseInfluence - Uniform for how much the mouse position affects the light.
+ * @property {Object} mouseX - Uniform for the X coordinate of the mouse position.
+ * @property {Object} mouseY - Uniform for the Y coordinate of the mouse position.
+ */
+interface ShaderUniforms {
+  time: { value: number };
+  intensity: { value: number };
+  pulseSpeed: { value: number };
+  colorSpeed: { value: number };
+  mouseInfluence: { value: number };
+  mouseX: { value: number };
+  mouseY: { value: number };
+}
+
+/**
+ * LightSource class extends Mesh to create a dynamic light source
+ * with shader effects. It supports automatic movement, pulsing colors,
+ * and mouse interaction to influence its position and appearance.
+ * It uses a custom shader to create animated effects and can be updated
+ * with time and mouse coordinates.
+ * The class also includes a dispose method to clean up resources.
+ *
  * Inspired from https://discourse.threejs.org/t/recreating-a-volumetric-light-effect/31387/2.
- * @class
- * @extends {THREE.Mesh}
- * @property {Object} userData - Shader uniforms for time, intensity, pulse speed,
- * color speed, and mouse influence.
+ * @class LightSource
+ * @extends Mesh
  * @property {boolean} autoMove - Whether the light moves automatically.
  * @property {number} moveSpeed - Speed of automatic movement.
  * @property {number} moveRange - Range of automatic movement.
  * @property {number} offsetX - Horizontal offset for positioning.
  * @property {number} offsetY - Vertical offset for positioning.
- * 
+ * @property {ShaderUniforms} userData - Shader uniforms for GPU communication.
  */
 class LightSource extends Mesh {
+  public autoMove: boolean;
+  public moveSpeed: number;
+  public moveRange: number;
+  private offsetX: number;
+  private offsetY: number;
+
+  // Override userData to have proper typing
+  declare userData: ShaderUniforms;
+
   constructor() {
     super();
 
     // Shader uniforms - userData automatically passes to GPU
-    this.userData.time = { value: 0 };
-    this.userData.intensity = { value: 0.8 };
-    this.userData.pulseSpeed = { value: 1.5 };
-    this.userData.colorSpeed = { value: 0.2 };
-    this.userData.mouseInfluence = { value: 0.5 };
-    this.userData.mouseX = { value: 0 };
-    this.userData.mouseY = { value: 0 };
+    this.userData = {
+      time: { value: 0 },
+      intensity: { value: 0.8 },
+      pulseSpeed: { value: 1.5 },
+      colorSpeed: { value: 0.2 },
+      mouseInfluence: { value: 0.5 },
+      mouseX: { value: 0 },
+      mouseY: { value: 0 },
+    };
 
     // Movement settings
     this.autoMove = true;
@@ -39,20 +75,19 @@ class LightSource extends Mesh {
     this.offsetY = 15; // Move up
 
     const geometry = new CircleGeometry(50, 32);
-    const material = new MeshBasicMaterial({
-      color: 0xbb0000,
-      onBeforeCompile: (shader) => {
-        // Connect userData to shader uniforms
-        shader.uniforms.time = this.userData.time;
-        shader.uniforms.intensity = this.userData.intensity;
-        shader.uniforms.pulseSpeed = this.userData.pulseSpeed;
-        shader.uniforms.colorSpeed = this.userData.colorSpeed;
-        shader.uniforms.mouseInfluence = this.userData.mouseInfluence;
-        shader.uniforms.mouseX = this.userData.mouseX;
-        shader.uniforms.mouseY = this.userData.mouseY;
+    const material = new MeshBasicMaterial({ color: 0xbb0000 });
+    material.onBeforeCompile = (shader) => {
+      // Connect userData to shader uniforms
+      shader.uniforms.time = this.userData.time;
+      shader.uniforms.intensity = this.userData.intensity;
+      shader.uniforms.pulseSpeed = this.userData.pulseSpeed;
+      shader.uniforms.colorSpeed = this.userData.colorSpeed;
+      shader.uniforms.mouseInfluence = this.userData.mouseInfluence;
+      shader.uniforms.mouseX = this.userData.mouseX;
+      shader.uniforms.mouseY = this.userData.mouseY;
 
-        // Inject custom shader code
-        shader.fragmentShader = `
+      // Inject custom shader code
+      shader.fragmentShader = `
           uniform float time;
           uniform float intensity;
           uniform float pulseSpeed;
@@ -62,9 +97,9 @@ class LightSource extends Mesh {
           uniform float mouseY;
           ${shader.fragmentShader}
         `
-          .replace(
-            `void main() {`,
-            `
+        .replace(
+          `void main() {`,
+          `
           // Simplified 3D noise for texture variation
           float snoise(vec3 p) {
             float n = sin(p.x * 1.0) * 0.5 + 0.5;
@@ -84,10 +119,10 @@ class LightSource extends Mesh {
           }
           
           void main() {`
-          )
-          .replace(
-            `vec4 diffuseColor = vec4( diffuse, opacity );`,
-            `
+        )
+        .replace(
+          `vec4 diffuseColor = vec4( diffuse, opacity );`,
+          `
           // Center UV coordinates and apply mouse offset
           vec2 uv = vUv - 0.5;
           vec2 mouseOffset = vec2(mouseX, mouseY) * mouseInfluence * 0.2;
@@ -121,9 +156,8 @@ class LightSource extends Mesh {
           
           vec4 diffuseColor = vec4(col, opacity);
           `
-          );
-      },
-    });
+        );
+    };
     // Required for UV coordinates in shader
     material.defines = { USE_UV: "" };
 
@@ -131,7 +165,13 @@ class LightSource extends Mesh {
     this.material = material;
   }
 
-  update(time, mouseX = 0, mouseY = 0) {
+  /**
+   * Updates the light source position and shader uniforms.
+   * @param time - Current time for animations.
+   * @param mouseX - X coordinate of the mouse position.
+   * @param mouseY - Y coordinate of the mouse position.
+   */
+  public update(time: number, mouseX: number = 0, mouseY: number = 0): void {
     this.userData.time.value = time;
     this.userData.mouseX.value = mouseX;
     this.userData.mouseY.value = mouseY;
@@ -147,6 +187,20 @@ class LightSource extends Mesh {
     } else {
       this.position.x = mouseX * this.moveRange + this.offsetX;
       this.position.y = mouseY * this.moveRange + this.offsetY;
+    }
+  }
+
+  /**
+   * Disposes the geometry and material to free up resources.
+   */
+  public dispose(): void {
+    this.geometry.dispose();
+    if (this.material) {
+      if (Array.isArray(this.material)) {
+        this.material.forEach((mat) => mat.dispose());
+      } else {
+        this.material.dispose();
+      }
     }
   }
 }
