@@ -1,48 +1,83 @@
-# Astro Starter Kit: Basics
+# DJ Brian Rodrigues - Professional Wedding & Event DJ Website
 
-```sh
-pnpm create astro@latest -- --template basics
+A modern, accessible, and responsive website for DJ Brian Rodrigues.
+
+Built with Astro and Three.js.
+
+![DJ Brian Rodrigues Website](https://github.com/user-attachments/assets/0fed2c32-4a18-4ea2-b663-caeed7177ae8)
+
+## 📁 Project Structure
+
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
+brianR-site/
+├── public/                     # Static assets
+│   ├── favicon.svg
+│   ├── og-image.jpg
+│   └── manifest.webmanifest
 ├── src/
+│   ├── assets/                 # Images and media
+│   │   ├── gallery/           # Event photos
+│   │   ├── basic.jpeg         # Package images
+│   │   ├── premium.jpeg
+│   │   ├── super.jpeg
+│   │   └── deluxe.jpeg
+│   ├── components/            # Reusable components
+│   │   ├── AboutSection.astro
+│   │   ├── ContactSection.astro
+│   │   ├── GallerySection.astro
+│   │   ├── PackagesSection.astro
+│   │   ├── ReviewsSection.astro
+│   │   ├── ThemeToggle.astro
+│   │   └── scene/             # Three.js components
+│   │       ├── Scene.astro
+│   │       ├── SceneManager.ts
+│   │       ├── CircleMesh.ts
+│   │       ├── LightSource.ts
+│   │       ├── ParticleSystem.ts
+│   │       └── utils.ts
 │   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   │   └── Layout.astro       # Base layout with SEO
+│   ├── pages/
+│   │   ├── index.astro        # Homepage
+│   │   └── 404.astro          # Custom error page
+│   └── styles/
+│       └── global.css         # Global styles and theme
+├── astro.config.mjs           # Astro configuration
+├── tailwind.config.mjs        # Tailwind configuration
+├── tsconfig.json              # TypeScript configuration
+└── package.json               # Dependencies and scripts
 ```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
 
 ## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
+All commands are run from the root of the project:
 
 | Command                | Action                                           |
 | :--------------------- | :----------------------------------------------- |
-| `pnpm install`         | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+| `pnpm install`         | Install dependencies                             |
+| `pnpm dev`             | Start development server at `localhost:4321`    |
+| `pnpm build`           | Build production site to `./dist/`              |
+| `pnpm preview`         | Preview production build locally                 |
+| `pnpm lint`            | Lint code with ESLint                          |
+| `pnpm lint:fix`        | Fix linting issues automatically               |
+| `pnpm format`          | Format code with Prettier                      |
+| `pnpm format:check`    | Check code formatting                           |
 
-## 👀 Want to learn more?
+## 🚀 Deployment
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This site is optimized for static hosting platforms:
+
+1. **Build the site:**
+   ```bash
+   pnpm build
+   ```
+
+2. **Deploy the `dist/` folder to your preferred platform:**
+   - [Netlify](https://netlify.com)
+   - [Vercel](https://vercel.com)
+   - [GitHub Pages](https://pages.github.com)
+   - [Cloudflare Pages](https://pages.cloudflare.com)
+
+## 📄 License
+
+MIT License (MIT) - see the [LICENSE](LICENSE) file for details.
