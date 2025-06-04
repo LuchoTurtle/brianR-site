@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import brianImage from "../assets/brian_2.jpg";
 
+// Event types with gradient colors and emoji icons
 const eventTypes = [
   { name: "Weddings", color: "from-pink-500 to-rose-500", icon: "💒" },
   { name: "Quinceañeras", color: "from-purple-500 to-indigo-500", icon: "👑" },
@@ -13,6 +14,7 @@ const eventTypes = [
   { name: "Communions", color: "from-orange-500 to-red-500", icon: "✨" },
 ];
 
+// Cultural music specialties with flag emojis
 const culturalSpecialties = [
   { name: "Portuguese", flag: "🇵🇹", description: "Traditional & Modern" },
   { name: "Brazilian", flag: "🇧🇷", description: "Samba & Popular" },
@@ -23,7 +25,9 @@ const culturalSpecialties = [
 
 <section id="about" class="py-20 px-6 bg-white dark:bg-gray-900">
   <div class="max-w-6xl mx-auto">
+    {/* Main About Content - Two Column Layout */}
     <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+      {/* Left Column - Bio Text and Stats */}
       <div class="space-y-6">
         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
           About Brian
@@ -48,21 +52,21 @@ const culturalSpecialties = [
           moments through music.
         </p>
 
+        {/* Stats Grid */}
         <div class="grid grid-cols-2 gap-6 mt-8">
           <div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl">
             <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">20+</div>
             <div class="text-gray-600 dark:text-gray-300">Years Experience</div>
           </div>
 
+          {/* YouTube Stats - Clickable Link */}
           <a
             href="https://www.youtube.com/@DJBrianRodrigues"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 cursor-pointer group"
-          >
+            class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 cursor-pointer group">
             <div
-              class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2 group-hover:scale-110 transition-transform duration-300"
-            >
+              class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2 group-hover:scale-110 transition-transform duration-300">
               350K+
             </div>
             <div class="text-gray-600 dark:text-gray-300">YouTube Views</div>
@@ -70,6 +74,7 @@ const culturalSpecialties = [
         </div>
       </div>
 
+      {/* Right Column - Photo and Quote */}
       <div class="relative">
         <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-3xl">
           <Image
@@ -80,6 +85,7 @@ const culturalSpecialties = [
             height={320}
           />
 
+          {/* Personal Quote */}
           <blockquote class="text-gray-700 dark:text-gray-200 italic leading-relaxed">
             "Music is the universal language that brings people together. From the moment I step
             behind the decks, my goal is simple: to create those magical moments where everyone
@@ -104,10 +110,12 @@ const culturalSpecialties = [
         </p>
       </div>
 
+      {/* Event Type Cards Grid */}
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
         {
           eventTypes.map((event, index) => (
             <div class="group relative overflow-hidden rounded-2xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:-translate-y-2">
+              {/* Dynamic gradient background */}
               <div
                 class={`absolute inset-0 bg-gradient-to-br ${event.color} opacity-90 group-hover:opacity-100 transition-opacity duration-300`}
               />
@@ -117,13 +125,14 @@ const culturalSpecialties = [
                   {event.name}
                 </h4>
               </div>
+              {/* Hover overlay effect */}
               <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))
         }
       </div>
 
-      {/* Cultural Specialties */}
+      {/* Cultural Specialties Section */}
       <div class="text-center mb-8">
         <h4 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
           Cultural Music Expertise
@@ -133,6 +142,7 @@ const culturalSpecialties = [
         </p>
       </div>
 
+      {/* Cultural Specialties Cards */}
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         {
           culturalSpecialties.map((culture, index) => (

@@ -47,8 +47,7 @@ const events = [
         events.map((image, index) => (
           <div
             class="group relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-300 gallery-item"
-            data-index={index}
-          >
+            data-index={index}>
             <div class="relative bg-gray-100 dark:bg-gray-800 rounded-3xl overflow-hidden">
               <Image
                 src={image}
@@ -66,8 +65,7 @@ const events = [
     <!-- Modal/Lightbox with pre-rendered images -->
     <div
       id="image-modal"
-      class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300"
-    >
+      class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
       <div class="relative max-w-4xl max-h-full">
         <!-- Pre-render all modal images, hide all but show one at a time -->
         {
@@ -85,8 +83,7 @@ const events = [
 
         <button
           id="close-modal"
-          class="absolute -top-4 -right-4 w-12 h-12 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors duration-300 flex items-center justify-center text-xl font-bold"
-        >
+          class="absolute -top-4 -right-4 w-12 h-12 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors duration-300 flex items-center justify-center text-xl font-bold">
           ×
         </button>
       </div>
