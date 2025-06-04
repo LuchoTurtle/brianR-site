@@ -6,7 +6,6 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
     "lint": "eslint \"src/**/*.{astro,js,ts,jsx,tsx}\"",
     "lint:fix": "eslint \"src/**/*.{astro,js,ts,jsx,tsx}\" --fix",
     "format": "prettier --write .",
@@ -21,6 +20,7 @@
     "astro-favicons": "^3.1.5",
     "astro-webmanifest": "^1.0.0",
     "postprocessing": "^6.37.3",
+    "sharp": "^0.34.2",
     "tailwindcss": "^4.1.8",
     "three": "^0.176.0"
   },
