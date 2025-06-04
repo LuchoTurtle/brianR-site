@@ -42,53 +42,54 @@ const reviews = [
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label="Client testimonials and reviews">
       {
         reviews.map((review, index) => (
-          <article class="group transform transition-all duration-300 hover:scale-105 focus-within:scale-105 h-full flex" role="listitem">
-            <a
-              href={review.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-800 rounded-3xl w-full"
-              aria-labelledby={`review-${index}-author`}
-              aria-describedby={`review-${index}-content review-${index}-details`}>
-              <div class="bg-white dark:bg-gray-700 p-6 rounded-3xl shadow-lg hover:shadow-xl focus:shadow-xl transition-all duration-300 h-full flex flex-col">
-                {/* Star Rating - Dynamic based on rating value */}
-                <div class="flex items-center mb-4 flex-shrink-0" role="img" aria-label={`${review.rating} out of 5 stars`}>
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <Star class={`w-5 h-5 ${i < review.rating ? "text-yellow-400 fill-current" : "text-gray-300 dark:text-gray-600"}`} aria-hidden="true" />
-                  ))}
-                  <span class="sr-only">{review.rating} out of 5 stars</span>
-                </div>
+          <div role="listitem">
+            <article class="group transform transition-all duration-300 hover:scale-105 focus-within:scale-105 h-full flex">
+              <a
+                href={review.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-800 rounded-3xl w-full"
+                aria-labelledby={`review-${index}-author`}
+                aria-describedby={`review-${index}-content review-${index}-details`}>
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-3xl shadow-lg hover:shadow-xl focus:shadow-xl transition-all duration-300 h-full flex flex-col">
+                  {/* Star Rating - Dynamic based on rating value */}
+                  <div class="flex items-center mb-4 flex-shrink-0" role="img" aria-label={`${review.rating} out of 5 stars`}>
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <Star class={`w-5 h-5 ${i < review.rating ? "text-yellow-400 fill-current" : "text-gray-300 dark:text-gray-600"}`} aria-hidden="true" />
+                    ))}
+                    <span class="sr-only">{review.rating} out of 5 stars</span>
+                  </div>
 
-                {/* Review Text - This will expand to fill available space */}
-                <blockquote id={`review-${index}-content`} class="text-gray-700 dark:text-gray-300 mb-6 flex-grow leading-relaxed">
-                  "{review.text}"
-                </blockquote>
+                  {/* Review Text - This will expand to fill available space */}
+                  <blockquote id={`review-${index}-content`} class="text-gray-700 dark:text-gray-300 mb-6 flex-grow leading-relaxed">
+                    "{review.text}"
+                  </blockquote>
 
-                {/* Review Footer - This will stick to bottom */}
-                <div class="border-t border-gray-200 dark:border-gray-600 pt-4 flex-shrink-0">
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <h3 id={`review-${index}-author`} class="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-                        {review.name}
-                      </h3>
-                      <p id={`review-${index}-details`} class="text-sm text-gray-600 dark:text-gray-400">
-                        {review.event} • {review.date}
-                      </p>
+                  {/* Review Footer - This will stick to bottom */}
+                  <div class="border-t border-gray-200 dark:border-gray-600 pt-4 flex-shrink-0">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <h3 id={`review-${index}-author`} class="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                          {review.name}
+                        </h3>
+                        <p id={`review-${index}-details`} class="text-sm text-gray-700 dark:text-gray-300">
+                          {review.event} • {review.date}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Hover indicator - This will also stick to bottom */}
-                <div class="mt-3 text-xs text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 flex-shrink-0" aria-hidden="true">
-                  Click to view original review →
+                  {/* Hover indicator - This will also stick to bottom */}
+                  <div class="mt-3 text-xs text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 flex-shrink-0" aria-hidden="true">
+                    Click to view original review →
+                  </div>
                 </div>
-              </div>
-            </a>
-          </article>
+              </a>
+            </article>
+          </div>
         ))
       }
     </div>
-
     {/* Overall Rating Display */}
     <div class="text-center mt-16">
       <a
@@ -108,7 +109,7 @@ const reviews = [
             </div>
             <div class="text-left">
               <div class="text-gray-900 dark:text-white font-semibold text-lg">Average Rating</div>
-              <div class="text-gray-600 dark:text-gray-300">Based on 100+ reviews</div>
+              <div class="text-gray-700 dark:text-gray-300">Based on 100+ reviews</div>
             </div>
           </div>
         </div>

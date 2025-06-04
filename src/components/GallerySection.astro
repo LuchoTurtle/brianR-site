@@ -17,7 +17,6 @@ import gallery11 from "../assets/gallery/gallery_11.jpeg";
 import gallery12 from "../assets/gallery/gallery_12.jpeg";
 
 // Array of images with descriptive alt text
-// Array of images with descriptive alt text
 const events = [
   { src: gallery1, alt: "DJ Brian performing at an energetic wedding reception while guests dance with colorful glow sticks" },
   { src: gallery2, alt: "DJ Brian directing music at a vibrant Sweet 16 birthday celebration with teenage guests" },
@@ -43,13 +42,17 @@ const events = [
     </div>
 
     {/* Gallery Grid */}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="grid" aria-label="Event photo gallery">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label="Event photo gallery">
       {
         events.map((event, index) => (
-          <div class="group relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-300 gallery-item focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2" data-index={index} role="gridcell">
-            <button class="w-full h-full focus:outline-none cursor-pointer" aria-label={`View larger image: ${event.alt}`} data-image-index={index}>
-              <div class="relative bg-gray-100 dark:bg-gray-800 rounded-3xl overflow-hidden">
-                <Image src={event.src} alt={event.alt} class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110 group-focus:scale-110" width={400} height={256} />
+          <div role="listitem">
+            <button
+              class="group relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-300 gallery-item focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-full h-full focus:outline-none"
+              data-index={index}
+              aria-label={`View larger image: ${event.alt}`}
+              data-image-index={index}>
+              <div class="relative bg-gray-100 dark:bg-gray-800 rounded-3xl overflow-hidden h-64">
+                <Image src={event.src} alt={event.alt} class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-focus:scale-110" width={400} height={256} />
                 {/* Overlay for better focus indication */}
                 <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 group-focus:bg-black/10 transition-colors duration-300" aria-hidden="true" />
               </div>
@@ -71,7 +74,8 @@ const events = [
             <button
               id="close-modal"
               class="w-10 h-10 bg-red-600 text-white rounded-full hover:bg-red-700 focus:bg-red-700 transition-colors duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black cursor-pointer"
-              aria-label="Close gallery modal">
+              aria-label="Close gallery modal"
+              tabindex="-1">
               <X class="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
@@ -83,14 +87,16 @@ const events = [
           <button
             id="prev-button"
             class="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 text-white rounded-full hover:bg-black/70 focus:bg-black/70 transition-colors duration-300 flex items-center justify-center z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black cursor-pointer"
-            aria-label="Previous image">
+            aria-label="Previous image"
+            tabindex="-1">
             <ChevronLeft class="w-6 h-6" aria-hidden="true" />
           </button>
 
           <button
             id="next-button"
             class="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 text-white rounded-full hover:bg-black/70 focus:bg-black/70 transition-colors duration-300 flex items-center justify-center z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black cursor-pointer"
-            aria-label="Next image">
+            aria-label="Next image"
+            tabindex="-1">
             <ChevronRight class="w-6 h-6" aria-hidden="true" />
           </button>
 
@@ -105,7 +111,7 @@ const events = [
 <script>
   // Gallery functionality with accessibility enhancements
   document.addEventListener("DOMContentLoaded", () => {
-    const galleryItems = document.querySelectorAll(".gallery-item button");
+    const galleryItems = document.querySelectorAll(".gallery-item");
     const modal = document.getElementById("image-modal") as HTMLElement;
     const modalImages = document.querySelectorAll(".modal-image") as NodeListOf<HTMLElement>;
     const closeButton = document.getElementById("close-modal") as HTMLButtonElement;
@@ -143,6 +149,11 @@ const events = [
         modal.classList.add("opacity-100");
         modal.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
+
+        // Enable focus on modal buttons
+        closeButton.tabIndex = 0;
+        prevButton.tabIndex = 0;
+        nextButton.tabIndex = 0;
 
         // Focus the close button for keyboard users
         setTimeout(() => closeButton.focus(), 100);
@@ -201,6 +212,11 @@ const events = [
         modal.classList.remove("opacity-100");
         modal.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "auto";
+
+        // Disable focus on modal buttons when closed
+        closeButton.tabIndex = -1;
+        prevButton.tabIndex = -1;
+        nextButton.tabIndex = -1;
 
         // Return focus to the element that opened the modal
         if (focusedElementBeforeModal && focusedElementBeforeModal instanceof HTMLElement) {
