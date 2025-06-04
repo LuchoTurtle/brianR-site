@@ -13,15 +13,14 @@ class CircleMesh extends Group {
     this.spacingX = spacingX;
     this.spacingY = spacingY;
 
-    // Create circle for grid
+    // Create shared geometry for all circles to optimize memory
     this.circleGeometry = new CircleGeometry(circleSize, 72);
 
-    // Initial creation
     this.createGrid(viewportWidth, viewportHeight);
   }
 
   createGrid(viewportWidth, viewportHeight) {
-    // Clear any existing meshes (called on resize)
+    // Clear existing meshes and free memory on resize
     while (this.children.length > 0) {
       const obj = this.children[0];
       this.remove(obj);
@@ -29,23 +28,24 @@ class CircleMesh extends Group {
       if (obj.material) obj.material.dispose();
     }
 
-    // Use viewport dimensions with padding
+    // Add padding to ensure full viewport coverage
     const width = viewportWidth * 1.1;
     const height = viewportHeight * 1.1;
 
-    // Calculate grid dimensions
     const circlesX = Math.ceil(width / this.spacingX);
     const circlesY = Math.ceil(height / this.spacingY);
 
-    // Starting position (centered)
+    // Center the grid in the viewport
     const startX = -(circlesX * this.spacingX) / 2 + this.spacingX / 2;
     const startY = -(circlesY * this.spacingY) / 2 + this.spacingY / 2;
 
-    // Create mesh of circles
+    // Create grid pattern with depth variation
     for (let x = 0; x < circlesX; x++) {
       for (let y = 0; y < circlesY; y++) {
         const circleX = startX + x * this.spacingX;
         const circleY = startY + y * this.spacingY;
+
+        // Create wave-like depth pattern using trigonometry
         const depth = Math.sin(x * 0.5) * Math.cos(y * 0.5) * 20;
 
         const circleMaterial = new MeshBasicMaterial({
@@ -62,7 +62,7 @@ class CircleMesh extends Group {
     }
   }
 
-  // Method to resize the figure
+  // Recreate grid when viewport dimensions change
   resize(viewportWidth, viewportHeight) {
     this.createGrid(viewportWidth, viewportHeight);
   }
