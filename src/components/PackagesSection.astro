@@ -51,9 +51,8 @@ const additionalFeatures = ["Uplighting", "Monogram projection", "Glow sticks", 
       {
         packages.map((pkg, index) => (
           <article
-            class={`relative p-6 rounded-3xl transition-all duration-300 hover:scale-105 focus-within:scale-105 h-full flex flex-col ${pkg.popular ? "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-purple-200 dark:border-purple-500" : "bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600"}`}
+            class={`relative p-6 rounded-3xl transition-all duration-300 hover:scale-105 h-full flex flex-col ${pkg.popular ? "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-purple-200 dark:border-purple-500" : "bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600"}`}
             role="listitem"
-            tabindex="0"
             aria-labelledby={`package-${index}-title`}
             aria-describedby={`package-${index}-features`}>
             {/* Popular Badge - Conditional rendering */}

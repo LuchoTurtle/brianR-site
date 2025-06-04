@@ -95,7 +95,7 @@ const events = [
           </button>
 
           {/* Pre-render all modal images */}
-          {events.map((event, index) => <Image id={`modal-image-${index}`} src={event.src} alt={event.alt} class={`max-w-full max-h-full object-contain rounded-2xl modal-image cursor-pointer ${index === 0 ? "" : "hidden"}`} width={1200} height={800} />)}
+          {events.map((event, index) => <Image id={`modal-image-${index}`} src={event.src} alt={event.alt} class={`max-w-full max-h-full object-contain rounded-2xl modal-image cursor-pointer ${index === 0 ? "" : "hidden"}`} width={1200} height={800} loading={index === 0 ? "eager" : "lazy"} />)}
         </div>
       </div>
     </div>
