@@ -51,18 +51,10 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
         
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-        working-directory: ${{ env.BUILD_PATH }}
-        
-      - name: Fix Sharp for Linux
+      - name: Install dependencies and rebuild Sharp
         run: |
-          npm uninstall sharp
-          npm install --platform=linux --arch=x64 sharp
-        working-directory: ${{ env.BUILD_PATH }}
-        
-      - name: Rebuild Sharp for Linux
-        run: pnpm rebuild sharp
+          pnpm install --frozen-lockfile
+          pnpm rebuild sharp
         working-directory: ${{ env.BUILD_PATH }}
         
       - name: Build with Astro
