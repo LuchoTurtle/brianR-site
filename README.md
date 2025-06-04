@@ -13,7 +13,6 @@ brianR-site/
 ├── public/                     # Static assets
 │   ├── favicon.svg
 │   ├── og-image.jpg
-│   └── manifest.webmanifest
 ├── src/
 │   ├── assets/                 # Images and media
 │   │   ├── gallery/           # Event photos
