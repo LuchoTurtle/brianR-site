@@ -29,28 +29,17 @@ const culturalSpecialties = [
     <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
       {/* Left Column - Bio Text and Stats */}
       <div class="space-y-6">
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-          About Brian
-        </h2>
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">About Brian</h2>
 
         <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-          Born with a deep love for music, Brian's journey began at age 4 in Portugal, learning
-          piano, guitar, and drums. When he moved to the U.S. at 11, he discovered the vibrant world
-          of American music and found his calling as a DJ.
+          Born with a deep love for music, Brian's journey began at age 4 in Portugal, learning piano, guitar, and drums. When he moved to the U.S. at 11, he discovered the vibrant world of American music and found his calling as a DJ.
         </p>
 
         <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-          His multicultural upbringing gives him a unique edge. Seamlessly blending everything from
-          Portuguese classics and Latin rhythms to Hip-Hop, House, and timeless oldies. Whether it's
-          a song from 50 years ago or released just hours before your event, Brian knows how to pack
-          the dance floor.
+          His multicultural upbringing gives him a unique edge. Seamlessly blending everything from Portuguese classics and Latin rhythms to Hip-Hop, House, and timeless oldies. Whether it's a song from 50 years ago or released just hours before your event, Brian knows how to pack the dance floor.
         </p>
 
-        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-          As a bilingual professional who studies electronics and acoustics, Brian combines
-          technical expertise with an innate ability to read the crowd and create unforgettable
-          moments through music.
-        </p>
+        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">As a bilingual professional who studies electronics and acoustics, Brian combines technical expertise with an innate ability to read the crowd and create unforgettable moments through music.</p>
 
         {/* Stats Grid */}
         <div class="grid grid-cols-2 gap-6 mt-8">
@@ -60,15 +49,8 @@ const culturalSpecialties = [
           </div>
 
           {/* YouTube Stats - Clickable Link */}
-          <a
-            href="https://www.youtube.com/@DJBrianRodrigues"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 cursor-pointer group">
-            <div
-              class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2 group-hover:scale-110 transition-transform duration-300">
-              350K+
-            </div>
+          <a href="https://www.youtube.com/@DJBrianRodrigues" target="_blank" rel="noopener noreferrer" class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 cursor-pointer group">
+            <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2 group-hover:scale-110 transition-transform duration-300">350K+</div>
             <div class="text-gray-600 dark:text-gray-300">YouTube Views</div>
           </a>
         </div>
@@ -77,23 +59,13 @@ const culturalSpecialties = [
       {/* Right Column - Photo and Quote */}
       <div class="relative">
         <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-3xl">
-          <Image
-            src={brianImage}
-            alt="DJ Brian Rodrigues"
-            class="w-full h-80 object-cover rounded-2xl mb-6"
-            width={400}
-            height={320}
-          />
+          <Image src={brianImage} alt="DJ Brian Rodrigues" class="w-full h-80 object-cover rounded-2xl mb-6" width={400} height={320} />
 
           {/* Personal Quote */}
           <blockquote class="text-gray-700 dark:text-gray-200 italic leading-relaxed">
-            "Music is the universal language that brings people together. From the moment I step
-            behind the decks, my goal is simple: to create those magical moments where everyone
-            feels the beat and dances like nobody's watching."
+            "Music is the universal language that brings people together. From the moment I step behind the decks, my goal is simple: to create those magical moments where everyone feels the beat and dances like nobody's watching."
           </blockquote>
-          <cite class="text-blue-600 dark:text-blue-400 font-semibold mt-4 block"
-            >- Brian Rodrigues</cite
-          >
+          <cite class="text-blue-600 dark:text-blue-400 font-semibold mt-4 block">- Brian Rodrigues</cite>
         </div>
       </div>
     </div>
@@ -101,13 +73,8 @@ const culturalSpecialties = [
     {/* Event Types Section */}
     <div class="mt-20">
       <div class="text-center mb-12">
-        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          Event Specialties
-        </h3>
-        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          Creating magical moments for every celebration, from intimate gatherings to grand
-          festivities
-        </p>
+        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Event Specialties</h3>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Creating magical moments for every celebration, from intimate gatherings to grand festivities</p>
       </div>
 
       {/* Event Type Cards Grid */}
@@ -116,14 +83,10 @@ const culturalSpecialties = [
           eventTypes.map((event, index) => (
             <div class="group relative overflow-hidden rounded-2xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:-translate-y-2">
               {/* Dynamic gradient background */}
-              <div
-                class={`absolute inset-0 bg-gradient-to-br ${event.color} opacity-90 group-hover:opacity-100 transition-opacity duration-300`}
-              />
+              <div class={`absolute inset-0 bg-gradient-to-br ${event.color} opacity-90 group-hover:opacity-100 transition-opacity duration-300`} />
               <div class="relative z-10">
                 <div class="text-3xl mb-3">{event.icon}</div>
-                <h4 class="text-white font-semibold text-sm md:text-base leading-tight">
-                  {event.name}
-                </h4>
+                <h4 class="text-white font-semibold text-sm md:text-base leading-tight">{event.name}</h4>
               </div>
               {/* Hover overlay effect */}
               <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -134,12 +97,8 @@ const culturalSpecialties = [
 
       {/* Cultural Specialties Section */}
       <div class="text-center mb-8">
-        <h4 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-          Cultural Music Expertise
-        </h4>
-        <p class="text-base text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
-          Bridging cultures through music with authentic sounds from around the world
-        </p>
+        <h4 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Cultural Music Expertise</h4>
+        <p class="text-base text-gray-600 dark:text-gray-300 max-w-xl mx-auto">Bridging cultures through music with authentic sounds from around the world</p>
       </div>
 
       {/* Cultural Specialties Cards */}
@@ -148,9 +107,7 @@ const culturalSpecialties = [
           culturalSpecialties.map((culture, index) => (
             <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl text-center border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300">
               <div class="text-4xl mb-3">{culture.flag}</div>
-              <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                {culture.name}
-              </h5>
+              <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{culture.name}</h5>
               <p class="text-sm text-gray-600 dark:text-gray-400">{culture.description}</p>
             </div>
           ))

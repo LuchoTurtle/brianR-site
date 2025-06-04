@@ -22,13 +22,7 @@ class CircleMesh extends Group {
   private spacingY: number;
   private circleGeometry: CircleGeometry;
 
-  constructor(
-    circleSize: number = 5,
-    spacingX: number = 15,
-    spacingY: number = 15,
-    viewportWidth: number = 800,
-    viewportHeight: number = 600
-  ) {
+  constructor(circleSize: number = 5, spacingX: number = 15, spacingY: number = 15, viewportWidth: number = 800, viewportHeight: number = 600) {
     super();
     this.circleSize = circleSize;
     this.spacingX = spacingX;

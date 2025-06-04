@@ -10,76 +10,37 @@ const packages = [
   {
     name: "Basic",
     image: basicImage,
-    features: [
-      "Professional DJ setup",
-      "Basic lighting package",
-      "Music for ceremony & reception",
-      "Wireless microphone",
-      "Basic sound system",
-    ],
+    features: ["Professional DJ setup", "Basic lighting package", "Music for ceremony & reception", "Wireless microphone", "Basic sound system"],
     popular: false,
   },
   {
     name: "Premium",
     image: premiumImage,
-    features: [
-      "Everything in Basic",
-      "Enhanced lighting effects",
-      "Fog machine",
-      "DJ booth setup",
-      "Music consultation",
-      "Backup equipment",
-    ],
+    features: ["Everything in Basic", "Enhanced lighting effects", "Fog machine", "DJ booth setup", "Music consultation", "Backup equipment"],
     popular: true,
   },
   {
     name: "Super",
     image: superImage,
-    features: [
-      "Everything in Premium",
-      "LED dancefloor lighting",
-      "Photo booth integration",
-      "Custom music mixing",
-      "Multiple room setup",
-      "Extended playlist",
-    ],
+    features: ["Everything in Premium", "LED dancefloor lighting", "Photo booth integration", "Custom music mixing", "Multiple room setup", "Extended playlist"],
     popular: false,
   },
   {
     name: "Deluxe",
     image: deluxeImage,
-    features: [
-      "Everything in Super",
-      "Premium uplighting",
-      "Monogram projection",
-      "Advanced sound system",
-      "Dedicated event coordinator",
-      "Full event coverage",
-    ],
+    features: ["Everything in Super", "Premium uplighting", "Monogram projection", "Advanced sound system", "Dedicated event coordinator", "Full event coverage"],
     popular: false,
   },
 ];
 
-const additionalFeatures = [
-  "Uplighting",
-  "Monogram projection",
-  "Glow sticks",
-  "Foam sticks",
-  "Party hats & glasses",
-  "Photo booths",
-];
+const additionalFeatures = ["Uplighting", "Monogram projection", "Glow sticks", "Foam sticks", "Party hats & glasses", "Photo booths"];
 ---
 
 <section id="packages" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-        Wedding Packages
-      </h2>
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-        Choose the perfect package for your special day. Each package is customizable to meet your
-        unique needs and vision.
-      </p>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Wedding Packages</h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">Choose the perfect package for your special day. Each package is customizable to meet your unique needs and vision.</p>
     </div>
 
     <!-- Main Packages -->
@@ -87,27 +48,15 @@ const additionalFeatures = [
       {
         packages.map((pkg, index) => (
           <div
-            class={`relative p-6 rounded-3xl transition-all duration-300 hover:scale-105 h-full flex flex-col ${
-              pkg.popular
-                ? "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-purple-200 dark:border-purple-500"
-                : "bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600"
-            }`}>
+            class={`relative p-6 rounded-3xl transition-all duration-300 hover:scale-105 h-full flex flex-col ${pkg.popular ? "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-purple-200 dark:border-purple-500" : "bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600"}`}>
             {pkg.popular && (
               <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-3 py-1 md:px-4 rounded-full text-xs md:text-sm font-semibold whitespace-nowrap">
-                  Most Popular
-                </span>
+                <span class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-3 py-1 md:px-4 rounded-full text-xs md:text-sm font-semibold whitespace-nowrap">Most Popular</span>
               </div>
             )}
 
             <div class="w-full h-32 mb-6 rounded-xl overflow-hidden">
-              <Image
-                src={pkg.image}
-                alt={pkg.name}
-                class="w-full h-full object-cover"
-                width={400}
-                height={128}
-              />
+              <Image src={pkg.image} alt={pkg.name} class="w-full h-full object-cover" width={400} height={128} />
             </div>
 
             <div class="text-center mb-6">
@@ -130,24 +79,17 @@ const additionalFeatures = [
     <!-- Additional Features Creative Section -->
     <div class="relative">
       <!-- Decorative Background -->
-      <div
-        class="absolute inset-0 bg-gradient-to-r from-purple-100/30 via-blue-100/30 to-purple-100/30 dark:from-purple-900/10 dark:via-blue-900/10 dark:to-purple-900/10 rounded-3xl blur-3xl">
-      </div>
+      <div class="absolute inset-0 bg-gradient-to-r from-purple-100/30 via-blue-100/30 to-purple-100/30 dark:from-purple-900/10 dark:via-blue-900/10 dark:to-purple-900/10 rounded-3xl blur-3xl"></div>
 
       <div class="relative text-center py-12 px-8">
         <!-- Header with Icon -->
         <div class="flex items-center justify-center mb-6">
           <Sparkles class="w-8 h-8 text-purple-600 dark:text-purple-400 mr-3" />
-          <h3
-            class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-            Additional Features
-          </h3>
+          <h3 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Additional Features</h3>
           <Sparkles class="w-8 h-8 text-purple-600 dark:text-purple-400 ml-3" />
         </div>
 
-        <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-          Enhance any package with these premium extras to make your special day even more magical
-        </p>
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">Enhance any package with these premium extras to make your special day even more magical</p>
 
         <!-- Features Grid -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
@@ -161,9 +103,7 @@ const additionalFeatures = [
 
           <!-- "And much more" as plain text in the grid -->
           <div class="flex items-center justify-center p-3">
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400 italic">
-              And much more...
-            </span>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400 italic"> And much more... </span>
           </div>
         </div>
       </div>

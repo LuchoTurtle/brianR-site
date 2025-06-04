@@ -17,8 +17,7 @@ export default defineConfig({
       name: "Brian Rodrigues - Portuguese Wedding DJ in NJ",
       icon: "public/favicon.svg",
       short_name: "Brian DJ",
-      description:
-        "Professional bilingual DJ with 20+ years experience specializing in weddings, corporate events, and celebrations in New Jersey.",
+      description: "Professional bilingual DJ with 20+ years experience specializing in weddings, corporate events, and celebrations in New Jersey.",
       start_url: "/",
       theme_color: "#263b91",
       background_color: "#263b91",

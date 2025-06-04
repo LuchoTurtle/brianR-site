@@ -32,22 +32,14 @@ const reviews = [
 <section id="reviews" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-        Client Reviews
-      </h2>
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-        Don't just take our word for it - hear from some of our happy clients
-      </p>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Client Reviews</h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">Don't just take our word for it - hear from some of our happy clients</p>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         reviews.map((review) => (
-          <a
-            href={review.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group block transform transition-all duration-300 hover:scale-105">
+          <a href={review.link} target="_blank" rel="noopener noreferrer" class="group block transform transition-all duration-300 hover:scale-105">
             <div class="bg-white dark:bg-gray-700 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
               <div class="flex items-center mb-4">
                 {Array.from({ length: review.rating }, (_, i) => (
@@ -55,25 +47,19 @@ const reviews = [
                 ))}
               </div>
 
-              <blockquote class="text-gray-700 dark:text-gray-300 mb-6 flex-grow leading-relaxed">
-                "{review.text}"
-              </blockquote>
+              <blockquote class="text-gray-700 dark:text-gray-300 mb-6 flex-grow leading-relaxed">"{review.text}"</blockquote>
 
               <div class="border-t border-gray-200 dark:border-gray-600 pt-4">
                 <div class="flex items-center justify-between">
                   <div>
-                    <h4 class="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-                      {review.name}
-                    </h4>
+                    <h4 class="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">{review.name}</h4>
                     <p class="text-sm text-gray-600 dark:text-gray-400">{review.event}</p>
                   </div>
                   <span class="text-sm text-gray-500 dark:text-gray-400">{review.date}</span>
                 </div>
               </div>
 
-              <div class="mt-3 text-xs text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Click to view original review →
-              </div>
+              <div class="mt-3 text-xs text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to view original review →</div>
             </div>
           </a>
         ))

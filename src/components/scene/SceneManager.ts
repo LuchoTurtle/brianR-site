@@ -109,12 +109,7 @@ export class SceneManager {
   private createCamera(): void {
     if (!this.container) return;
 
-    this.camera = new THREE.PerspectiveCamera(
-      60,
-      this.container.clientWidth / this.container.clientHeight,
-      1,
-      1000
-    );
+    this.camera = new THREE.PerspectiveCamera(60, this.container.clientWidth / this.container.clientHeight, 1, 1000);
     this.camera.position.set(5, 0, 300);
   }
 
@@ -157,13 +152,7 @@ export class SceneManager {
     if (!this.scene || !this.container) return;
 
     // Create grid figure with viewport dimensions
-    this.figure = new CircleMesh(
-      5,
-      15,
-      15,
-      this.container.clientWidth,
-      this.container.clientHeight
-    );
+    this.figure = new CircleMesh(5, 15, 15, this.container.clientWidth, this.container.clientHeight);
     this.scene.add(this.figure);
 
     // Create atmospheric particle system
@@ -228,11 +217,7 @@ export class SceneManager {
 
     // Update light with mouse interaction (desktop only)
     this.light.userData.time.value = time;
-    this.light.update(
-      time,
-      this.isDesktopDevice ? this.mouseX : 0,
-      this.isDesktopDevice ? this.mouseY : 0
-    );
+    this.light.update(time, this.isDesktopDevice ? this.mouseX : 0, this.isDesktopDevice ? this.mouseY : 0);
 
     // Update particle system
     this.particleSystem.update(time);

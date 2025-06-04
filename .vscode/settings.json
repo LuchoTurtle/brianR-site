@@ -1,4 +1,5 @@
 {
   "eslint.validate": ["javascript", "javascriptreact", "astro", "typescript", "typescriptreact"],
-  "prettier.bracketSameLine": true
+  "prettier.bracketSameLine": true,
+  "prettier.singleAttributePerLine": false
 }
