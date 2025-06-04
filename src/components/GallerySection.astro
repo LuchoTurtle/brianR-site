@@ -44,21 +44,10 @@ const events = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gall
     <div id="image-modal" class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
       <div class="relative max-w-4xl max-h-full">
         {/* Pre-render all modal images, hide all but show one at a time */}
-        {events.map((image, index) => 
-          <Image 
-            id={`modal-image-${index}`} 
-            src={image} 
-            alt={`Gallery image ${index + 1}`} 
-            class={`max-w-full max-h-full object-contain rounded-2xl modal-image ${index === 0 ? "" : "hidden"}`} 
-            width={1200} 
-            height={800} 
-          />
-        )}
+        {events.map((image, index) => <Image id={`modal-image-${index}`} src={image} alt={`Gallery image ${index + 1}`} class={`max-w-full max-h-full object-contain rounded-2xl modal-image ${index === 0 ? "" : "hidden"}`} width={1200} height={800} />)}
 
         {/* Close Button */}
-        <button id="close-modal" class="absolute -top-4 -right-4 w-12 h-12 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors duration-300 flex items-center justify-center text-xl font-bold">
-          ×
-        </button>
+        <button id="close-modal" class="absolute -top-4 -right-4 w-12 h-12 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors duration-300 flex items-center justify-center text-xl font-bold"> × </button>
       </div>
     </div>
   </div>
