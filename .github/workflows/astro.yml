@@ -54,7 +54,7 @@ jobs:
       - name: Install dependencies and rebuild Sharp
         run: |
           pnpm install --frozen-lockfile
-          pnpm rebuild sharp
+          npm install --platform=linux --arch=x64 sharp
         working-directory: ${{ env.BUILD_PATH }}
         
       - name: Build with Astro
