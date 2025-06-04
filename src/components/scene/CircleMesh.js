@@ -1,5 +1,16 @@
 import { Mesh, MeshBasicMaterial, Group, CircleGeometry, DoubleSide } from "three";
 
+/**
+ * Background circle grid mesh.
+ * Creates a grid of circles with depth variation.
+ * Inspired from https://discourse.threejs.org/t/recreating-a-volumetric-light-effect/31387/2.
+ * @class
+ * @extends {THREE.Group}
+ * @property {number} circleSize - Radius of each circle.
+ * @property {number} spacingX - Horizontal spacing between circles.
+ * @property {number} spacingY - Vertical spacing between circles.
+ * @property {THREE.CircleGeometry} circleGeometry - Shared geometry for all circles.
+ */
 class CircleMesh extends Group {
   constructor(
     circleSize = 5,

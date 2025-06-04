@@ -1,5 +1,21 @@
 import { CircleGeometry, Mesh, MeshBasicMaterial } from "three";
 
+/**
+ * Interactive light with shader effects.
+ * Creates a dynamic light source with animated colors, pulsing effects,
+ * and mouse interaction.
+ * Inspired from https://discourse.threejs.org/t/recreating-a-volumetric-light-effect/31387/2.
+ * @class
+ * @extends {THREE.Mesh}
+ * @property {Object} userData - Shader uniforms for time, intensity, pulse speed,
+ * color speed, and mouse influence.
+ * @property {boolean} autoMove - Whether the light moves automatically.
+ * @property {number} moveSpeed - Speed of automatic movement.
+ * @property {number} moveRange - Range of automatic movement.
+ * @property {number} offsetX - Horizontal offset for positioning.
+ * @property {number} offsetY - Vertical offset for positioning.
+ * 
+ */
 class LightSource extends Mesh {
   constructor() {
     super();

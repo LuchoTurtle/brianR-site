@@ -1,5 +1,5 @@
 ---
-// ThreeScene.astro - No props needed for this basic example
+
 ---
 
 <section class="relative h-screen w-full overflow-hidden bg-black dark:bg-black">
@@ -8,21 +8,18 @@
 
   {/* Blurry Gradient Spots Overlay - 3 Large Overlapping Spots */}
   <div class="absolute inset-0 pointer-events-none z-5">
-    {/* Large blue-purple spot - Top left */}
     <div
       class="absolute top-0 left-0 w-96 h-96 sm:w-[32rem] sm:h-[32rem] lg:w-[40rem] lg:h-[40rem] xl:w-[48rem] xl:h-[48rem] bg-gradient-to-br from-blue-500/25 to-purple-600/20 rounded-full blur-3xl"
       style="animation: float 12s ease-in-out infinite;"
     >
     </div>
 
-    {/* Large pink-orange spot - Top right */}
     <div
       class="absolute -top-20 -right-20 w-80 h-80 sm:w-[28rem] sm:h-[28rem] lg:w-[36rem] lg:h-[36rem] xl:w-[44rem] xl:h-[44rem] bg-gradient-to-bl from-pink-500/20 to-orange-400/15 rounded-full blur-3xl"
       style="animation: float 10s ease-in-out infinite reverse;"
     >
     </div>
 
-    {/* Large teal-cyan spot - Bottom center */}
     <div
       class="absolute -bottom-32 left-1/2 transform -translate-x-1/2 w-[28rem] h-[28rem] sm:w-[36rem] sm:h-[36rem] lg:w-[44rem] lg:h-[44rem] xl:w-[52rem] xl:h-[52rem] bg-gradient-to-t from-teal-500/20 to-cyan-400/25 rounded-full blur-3xl"
       style="animation: float 15s ease-in-out infinite;"
@@ -36,29 +33,26 @@
       <div
         class="text-center lg:text-left max-w-2xl mx-auto lg:mx-0 lg:ml-16 xl:ml-24 2xl:ml-32 transition-transform duration-200 ease-out"
       >
-        {/* Main Title with Outline Only */}
         <h1
           class="mt-10 tracking-tight text-5xl sm:text-7xl md:text-8xl lg:text-8xl font-bold mb-6 relative pointer-events-auto select-text outlined-text"
         >
           DJ BRIAN RODRIGUES
         </h1>
 
-        {/* Decorative Line */}
         <div
           class="w-32 lg:w-40 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto lg:mx-0 mb-8 rounded-full shadow-lg shadow-purple-500/30"
         >
         </div>
 
-        {/* Enhanced Subtitle */}
         <div class="space-y-4 pointer-events-auto select-text">
           <p
             class="text-xl sm:text-2xl md:text-3xl font-semibold bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent"
           >
-            New Jersey's Premier Wedding & Event DJ
+            Portuguese-American Wedding & Event DJ
           </p>
           <p class="text-lg text-gray-300 leading-relaxed font-light">
-            Crafting unforgettable soundscapes for your most cherished moments. <br/>
-            From intimate ceremonies to grand celebrations, I bring a unique blend of professionalism and passion to every event in a customizable way.
+            Bringing the best of both worlds to your celebration. <br/>
+            Specializing in Portuguese traditions, American classics, and everything in between for unforgettable multicultural events.
           </p>
         </div>
 
@@ -94,7 +88,6 @@
     }
   }
 
-  /* Outlined text with transparent fill - NO FILLING, NO GLOW */
   .outlined-text {
     color: transparent;
     -webkit-text-fill-color: transparent;
@@ -104,170 +97,11 @@
 </style>
 
 <script>
-  import * as THREE from "three";
-  import { CircleMesh } from "./CircleMesh";
-  import { LightSource } from "./LightSource";
-  import {
-    EffectComposer,
-    EffectPass,
-    GodRaysEffect,
-    RenderPass,
-  } from "postprocessing";
-
-  // Debounce function to limit resize event calls -------------
-  function debounce<T extends (...args: any[]) => any>(
-    func: T,
-    wait: number
-  ): (...args: Parameters<T>) => void {
-    let timeout: ReturnType<typeof setTimeout> | undefined;
-
-    return function (this: any, ...args: Parameters<T>): void {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-  }
-
-  // Device detection using Tailwind's breakpoints
-  function isDesktop(): boolean {
-    const isLargeScreen = window.innerWidth >= 1024;
-    const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-    const canHover = window.matchMedia("(hover: hover)").matches;
-    return isLargeScreen && hasFinePointer && canHover;
-  }
-
-  // Scene initialization function -------------
-  function initScene() {
-    let mouseX = 0;
-    let mouseY = 0;
-    const isDesktopDevice = isDesktop();
-
-    // Canvas container
-    const container = document.getElementById("three-container") as HTMLElement;
-
-    // Only add mouse movement effects on desktop devices (lg and above)
-    if (isDesktopDevice) {
-      // Track mouse on the entire section, not just the container
-      const section = container.closest("section");
-      if (section) {
-        section.addEventListener("mousemove", (event) => {
-          const rect = section.getBoundingClientRect();
-          mouseX = ((event.clientX - rect.left) / section.clientWidth) * 2 - 1;
-          mouseY = -(((event.clientY - rect.top) / section.clientHeight) * 2 - 1);
-        });
-      }
-    }
-
-    const scene = new THREE.Scene();
-
-    // Add atmospheric fog for depth and haze
-    scene.fog = new THREE.FogExp2(0x000000, 0.005);
-
-    // Camera
-    let camera = new THREE.PerspectiveCamera(
-      60,
-      container.clientWidth / container.clientHeight,
-      1,
-      1000
-    );
-    camera.position.set(5, 0, 300);
-
-    // Renderer
-    let renderer = new THREE.WebGLRenderer({
-      powerPreference: "high-performance",
-    });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    container.appendChild(renderer.domElement);
-    window.addEventListener("resize", debounce(onResize, 250), false);
-
-    // Add ambient light
-    const ambientLight = new THREE.AmbientLight(0x111111);
-    scene.add(ambientLight);
-
-    // Create main light source
-    let light = new LightSource();
-    light.position.set(2, 0, -10);
-    scene.add(light);
-
-    // Create grid figure with viewport dimensions
-    let figure = new CircleMesh(5, 15, 15, container.clientWidth, container.clientHeight);
-    scene.add(figure);
-
-    // Create dust particles for atmospheric effect
-    const dustParticles = createDustParticles();
-    scene.add(dustParticles);
-
-    // Create post-processing composer pipeline
-    let composer = new EffectComposer(renderer);
-    composer.addPass(new RenderPass(scene, camera));
-
-    // Add god rays
-    let gre = new GodRaysEffect(camera, light, {
-      height: 720,
-      kernelSize: 3,
-      density: 1.2,
-      decay: 0.92,
-      weight: 0.6,
-      exposure: 0.6,
-      samples: 60,
-      clampMax: 1.0,
-    });
-    composer.addPass(new EffectPass(camera, gre));
-
-    let clock = new THREE.Clock();
-
-    // Animation loop
-    renderer.setAnimationLoop(() => {
-      let t = clock.getElapsedTime();
-
-      // Animate light - pass mouse coordinates only on desktop
-      light.userData.time.value = t;
-      light.update(t, isDesktopDevice ? mouseX : 0, isDesktopDevice ? mouseY : 0);
-
-      // Animate dust particles within bounds
-      dustParticles.rotation.y = Math.sin(t * 0.1) * 0.5;
-      dustParticles.rotation.x = Math.cos(t * 0.07) * 0.3;
-
-      // Render the scene
-      composer.render();
-    });
-
-    // Create dust particles for atmospheric effect
-    function createDustParticles() {
-      const particleCount = 100000;
-      const particles = new THREE.BufferGeometry();
-      const positions = new Float32Array(particleCount * 3);
-
-      // Distribute particles in a volume
-      for (let i = 0; i < particleCount * 3; i += 3) {
-        positions[i] = (Math.random() - 0.5) * 400; // x
-        positions[i + 1] = (Math.random() - 0.5) * 400; // y
-        positions[i + 2] = (Math.random() - 0.5) * 200; // z
-      }
-
-      particles.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-
-      // Create particle material
-      const particleMaterial = new THREE.PointsMaterial({
-        color: 0x888888,
-        size: 0.5,
-        transparent: true,
-        opacity: 0.3,
-        blending: THREE.AdditiveBlending,
-      });
-
-      return new THREE.Points(particles, particleMaterial);
-    }
-
-    // Handle window resize
-    function onResize() {
-      camera.aspect = container.clientWidth / container.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
-
-      figure.resize(container.clientWidth, container.clientHeight);
-    }
-  }
+  import { SceneManager } from "./SceneManager";
 
   // Initialize the scene once the DOM is loaded
-  document.addEventListener("DOMContentLoaded", initScene);
+  document.addEventListener("DOMContentLoaded", () => {
+    const sceneManager = new SceneManager();
+    sceneManager.init();
+  });
 </script>
