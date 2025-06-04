@@ -51,10 +51,8 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
         
-      - name: Install dependencies and rebuild Sharp
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm install --config.platform=linux --config.architecture=x64 sharp
+      - name: Install dependencies
+        run: pnpm install
         working-directory: ${{ env.BUILD_PATH }}
         
       - name: Build with Astro
