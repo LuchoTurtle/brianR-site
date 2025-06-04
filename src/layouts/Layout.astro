@@ -1,27 +1,123 @@
 ---
 import '@fontsource/inter'; // Importing Inter font 
 import "../styles/global.css";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  type?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = "Brian Rodrigues- Portuguese Wedding DJ in NJ",
+  description = "New Jersey's premier wedding DJ Brian Rodrigues brings 20+ years of multicultural music expertise. Portuguese-American DJ specializing in weddings, Sweet 16s, corporate events with bilingual MC services, professional lighting, and custom playlists.",
+  image = "/og-image.jpg",
+  url = Astro.url.href,
+  type = "website",
+  noindex = false,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site || Astro.url.origin)} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Brian Rodrigues DJ" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={url} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.url).href} />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#263b91" />
+    <meta name="msapplication-TileColor" content="#263b91" />
   </head>
   <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <slot />
   </body>
 </html>
 
 <style>
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
   html,
   body {
     margin: 0;
     width: 100%;
     height: 100%;
+  }
+  
+  /* Skip link for accessibility */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: 0 0 4px 4px;
+  }
+  
+  .skip-link:focus {
+    top: 0;
+  }
+  
+  /* Focus styles for accessibility */
+  *:focus {
+    outline: 2px solid #0066cc;
+    outline-offset: 2px;
+  }
+  
+  /* Improved text rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Remove animations for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    html {
+      scroll-behavior: auto;
+    }
   }
 </style>

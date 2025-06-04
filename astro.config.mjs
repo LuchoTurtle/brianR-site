@@ -8,6 +8,6 @@ export default defineConfig({
     assetsInclude: ["**/*.glsl"],
     plugins: [tailwindcss()],
   },
-
   integrations: [favicons()],
+    site: 'https://www.djbrianrodrigues.com/',
 });
