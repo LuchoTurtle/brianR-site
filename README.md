@@ -6,6 +6,14 @@ Built with Astro and Three.js.
 
 ![DJ Brian Rodrigues Website](https://github.com/user-attachments/assets/0fed2c32-4a18-4ea2-b663-caeed7177ae8)
 
+> [!NOTE]
+> This was more of an exercise/way to learn Astro. It's not *actually* being used in production
+> by Brian (even though I reached out, I don't think he's interested 😅).
+>
+> In any case, it's more of a token appreciation for his reviews on BassBoss gear
+> which helps on my journey to learning more about livesound audio engineering. 🙂
+> Do [check him out](https://www.djbrianrodrigues.com/home.html), though!
+
 ## 📁 Project Structure
 
 ```
